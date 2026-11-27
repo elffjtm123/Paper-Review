@@ -1,0 +1,21 @@
+# ── 빌드 결과물: papers/*.md 등 원본에서 build.py가 다시 만듭니다 ──
+# server.py는 시작할 때와 파일이 없을 때 build()를 호출하므로, 커밋하지 않아도 로컬 실행에 지장 없음
+index.html
+kb_data.json
+
+# ── 개인 복습 기록 (SM-2 진행 상태) ──
+# [추측] 기기 간 동기화용 개인 데이터라 저장소에서 뺐습니다. 기록도 버전 관리하고 싶다면 이 줄을 지우세요.
+state.json
+
+# ── 서버 실행 중 생기는 파일 ──
+.server.pid
+.manual_server.log
+*.log
+
+# ── 파이썬·OS 부산물 ──
+__pycache__/
+*.pyc
+.DS_Store
+
+# ── 비밀 값 (Gemini API 키 등을 파일로 둘 경우 대비) ──
+.env

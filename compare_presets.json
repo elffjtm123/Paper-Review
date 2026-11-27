@@ -1,0 +1,410 @@
+[
+  {
+    "id": "vla-arch",
+    "title": "VLA 핵심 아키텍처 · 액션 헤드 비교 (12편)",
+    "description": "읽었던 VLA 모델들의 백본, 액션 표현 방식, 제어 주기, 핵심 차별점을 한눈에 대비합니다.",
+    "columns": [
+      "모델",
+      "연도",
+      "백본",
+      "액션 표현",
+      "핵심 차별점"
+    ],
+    "rows": [
+      {
+        "paperId": "rt-1",
+        "vals": [
+          "RT-1",
+          "2022",
+          "FiLM-EfficientNet + Decoder TF (35M)",
+          "256-bin 이산 토큰",
+          "TokenLearner(81→8)로 3Hz 실시간 다중작업"
+        ]
+      },
+      {
+        "paperId": "palm-e",
+        "vals": [
+          "PaLM-E",
+          "2023",
+          "ViT/OSRT + PaLM",
+          "자연어 상위 계획(외부 정책)",
+          "센서·이미지를 LLM 토큰 공간에 직접 투영"
+        ]
+      },
+      {
+        "paperId": "rt-2",
+        "vals": [
+          "RT-2",
+          "2023",
+          "PaLI-X / PaLM-E (55B)",
+          "256-bin 문자열 토큰",
+          "웹 VQA + 로봇 Co-fine-tuning, 최초의 VLA"
+        ]
+      },
+      {
+        "paperId": "octo",
+        "vals": [
+          "Octo",
+          "2024",
+          "경량 Transformer (27M/93M)",
+          "Diffusion Action Head",
+          "블록 어텐션으로 새 센서/행동 공간 빠른 적응"
+        ]
+      },
+      {
+        "paperId": "openvla",
+        "vals": [
+          "OpenVLA",
+          "2024",
+          "DINOv2 + SigLIP + Llama 2 7B",
+          "256-bin 이산 토큰",
+          "대표 오픈소스 7B VLA, OXE 97만 궤적"
+        ]
+      },
+      {
+        "paperId": "openvla-oft",
+        "vals": [
+          "OpenVLA-OFT",
+          "2025",
+          "OpenVLA 7B + FiLM",
+          "연속 L1 + Parallel Chunk",
+          "병렬 디코딩·액션 청킹으로 25배+ 가속"
+        ]
+      },
+      {
+        "paperId": "pi-0",
+        "vals": [
+          "π0",
+          "2024",
+          "PaliGemma + Action Expert",
+          "Flow Matching (50Hz 청크)",
+          "MoE 분리 Action Expert + 고속 연속 정밀제어"
+        ]
+      },
+      {
+        "paperId": "fast",
+        "vals": [
+          "FAST",
+          "2025",
+          "VLM (π0-FAST 등)",
+          "DCT + BPE 압축 이산 토큰",
+          "고주파 액션 상관관계 병목 해소, 5배 빠른 수렴"
+        ]
+      },
+      {
+        "paperId": "pi-0-5",
+        "vals": [
+          "π0.5",
+          "2025",
+          "PaliGemma + Action Expert",
+          "FAST 사전학습 + Flow 추론",
+          "계층적 서브태스크 추론으로 오픈월드 일반화"
+        ]
+      },
+      {
+        "paperId": "groot-n1",
+        "vals": [
+          "GR00T N1",
+          "2025",
+          "Eagle-2 VLM(S2) + DiT(S1)",
+          "DiT Flow Matching",
+          "휴머노이드 이중 시스템 + 인간영상/합성 피라미드"
+        ]
+      },
+      {
+        "paperId": "smolvla",
+        "vals": [
+          "SmolVLA",
+          "2025",
+          "SmolVLM 절반 레이어 (450M)",
+          "Flow Matching + Async",
+          "커뮤니티 오픈 데이터 + 단일 GPU 초경량"
+        ]
+      },
+      {
+        "paperId": "wall-oss",
+        "vals": [
+          "WALL-OSS",
+          "2025",
+          "체화 정렬 VLM",
+          "이산 정렬 → Flow 통합 CoT",
+          "공간 이해·통합 CoT·행동 생성 정렬(읽는 중)"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "vla-robust",
+    "title": "VLA 강건성 · 접촉 데이터셋 비교 (6편)",
+    "description": "Heart-Lab 현재 실험과 직결되는 교란 벤치마크·방어 모델·접촉력 데이터셋 비교입니다.",
+    "columns": [
+      "논문",
+      "역할",
+      "핵심 축 / 모달리티",
+      "차별점 / Heart-Lab 접점"
+    ],
+    "rows": [
+      {
+        "paperId": "libero-plus",
+        "vals": [
+          "LIBERO-Plus",
+          "7축 교란 벤치마크",
+          "카메라·초기상태·언어·조명·배경·노이즈·배치",
+          "10,030 변형 스트레스 테스트, OFT+ CVPR'26 재현"
+        ]
+      },
+      {
+        "paperId": "libero-pro",
+        "vals": [
+          "LIBERO-PRO",
+          "암기 검증 벤치마크",
+          "물체·배치·언어·환경 4축",
+          "초기 배치 암기 및 언어 무시 결함 폭로"
+        ]
+      },
+      {
+        "paperId": "robustvla",
+        "vals": [
+          "RobustVLA",
+          "멀티모달 교란(ICLR'26)",
+          "시각 + 언어 + 상태 복합 교란",
+          "시각·언어 동시 교란 하 grounding 붕괴 분석"
+        ]
+      },
+      {
+        "paperId": "stablevla",
+        "vals": [
+          "StableVLA",
+          "방어 VLA (ICML'26)",
+          "VLA-Adapter 0.5B + Fused IB",
+          "정보 병목으로 ImageNet-C S3~S5 강건화(111,500회 재현중)"
+        ]
+      },
+      {
+        "paperId": "surp",
+        "vals": [
+          "SURP v1.0",
+          "표면가공 데이터(IROS'25)",
+          "인간 샌딩 84궤적 (영상+자세+6축 F/T)",
+          "작업물 하단 F/T, 경로·법선력 전략 추출"
+        ]
+      },
+      {
+        "paperId": "maia-cria",
+        "vals": [
+          "MAIA (CRIA)",
+          "이상 선제 예측(2026)",
+          "시각+행동+6축 F/T 월드 모델",
+          "접촉 이상을 실행 전에 예측해 저위험 행동 선택"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "generative",
+    "title": "생성모델 계보 · 트레이드오프 비교 (9편)",
+    "description": "확률밀도 추정, 샘플 선명도, 샘플링 속도, 백본 진화를 한눈에 비교합니다.",
+    "columns": [
+      "모델",
+      "연도",
+      "학습 목적",
+      "샘플링 속도",
+      "핵심 돌파 / 한계"
+    ],
+    "rows": [
+      {
+        "paperId": "autoencoder",
+        "vals": [
+          "AutoEncoder",
+          "2006",
+          "복원 손실 (MSE)",
+          "1-step",
+          "비선형 압축 원형 / 생성용 잠재공간 불연속"
+        ]
+      },
+      {
+        "paperId": "vae",
+        "vals": [
+          "VAE",
+          "2013",
+          "ELBO (복원 + KL)",
+          "1-step",
+          "연속 확률 잠재공간 + Reparameterization / 다소 흐림"
+        ]
+      },
+      {
+        "paperId": "gan",
+        "vals": [
+          "GAN",
+          "2014",
+          "Min-Max 적대 게임",
+          "1-step",
+          "선명한 샘플 / 학습 불안정·Mode Collapse"
+        ]
+      },
+      {
+        "paperId": "cgan",
+        "vals": [
+          "CGAN",
+          "2014",
+          "조건부 Min-Max",
+          "1-step",
+          "조건 y로 원하는 속성 제어 생성"
+        ]
+      },
+      {
+        "paperId": "dcgan",
+        "vals": [
+          "DCGAN",
+          "2015",
+          "CNN 안정화 적대 게임",
+          "1-step",
+          "Strided/Transposed Conv + BN으로 CNN GAN 표준화"
+        ]
+      },
+      {
+        "paperId": "real-nvp",
+        "vals": [
+          "Real NVP",
+          "2016",
+          "Exact Log-Likelihood",
+          "1-step (가역)",
+          "Affine Coupling 삼각 야코비안 / 가역성 차원 제약"
+        ]
+      },
+      {
+        "paperId": "ddpm",
+        "vals": [
+          "DDPM",
+          "2020",
+          "노이즈 ε 예측 MSE",
+          "느림 (~1000 step)",
+          "초고품질·안정 학습 / 느린 반복 샘플링"
+        ]
+      },
+      {
+        "paperId": "dit",
+        "vals": [
+          "DiT",
+          "2022",
+          "잠재 확산 + adaLN-Zero",
+          "중간 (Latent)",
+          "U-Net→Transformer 교체로 스케일링 법칙 입증"
+        ]
+      },
+      {
+        "paperId": "flow-matching",
+        "vals": [
+          "Flow Matching",
+          "2022",
+          "OT 직선 속도장 회귀",
+          "빠름 (5~10 step)",
+          "직선 궤적 고속 연속 생성 → π0·GR00T 핵심"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "llm-opt",
+    "title": "LLM 효율화 · PEFT · 정규화 · 위치 인코딩 비교 (10편)",
+    "description": "학습 메모리, 서빙 처리량, 정규화 축, 위치 표현 방식을 비교합니다.",
+    "columns": [
+      "기법",
+      "대상 병목",
+      "핵심 메커니즘",
+      "트레이드오프 / 현재 위상"
+    ],
+    "rows": [
+      {
+        "paperId": "batchnorm",
+        "vals": [
+          "BatchNorm",
+          "CNN 내부 공변량/안정성",
+          "미니배치 채널 축 정규화 + running stats",
+          "소배치·가변 시퀀스에서 불안정"
+        ]
+      },
+      {
+        "paperId": "layernorm",
+        "vals": [
+          "LayerNorm",
+          "시퀀스·소배치 정규화",
+          "단일 샘플 feature 축 정규화",
+          "Transformer 표준 (→ RMSNorm/adaLN 진화)"
+        ]
+      },
+      {
+        "paperId": "rope",
+        "vals": [
+          "RoPE",
+          "상대 위치 표현·외삽",
+          "Q·K 2D 회전으로 내적이 (m-n)에만 의존",
+          "LLaMA·PaLM 등 현대 LLM 사실상 표준"
+        ]
+      },
+      {
+        "paperId": "transformer-without-pe",
+        "vals": [
+          "NoPE",
+          "PE 필요성 재검토",
+          "Causal Mask만으로 암묵적 절대 위치 학습",
+          "초장문 외삽에선 RoPE 대비 한계"
+        ]
+      },
+      {
+        "paperId": "lora",
+        "vals": [
+          "LoRA",
+          "파인튜닝 파라미터/배포",
+          "ΔW = BA 저랭크 학습, 추론 시 병합(지연 0)",
+          "베이스 FP16 메모리 유지, Full FT와 소폭 격차"
+        ]
+      },
+      {
+        "paperId": "qlora",
+        "vals": [
+          "QLoRA",
+          "베이스 모델 VRAM",
+          "4-bit NF4 + Double Quant + Paged Optimizer",
+          "단일 GPU 65B 학습 가능 / 디양자화로 학습 약간 느림"
+        ]
+      },
+      {
+        "paperId": "dora",
+        "vals": [
+          "DoRA",
+          "LoRA 표현력 격차",
+          "가중치 크기(m)·방향(ΔV=BA) 분해 학습",
+          "추론 지연 0 유지하며 저랭크 성능 일관 향상"
+        ]
+      },
+      {
+        "paperId": "flashattention",
+        "vals": [
+          "FlashAttention",
+          "어텐션 HBM I/O & O(N²) 메모리",
+          "SRAM Tiling + Online Softmax + Recomputation",
+          "근사 없는 Exact Attention, 2~4배 가속 + O(N) 메모리"
+        ]
+      },
+      {
+        "paperId": "pagedattention",
+        "vals": [
+          "PagedAttention",
+          "LLM 서빙 KV-Cache 단편화",
+          "가상메모리 페이징(비연속 KV 블록 + 공유)",
+          "vLLM 핵심, 다중 요청 처리량 2~4배 향상"
+        ]
+      },
+      {
+        "paperId": "diffusion-llm",
+        "vals": [
+          "LLaDA",
+          "자기회귀 방향성 한계",
+          "Masked Diffusion 양방향 LLM(8B)",
+          "Reversal Curse 극복 / KV-Cache 최적화 과제"
+        ]
+      }
+    ]
+  }
+]

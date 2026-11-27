@@ -1,0 +1,50 @@
+# 논문 지식베이스 CI (초안)
+# - papers/*.md 메타데이터·본문 4칸 형식 검사
+# - build.py 빌드가 성공하고 결과물이 온전한지 확인
+# - 빌드한 index.html / kb_data.json을 아티팩트로 올려 바로 내려받아 볼 수 있게 함
+name: CI
+
+on:
+  push:
+    branches: [main]          # [추측] 기본 브랜치 이름이 main이라고 가정
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"   # [추측] Mac의 python3 버전을 몰라 최신 안정판으로 둠. build.py는 표준 라이브러리만 사용
+
+      - name: 노트 형식 검사
+        run: python3 scripts/check_notes.py
+
+      - name: build.py 빌드
+        run: python3 build.py
+
+      - name: 빌드 결과 확인
+        run: python3 scripts/verify_build.py
+
+      - name: 서버 모듈 문법 확인
+        run: python3 -m py_compile server.py build.py
+
+      - name: 빌드 결과 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: kb-site
+          path: |
+            index.html
+            kb_data.json
+          retention-days: 14

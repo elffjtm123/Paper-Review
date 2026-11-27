@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heart-Lab 논문 지식베이스</title>
+<style>
+/* hallmark: custom · editorial-workbench · mobile+desktop paper review */
+/* critique: warm paper-and-ink workbench with zero purple gradients, svg icons only, single-layer cards */
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface-alt: #efece4;
+  --ink: #1b1a17;
+  --ink-muted: #5f5b52;
+  --border: #ddd8cc;
+  --accent: #b84a27;
+  --accent-hover: #973a1d;
+  --accent-soft: #f9e8e1;
+  --teal: #1d6b63;
+  --teal-soft: #e2f1ef;
+  --ok: #256d3d;
+  --ok-soft: #e5f3ea;
+  --warn: #9a6412;
+  --warn-soft: #fbf1dc;
+  --danger: #a82c2c;
+  --danger-soft: #fbe6e6;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow: 0 1px 2px rgba(27, 26, 23, 0.06);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --max-w: 1120px;
+}
+[data-theme="dark"] {
+  --bg: #151412;
+  --surface: #1e1d1a;
+  --surface-alt: #272521;
+  --ink: #efede7;
+  --ink-muted: #a6a095;
+  --border: #34312b;
+  --accent: #e06d47;
+  --accent-hover: #ef835f;
+  --accent-soft: #36221b;
+  --teal: #58b4aa;
+  --teal-soft: #1b302e;
+  --ok: #64be80;
+  --ok-soft: #1c2f23;
+  --warn: #dfb059;
+  --warn-soft: #312918;
+  --danger: #e47171;
+  --danger-soft: #341e1e;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease, transform 120ms ease;
+}
+button:hover { border-color: var(--ink-muted); }
+button:active { transform: translateY(1px); }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn-teal {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #ffffff;
+  font-weight: 600;
+}
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.btn-ghost:hover { background: var(--surface-alt); border-color: var(--border); }
+.btn-danger {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+  color: var(--danger);
+  font-weight: 600;
+}
+.btn-sm { padding: 5px 10px; font-size: 0.875rem; }
+
+/* Layout shell */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.brand-title {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brand-sub {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-muted);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-sm);
+}
+.nav-tab:hover { color: var(--ink); background: var(--surface-alt); border-color: transparent; }
+.nav-tab.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  font-size: 0.875rem;
+}
+
+.shutdown-banner {
+  background: var(--warn-soft);
+  border-bottom: 1px solid var(--warn);
+  color: var(--warn);
+  padding: 10px 18px;
+  display: none;
+}
+.shutdown-banner.show { display: block; }
+.shutdown-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 22px 18px 96px;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Section headers */
+.page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+h1, h2, h3 {
+  margin: 0;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.page-head h1 { font-size: 1.5rem; font-weight: 700; }
+.page-desc { color: var(--ink-muted); font-size: 0.9375rem; margin: 4px 0 0; }
+
+/* Cards & surfaces (no card-inside-card) */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.panel + .panel { margin-top: 16px; }
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.grid-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+.stat-label { font-size: 0.8125rem; color: var(--ink-muted); }
+.stat-value { font-size: 1.5rem; font-weight: 700; margin-top: 2px; }
+
+/* Chips & tags */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+}
+.chip.active {
+  background: var(--ink);
+  color: var(--surface);
+  border-color: var(--ink);
+  font-weight: 600;
+}
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+}
+.tag-accent { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.tag-teal { background: var(--teal-soft); color: var(--teal); font-weight: 500; }
+.tag-ok { background: var(--ok-soft); color: var(--ok); font-weight: 500; }
+.tag-warn { background: var(--warn-soft); color: var(--warn); font-weight: 500; }
+
+/* Quiz styles */
+.quiz-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.progress-track {
+  height: 6px;
+  background: var(--surface-alt);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left center;
+  transition: transform 200ms ease;
+}
+.quiz-question {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 12px 0 18px;
+}
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.option-btn {
+  text-align: left;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.45;
+  min-height: 48px;
+}
+.option-btn:hover:not(:disabled) { background: var(--surface-alt); border-color: var(--ink-muted); }
+.option-btn.correct { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+.option-btn.wrong { background: var(--danger-soft); border-color: var(--danger); color: var(--danger); }
+.option-idx {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  min-width: 22px;
+  color: var(--ink-muted);
+}
+.explain-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--teal);
+  background: var(--surface-alt);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.9375rem;
+}
+.recall-reveal {
+  margin-top: 14px;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+.grade-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.grade-btn { padding: 12px 10px; font-weight: 600; }
+.grade-btn.hard { background: var(--danger-soft); border-color: var(--danger); color: var(--danger); }
+.grade-btn.mid { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+.grade-btn.easy { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+
+/* Paper library cards */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.paper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.paper-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 15px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color 140ms ease, transform 120ms ease;
+}
+.paper-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.paper-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.paper-short { font-weight: 700; font-size: 1.05rem; }
+.paper-year { font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-muted); }
+.paper-tldr { font-size: 0.9rem; color: var(--ink); line-height: 1.48; }
+.blurred .paper-tldr, .blurred .blur-target {
+  filter: blur(6px);
+  user-select: none;
+}
+.blurred .paper-card:hover .paper-tldr,
+.blurred .paper-card.revealed .paper-tldr {
+  filter: none;
+}
+
+/* Lineage SVG & Compare table */
+.lineage-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  padding: 12px;
+}
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+th {
+  background: var(--surface-alt);
+  font-weight: 600;
+  color: var(--ink-muted);
+  font-size: 0.84rem;
+}
+tr:last-child td { border-bottom: none; }
+tr.clickable:hover td { background: var(--surface-alt); cursor: pointer; }
+
+/* Domain bar chart */
+.dom-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.dom-row {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+}
+.dom-track {
+  height: 10px;
+  background: var(--surface-alt);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.dom-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 999px;
+}
+.dom-fill.gap { background: var(--accent); }
+
+/* Bridge card */
+.bridge-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+}
+.bridge-node {
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  font-weight: 600;
+}
+.bridge-mid {
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Modal / Drawer */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 19, 16, 0.55);
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-backdrop.open { display: flex; }
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  max-width: 680px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 22px;
+}
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.note-sec { margin-top: 14px; }
+.note-sec-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.note-sec ul { margin: 4px 0 0 18px; padding: 0; }
+.note-sec li { margin-bottom: 4px; }
+
+/* Mobile bottom nav */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+}
+.nav-mobile-inner {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+.mob-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 2px;
+  border: none;
+  background: transparent;
+  color: var(--ink-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+.mob-tab.active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+
+.rag-answer {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-top: 12px;
+  padding: 14px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+}
+.mono-url {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--surface-alt);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+}
+
+@media (max-width: 820px) {
+  .nav-desktop { display: none; }
+  .nav-mobile { display: block; }
+  .grid-2, .grid-3 { grid-template-columns: minmax(0, 1fr); }
+  .grid-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dom-row { grid-template-columns: 120px minmax(0, 1fr) 36px; }
+  main { padding: 16px 14px 96px; }
+  .modal-backdrop { align-items: flex-end; padding: 0; }
+  .modal-box { border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 90vh; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">H</div>
+      <div>
+        <div class="brand-title">Heart-Lab 논문 복습</div>
+        <div class="brand-sub" id="topSub">63편 지식베이스</div>
+      </div>
+    </div>
+
+    <nav class="nav-desktop" aria-label="주 메뉴">
+      <button class="nav-tab active" data-tab="quiz">오늘의 퀴즈</button>
+      <button class="nav-tab" data-tab="library">논문 노트</button>
+      <button class="nav-tab" data-tab="lineage">계보 · 비교</button>
+      <button class="nav-tab" data-tab="recommend">다음 논문 추천</button>
+      <button class="nav-tab" data-tab="rag">RAG · 대시보드</button>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn" id="themeBtn" title="테마 전환" aria-label="테마 전환">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="icon-btn" id="settingsBtn" title="AI 및 서버 설정">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>설정</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="shutdown-banner" id="shutdownBanner" role="status">
+  <div class="shutdown-inner">
+    <span id="shutdownText">오늘 퀴즈가 완료되어 20초 후 서버가 자동 종료됩니다.</span>
+    <div class="chip-row">
+      <button class="btn-sm" id="cancelShutdownBtn">종료 취소하고 계속 보기</button>
+      <button class="btn-sm btn-danger" id="shutdownNowBtn">지금 바로 종료</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- ==================== TAB 1: DAILY QUIZ ==================== -->
+  <section class="tab-panel active" id="tab-quiz">
+    <div class="page-head">
+      <div>
+        <h1>오늘의 논문 퀴즈</h1>
+        <p class="page-desc" id="quizSubtitle">모델 자체 70% · 논문 간 연결 30% 비중으로 망각 곡선(SM-2)에 따라 출제합니다.</p>
+      </div>
+      <div class="chip-row">
+        <select id="quizCatSelect" class="input" style="min-width:140px;padding:7px 10px" aria-label="퀴즈 분야 선택">
+          <option value="ALL">전체 분야 (63편)</option>
+        </select>
+        <select id="quizCountSelect" class="input" style="min-width:96px;padding:7px 10px" aria-label="문제 수">
+          <option value="5" selected>5문제</option>
+          <option value="8">8문제</option>
+          <option value="12">12문제</option>
+        </select>
+        <button class="btn-sm" id="newQuizBtn">새 세트</button>
+        <button class="btn-sm btn-teal" id="aiQuizBtn">AI 새 퀴즈</button>
+      </div>
+    </div>
+
+    <div class="panel" id="quizStage">
+      <p>데이터를 불러오는 중입니다...</p>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: LIBRARY ==================== -->
+  <section class="tab-panel" id="tab-library">
+    <div class="page-head">
+      <div>
+        <h1>초압축 논문 노트 (63편)</h1>
+        <p class="page-desc">모든 논문을 리뷰 유무 구분 없이 핵심 4칸으로 동등하게 정리했습니다.</p>
+      </div>
+      <div class="chip-row">
+        <button class="btn-sm" id="blurToggleBtn" aria-pressed="false">회상 블러 모드 끄기</button>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <input type="search" id="libSearch" class="input" placeholder="논문명, 키워드, 메커니즘 검색 (예: Flow Matching, LoRA, 시점 교란)">
+    </div>
+    <div class="chip-row" id="libCatChips"></div>
+    <div class="paper-grid" id="paperGrid"></div>
+  </section>
+
+  <!-- ==================== TAB 3: LINEAGE & COMPARE ==================== -->
+  <section class="tab-panel" id="tab-lineage">
+    <div class="page-head">
+      <div>
+        <h1>논문 계보 맵 · 핵심 비교</h1>
+        <p class="page-desc">노드를 클릭하면 선행·후속 연결만 강조되고 상세 카드를 바로 열 수 있습니다.</p>
+      </div>
+      <div class="chip-row" id="lineageTrackChips">
+        <button class="chip active" data-track="vla">VLA 계보</button>
+        <button class="chip" data-track="gen">생성모델 계보</button>
+        <button class="chip" data-track="llm">LLM · 효율화 계보</button>
+        <button class="chip" data-track="vision">비전 · 시퀀스 계보</button>
+      </div>
+    </div>
+
+    <div class="lineage-wrap">
+      <svg id="lineageSvg" width="980" height="360" viewBox="0 0 980 360" role="img" aria-label="논문 계보 그래프"></svg>
+    </div>
+
+    <div class="panel" style="margin-top:18px">
+      <div class="page-head" style="margin-bottom:12px">
+        <div>
+          <h2 style="font-size:1.2rem">프리셋 비교 매트릭스</h2>
+          <p class="page-desc">헷갈리기 쉬운 핵심 논문군을 한눈에 대비합니다.</p>
+        </div>
+        <div class="chip-row" id="comparePresetChips"></div>
+      </div>
+      <div class="table-wrap" id="compareTableWrap"></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h2 style="font-size:1.15rem;margin-bottom:6px">커스텀 나란히 비교 (2~4편 선택)</h2>
+      <p class="page-desc" style="margin-bottom:12px">비교하고 싶은 논문들을 고르면 핵심 4칸을 나란히 세워 보여줍니다.</p>
+      <div class="chip-row" style="margin-bottom:12px">
+        <select id="customCmpA" class="input" style="min-width:150px"></select>
+        <select id="customCmpB" class="input" style="min-width:150px"></select>
+        <select id="customCmpC" class="input" style="min-width:150px"></select>
+      </div>
+      <div class="table-wrap" id="customCompareWrap"></div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: 3-AXIS RECOMMENDATIONS & ARXIV ==================== -->
+  <section class="tab-panel" id="tab-recommend">
+    <div class="page-head">
+      <div>
+        <h1>다음으로 읽을 논문 추천</h1>
+        <p class="page-desc">부족한 도메인 보강 · 관심 분야 심화 · 두 논문 사이 징검다리 3축과 실시간 arXiv를 결합합니다.</p>
+      </div>
+      <div class="chip-row">
+        <button class="btn-teal btn-sm" id="aiRecommendBtn">AI 3축 심층 추론 추천</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 style="font-size:1.1rem">내 63편 도메인 분포 (부족 영역 진단)</h2>
+      <p class="page-desc">주황색 막대는 상대적으로 논문이 적어 보강 우선순위가 높은 도메인입니다.</p>
+      <div class="dom-bars" id="domainBars"></div>
+    </div>
+
+    <div id="aiRecContainer" style="display:none;margin-top:16px"></div>
+
+    <div class="panel" style="margin-top:16px">
+      <div class="page-head" style="margin-bottom:12px">
+        <div>
+          <h2 style="font-size:1.15rem">3축 맞춤 추천 큐레이션</h2>
+        </div>
+        <div class="chip-row" id="recAxisChips">
+          <button class="chip active" data-axis="bridge">두 논문 징검다리</button>
+          <button class="chip" data-axis="gap">부족 도메인 보강</button>
+          <button class="chip" data-axis="interest">관심 분야 심화</button>
+        </div>
+      </div>
+      <div class="grid-2" id="recGrid"></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <div class="page-head" style="margin-bottom:12px">
+        <div>
+          <h2 style="font-size:1.15rem">실시간 최신 arXiv 논문 탐색</h2>
+          <p class="page-desc">로컬 서버가 arXiv API에서 오늘 기준 최신 논문을 직접 조회합니다.</p>
+        </div>
+      </div>
+      <div class="chip-row" style="margin-bottom:10px" id="arxivTopicChips">
+        <button class="chip active" data-topic="vla">VLA 최신</button>
+        <button class="chip" data-topic="robustness">시각 교란 강건성</button>
+        <button class="chip" data-topic="world_model">World Model · 접촉</button>
+        <button class="chip" data-topic="rl_vla">RL × VLA</button>
+        <button class="chip" data-topic="diffusion_flow">Flow · 이산확산</button>
+        <button class="chip" data-topic="efficiency">경량화 · PEFT</button>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="arxivCustomQ" class="input" placeholder="직접 arXiv 검색어 입력 (예: all:&quot;tactile VLA&quot;)">
+        <button class="btn-primary" id="arxivFetchBtn">최신 논문 가져오기</button>
+      </div>
+      <div id="arxivResults" class="grid-2"></div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 5: RAG Q&A & STATS ==================== -->
+  <section class="tab-panel" id="tab-rag">
+    <div class="page-head">
+      <div>
+        <h1>내 논문 RAG 검색 · 복습 대시보드</h1>
+        <p class="page-desc">63편 기록 노트에서 관련 논문을 BM25로 즉시 찾고, LLM 연결 시 비교·해설 Q&amp;A까지 답합니다.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 style="font-size:1.15rem;margin-bottom:8px">63편 노트 RAG 질문 · 검색</h2>
+      <div class="search-bar">
+        <input type="text" id="ragInput" class="input" placeholder="예: RT-2, OpenVLA, Pi-0, FAST의 액션 출력 방식 차이를 정리해줘">
+        <button class="btn-primary" id="ragSearchBtn">RAG 검색</button>
+        <button class="btn-teal" id="ragAskAiBtn">RAG + AI 답변</button>
+      </div>
+      <div id="ragHits" class="chip-row" style="margin-top:8px"></div>
+      <div id="ragAiOut" class="rag-answer" style="display:none"></div>
+    </div>
+
+    <div class="grid-stats" id="statsGrid" style="margin-top:16px"></div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h2 style="font-size:1.1rem;margin-bottom:10px">자주 헷갈리는 · 복습 필요 논문</h2>
+        <div id="weakList"></div>
+      </div>
+      <div class="panel">
+        <h2 style="font-size:1.1rem;margin-bottom:10px">휴대폰 · Mac 접속 및 서버 제어</h2>
+        <div id="serverInfoBox" style="font-size:0.9rem;display:flex;flex-direction:column;gap:8px"></div>
+        <div class="chip-row" style="margin-top:12px">
+          <button class="btn-sm" id="exportStateBtn">학습 기록 JSON 백업</button>
+          <button class="btn-sm" id="rebuildBtn">Markdown 노트 재빌드</button>
+          <button class="btn-sm btn-danger" id="manualShutdownBtn">서버 종료</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Mobile bottom navigation -->
+<nav class="nav-mobile" aria-label="모바일 하단 메뉴">
+  <div class="nav-mobile-inner">
+    <button class="mob-tab active" data-tab="quiz">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span>퀴즈</span>
+    </button>
+    <button class="mob-tab" data-tab="library">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>노트</span>
+    </button>
+    <button class="mob-tab" data-tab="lineage">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M8.5 7.5L11 15.5M15.5 7.5L13 15.5"/></svg>
+      <span>계보·비교</span>
+    </button>
+    <button class="mob-tab" data-tab="recommend">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span>추천</span>
+    </button>
+    <button class="mob-tab" data-tab="rag">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span>RAG·통계</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Paper Detail Modal -->
+<div class="modal-backdrop" id="paperModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <div class="chip-row" id="modalBadges" style="margin-bottom:6px"></div>
+        <h2 id="modalTitle" style="font-size:1.25rem"></h2>
+        <div id="modalSub" style="font-size:0.85rem;color:var(--ink-muted);margin-top:3px"></div>
+      </div>
+      <button class="btn-sm" id="closePaperModal">닫기</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Settings Modal (LLM API Key / Ollama / Auto-shutdown info) -->
+<div class="modal-backdrop" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+  <div class="modal-box" style="max-width:520px">
+    <div class="modal-head">
+      <div>
+        <h2 id="settingsTitle" style="font-size:1.2rem">AI 연동 · 서버 설정</h2>
+        <p class="page-desc">API 키는 이 기기 브라우저(localStorage)에만 저장됩니다.</p>
+      </div>
+      <button class="btn-sm" id="closeSettingsModal">닫기</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <label>
+        <div style="font-size:0.875rem;font-weight:600;margin-bottom:4px">LLM 제공자</div>
+        <select id="llmProvider" class="input" style="width:100%">
+          <option value="gemini">Google Gemini API (클라우드, 추천)</option>
+          <option value="ollama">로컬 Ollama (localhost:11434)</option>
+        </select>
+      </label>
+      <label id="geminiKeyRow">
+        <div style="font-size:0.875rem;font-weight:600;margin-bottom:4px">Gemini API Key</div>
+        <input type="password" id="geminiKey" class="input" style="width:100%" placeholder="AIza...">
+      </label>
+      <label>
+        <div style="font-size:0.875rem;font-weight:600;margin-bottom:4px">모델명</div>
+        <input type="text" id="llmModel" class="input" style="width:100%" placeholder="gemini-2.5-flash 또는 qwen2.5:7b">
+      </label>
+      <label id="ollamaUrlRow" style="display:none">
+        <div style="font-size:0.875rem;font-weight:600;margin-bottom:4px">Ollama URL</div>
+        <input type="text" id="ollamaUrl" class="input" style="width:100%" value="http://localhost:11434">
+      </label>
+      <label>
+        <div style="font-size:0.875rem;font-weight:600;margin-bottom:4px">AI 추천 관심 키워드</div>
+        <input type="text" id="interestPref" class="input" style="width:100%" value="VLA 시각 교란 강건성, 접촉력(SURP/CRIA), Flow Matching, 경량화">
+      </label>
+      <div class="chip-row" style="justify-content:flex-end;margin-top:6px">
+        <button class="btn-primary" id="saveSettingsBtn">설정 저장</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const EMBEDDED_DATA = /*__EMBEDDED_KB_DATA__*/null;
+const IS_HTTP = location.protocol.startsWith("http");
+
+let KB = null;
+let PAPER_MAP = {};
+let STATE = { sm2: {}, quizHistory: [], dailyCompleted: {}, streak: 0, bookmarks: [], aiRecommendations: null };
+let SERVER = null;
+
+// Quiz session state
+let QUIZ_SESSION = { items: [], idx: 0, score: 0, answered: false, done: false, paperIds: [] };
+let CURRENT_LIB_CAT = "ALL";
+let BLUR_MODE = false;
+let CURRENT_TRACK = "vla";
+let CURRENT_PRESET = 0;
+let CURRENT_REC_AXIS = "bridge";
+let CURRENT_ARXIV_TOPIC = "vla";
+let SHUTDOWN_TIMER = null;
+let SHUTDOWN_REM = null;
+
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function todayStr() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+function loadSettings() {
+  try {
+    return JSON.parse(localStorage.getItem("hl_kb_settings") || "{}") || {};
+  } catch { return {}; }
+}
+function saveSettings(obj) {
+  localStorage.setItem("hl_kb_settings", JSON.stringify(obj));
+}
+
+async function init() {
+  // Theme
+  const savedTheme = localStorage.getItem("hl_kb_theme") || "light";
+  if (savedTheme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+
+  // Load KB + State (Server sync when over HTTP, localStorage fallback when opened as file://)
+  if (IS_HTTP) {
+    try {
+      const res = await fetch("/api/data");
+      const data = await res.json();
+      KB = data.kb;
+      STATE = data.state || STATE;
+      SERVER = data.server || null;
+    } catch (e) {
+      KB = EMBEDDED_DATA;
+      loadLocalState();
+    }
+  } else {
+    KB = EMBEDDED_DATA;
+    loadLocalState();
+  }
+  if (!KB) {
+    $("#quizStage").innerHTML = "<p>kb_data.json을 불러오지 못했습니다. build.py를 실행해 주세요.</p>";
+    return;
+  }
+  KB.papers.forEach((p) => (PAPER_MAP[p.id] = p));
+  $("#topSub").textContent = `${KB.paperCount}편 · ${SERVER ? (SERVER.autoShutdownMode ? "아침 퀴즈 자동종료 모드" : "로컬 서버 동기화 중") : "오프라인 모드"}`;
+
+  bindEvents();
+  populateSelects();
+  startDailyQuiz();
+  renderLibrary();
+  renderLineage(CURRENT_TRACK);
+  renderComparePresets();
+  renderCustomCompare();
+  renderRecommendations();
+  renderStatsAndServer();
+  if (IS_HTTP) fetchArxivTopic(CURRENT_ARXIV_TOPIC, "");
+  if (SERVER && SERVER.shutdownRemainingSec !== null) startShutdownCountdown(SERVER.shutdownRemainingSec);
+}
+
+function loadLocalState() {
+  try {
+    const raw = localStorage.getItem("hl_kb_state");
+    if (raw) STATE = Object.assign(STATE, JSON.parse(raw));
+  } catch {}
+}
+
+async function persistState() {
+  localStorage.setItem("hl_kb_state", JSON.stringify(STATE));
+  if (IS_HTTP) {
+    try {
+      await fetch("/api/state", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(STATE),
+      });
+    } catch {}
+  }
+}
+
+function bindEvents() {
+  // Tabs (desktop + mobile)
+  $$("[data-tab]").forEach((btn) => {
+    btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+  });
+
+  // Theme
+  $("#themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const next = cur === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("hl_kb_theme", next);
+  });
+
+  // Settings modal
+  $("#settingsBtn").addEventListener("click", openSettings);
+  $("#closeSettingsModal").addEventListener("click", () => $("#settingsModal").classList.remove("open"));
+  $("#settingsModal").addEventListener("click", (e) => { if (e.target === $("#settingsModal")) $("#settingsModal").classList.remove("open"); });
+  $("#llmProvider").addEventListener("change", syncProviderFields);
+  $("#saveSettingsBtn").addEventListener("click", () => {
+    saveSettings({
+      provider: $("#llmProvider").value,
+      apiKey: $("#geminiKey").value.trim(),
+      model: $("#llmModel").value.trim(),
+      ollamaUrl: $("#ollamaUrl").value.trim(),
+      interest: $("#interestPref").value.trim(),
+    });
+    $("#settingsModal").classList.remove("open");
+  });
+
+  // Paper modal
+  $("#closePaperModal").addEventListener("click", () => $("#paperModal").classList.remove("open"));
+  $("#paperModal").addEventListener("click", (e) => { if (e.target === $("#paperModal")) $("#paperModal").classList.remove("open"); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      $("#paperModal").classList.remove("open");
+      $("#settingsModal").classList.remove("open");
+    }
+  });
+
+  // Quiz controls
+  $("#newQuizBtn").addEventListener("click", () => startDailyQuiz(true));
+  $("#quizCatSelect").addEventListener("change", () => startDailyQuiz(true));
+  $("#quizCountSelect").addEventListener("change", () => startDailyQuiz(true));
+  $("#aiQuizBtn").addEventListener("click", generateAiQuiz);
+
+  // Library controls
+  $("#libSearch").addEventListener("input", renderLibrary);
+  $("#blurToggleBtn").addEventListener("click", () => {
+    BLUR_MODE = !BLUR_MODE;
+    $("#blurToggleBtn").setAttribute("aria-pressed", String(BLUR_MODE));
+    $("#blurToggleBtn").textContent = BLUR_MODE ? "회상 블러 모드 켜짐" : "회상 블러 모드 끄기";
+    $("#paperGrid").classList.toggle("blurred", BLUR_MODE);
+  });
+
+  // Lineage track chips
+  $$("#lineageTrackChips .chip").forEach((c) => {
+    c.addEventListener("click", () => {
+      $$("#lineageTrackChips .chip").forEach((x) => x.classList.remove("active"));
+      c.classList.add("active");
+      CURRENT_TRACK = c.dataset.track;
+      renderLineage(CURRENT_TRACK);
+    });
+  });
+
+  // Custom compare selects
+  ["#customCmpA", "#customCmpB", "#customCmpC"].forEach((s) => {
+    $(s).addEventListener("change", renderCustomCompare);
+  });
+
+  // Recommendations
+  $$("#recAxisChips .chip").forEach((c) => {
+    c.addEventListener("click", () => {
+      $$("#recAxisChips .chip").forEach((x) => x.classList.remove("active"));
+      c.classList.add("active");
+      CURRENT_REC_AXIS = c.dataset.axis;
+      renderRecCards();
+    });
+  });
+  $("#aiRecommendBtn").addEventListener("click", runAiThinkingRecommendation);
+
+  // arXiv
+  $$("#arxivTopicChips .chip").forEach((c) => {
+    c.addEventListener("click", () => {
+      $$("#arxivTopicChips .chip").forEach((x) => x.classList.remove("active"));
+      c.classList.add("active");
+      CURRENT_ARXIV_TOPIC = c.dataset.topic;
+      $("#arxivCustomQ").value = "";
+      fetchArxivTopic(CURRENT_ARXIV_TOPIC, "");
+    });
+  });
+  $("#arxivFetchBtn").addEventListener("click", () => {
+    fetchArxivTopic(CURRENT_ARXIV_TOPIC, $("#arxivCustomQ").value.trim());
+  });
+
+  // RAG
+  $("#ragSearchBtn").addEventListener("click", runRagSearch);
+  $("#ragInput").addEventListener("keydown", (e) => { if (e.key === "Enter") runRagSearch(); });
+  $("#ragAskAiBtn").addEventListener("click", runRagAi);
+
+  // Server & Export controls
+  $("#cancelShutdownBtn").addEventListener("click", cancelShutdown);
+  $("#shutdownNowBtn").addEventListener("click", shutdownServerNow);
+  $("#manualShutdownBtn").addEventListener("click", shutdownServerNow);
+  $("#rebuildBtn").addEventListener("click", async () => {
+    if (!IS_HTTP) return alert("로컬 서버 모드에서만 재빌드할 수 있습니다.");
+    const r = await fetch("/api/rebuild", { method: "POST" }).then((x) => x.json());
+    if (r.ok) { alert(`재빌드 완료: ${r.paperCount}편, ${r.quizCount}문항`); location.reload(); }
+    else alert("오류: " + r.error);
+  });
+  $("#exportStateBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(STATE, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `heartlab-kb-state-${todayStr()}.json`;
+    a.click();
+  });
+}
+
+function switchTab(tab) {
+  $$(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${tab}`));
+  $$("[data-tab]").forEach((b) => b.classList.toggle("active", b.dataset.tab === tab));
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function openSettings() {
+  const s = loadSettings();
+  $("#llmProvider").value = s.provider || "gemini";
+  $("#geminiKey").value = s.apiKey || "";
+  $("#llmModel").value = s.model || (s.provider === "ollama" ? "qwen2.5:7b" : "gemini-2.5-flash");
+  $("#ollamaUrl").value = s.ollamaUrl || "http://localhost:11434";
+  $("#interestPref").value = s.interest || "VLA 시각 교란 강건성, 접촉력(SURP/CRIA), Flow Matching, 경량화";
+  syncProviderFields();
+  $("#settingsModal").classList.add("open");
+}
+function syncProviderFields() {
+  const isOllama = $("#llmProvider").value === "ollama";
+  $("#geminiKeyRow").style.display = isOllama ? "none" : "block";
+  $("#ollamaUrlRow").style.display = isOllama ? "block" : "none";
+}
+
+function populateSelects() {
+  const cats = [...new Set(KB.papers.map((p) => p.category))];
+  const qSel = $("#quizCatSelect");
+  cats.forEach((c) => {
+    const o = document.createElement("option");
+    o.value = c;
+    o.textContent = c;
+    qSel.appendChild(o);
+  });
+
+  // Library category chips
+  const libChips = $("#libCatChips");
+  libChips.innerHTML = "";
+  const allBtn = document.createElement("button");
+  allBtn.className = "chip active";
+  allBtn.textContent = `전체 (${KB.papers.length})`;
+  allBtn.onclick = () => { CURRENT_LIB_CAT = "ALL"; updateLibChips(); renderLibrary(); };
+  libChips.appendChild(allBtn);
+  cats.forEach((c) => {
+    const cnt = KB.papers.filter((p) => p.category === c).length;
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.dataset.cat = c;
+    b.textContent = `${c} (${cnt})`;
+    b.onclick = () => { CURRENT_LIB_CAT = c; updateLibChips(); renderLibrary(); };
+    libChips.appendChild(b);
+  });
+
+  // Custom compare selects
+  const defaults = ["pi-0", "openvla", "rt-2"];
+  ["#customCmpA", "#customCmpB", "#customCmpC"].forEach((sel, idx) => {
+    const el = $(sel);
+    el.innerHTML = idx === 2 ? '<option value="">(3번째 선택 안 함)</option>' : "";
+    KB.papers.forEach((p) => {
+      const o = document.createElement("option");
+      o.value = p.id;
+      o.textContent = `${p.short} (${p.year}, ${p.category})`;
+      if (p.id === defaults[idx]) o.selected = true;
+      el.appendChild(o);
+    });
+  });
+}
+function updateLibChips() {
+  $$("#libCatChips .chip").forEach((b) => {
+    const match = (CURRENT_LIB_CAT === "ALL" && !b.dataset.cat) || b.dataset.cat === CURRENT_LIB_CAT;
+    b.classList.toggle("active", match);
+  });
+}
+
+/* ==================== SM-2 & DAILY QUIZ ==================== */
+function scorePriority(q) {
+  const today = todayStr();
+  let pri = 0;
+  for (const pid of q.papers || []) {
+    const rec = STATE.sm2[pid];
+    if (!rec) pri += 50; // never reviewed yet
+    else {
+      if (rec.due && rec.due <= today) pri += 70;
+      pri += (rec.wrong || 0) * 18;
+      pri -= (rec.reps || 0) * 4;
+    }
+  }
+  return pri + Math.random() * 15;
+}
+
+function updateSM2(paperIds, quality) {
+  // quality: 1=까먹음, 3=애매함, 5=완벽함
+  const today = new Date();
+  for (const pid of paperIds || []) {
+    const prev = STATE.sm2[pid] || { interval: 0, ease: 2.5, reps: 0, attempts: 0, wrong: 0 };
+    prev.attempts = (prev.attempts || 0) + 1;
+    if (quality < 3) {
+      prev.reps = 0;
+      prev.interval = 1;
+      prev.wrong = (prev.wrong || 0) + 1;
+    } else {
+      prev.reps = (prev.reps || 0) + 1;
+      if (prev.reps === 1) prev.interval = quality === 5 ? 4 : 2;
+      else if (prev.reps === 2) prev.interval = quality === 5 ? 8 : 5;
+      else prev.interval = Math.round(prev.interval * prev.ease);
+    }
+    prev.ease = Math.max(1.3, prev.ease + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)));
+    const dueDate = new Date(today.getTime() + prev.interval * 86400000);
+    const pad = (n) => String(n).padStart(2, "0");
+    prev.due = `${dueDate.getFullYear()}-${pad(dueDate.getMonth() + 1)}-${pad(dueDate.getDate())}`;
+    prev.lastScore = quality;
+    STATE.sm2[pid] = prev;
+  }
+}
+
+function startDailyQuiz(shuffle = false) {
+  const cat = $("#quizCatSelect").value;
+  const count = parseInt($("#quizCountSelect").value, 10) || 5;
+  const pool = KB.quizzes.filter((q) => cat === "ALL" || q.category === cat);
+
+  // Split into 70% single-model quizzes vs 30% cross-paper link quizzes
+  const singleMcqs = pool
+    .filter((q) => q.type === "single_mcq" || (q.scope === "single" && q.type !== "recall"))
+    .sort((a, b) => scorePriority(b) - scorePriority(a));
+  const singleRecalls = pool
+    .filter((q) => q.type === "recall")
+    .sort((a, b) => scorePriority(b) - scorePriority(a));
+  const linkMcqs = pool
+    .filter((q) => q.scope === "link" || q.type === "compare")
+    .sort((a, b) => scorePriority(b) - scorePriority(a));
+
+  // Stochastic rounding around exact 0.70 / 0.30 so e.g. 5 questions averages exactly 3.5 single : 1.5 link (70:30)
+  const exactLink = count * 0.30;
+  const baseLink = Math.floor(exactLink);
+  let targetLink = baseLink + (Math.random() < (exactLink - baseLink) ? 1 : 0);
+  targetLink = Math.min(linkMcqs.length, targetLink);
+  const targetSingle = count - targetLink;
+
+  // Within the 70% single-model slice: ~65% single-model MCQ + ~35% single-model recall card (no duplicate paper in same set)
+  const usedSinglePapers = new Set();
+  const pickedSingle = [];
+  const targetSingleMcq = Math.min(singleMcqs.length, Math.ceil(targetSingle * 0.65));
+  for (const q of singleMcqs) {
+    if (pickedSingle.length >= targetSingleMcq) break;
+    const pid = (q.papers || [])[0];
+    if (pid && usedSinglePapers.has(pid)) continue;
+    if (pid) usedSinglePapers.add(pid);
+    pickedSingle.push(q);
+  }
+  for (const q of singleRecalls) {
+    if (pickedSingle.length >= targetSingle) break;
+    const pid = (q.papers || [])[0];
+    if (pid && usedSinglePapers.has(pid)) continue;
+    if (pid) usedSinglePapers.add(pid);
+    pickedSingle.push(q);
+  }
+  // Fill any remaining single slots if filtered category is small
+  if (pickedSingle.length < targetSingle) {
+    for (const q of [...singleMcqs, ...singleRecalls]) {
+      if (pickedSingle.length >= targetSingle) break;
+      if (!pickedSingle.includes(q)) pickedSingle.push(q);
+    }
+  }
+
+  const pickedLink = linkMcqs.slice(0, targetLink);
+  const picked = [...pickedSingle, ...pickedLink];
+
+  // Interleave/shuffle question order and shuffle MCQ option order
+  for (let i = picked.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [picked[i], picked[j]] = [picked[j], picked[i]];
+  }
+  const items = picked.map((q) => {
+    if (q.type === "recall") return q;
+    const indexed = q.options.map((text, i) => ({ text, isAns: i === q.answer }));
+    for (let i = indexed.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
+    }
+    return {
+      ...q,
+      options: indexed.map((x) => x.text),
+      answer: indexed.findIndex((x) => x.isAns),
+    };
+  });
+  QUIZ_SESSION = { items, idx: 0, score: 0, answered: false, done: false, paperIds: [] };
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const box = $("#quizStage");
+  const s = QUIZ_SESSION;
+  const todayDone = STATE.dailyCompleted && STATE.dailyCompleted[todayStr()];
+  const singleInSet = s.items.filter((x) => x.scope === "single" || x.type === "recall" || x.type === "single_mcq").length;
+  const linkInSet = s.items.length - singleInSet;
+  $("#quizSubtitle").textContent = todayDone
+    ? `오늘(${todayStr()}) 퀴즈 완료 (${todayDone.score}/${todayDone.total}) · 현재 세트: 모델 자체 ${singleInSet} · 연결 ${linkInSet} (70:30 비중)`
+    : `오늘(${todayStr()}) 5분 복습 · 현재 세트: 모델 자체 ${singleInSet}문제 · 논문 간 연결 ${linkInSet}문제 (70:30 비중)`;
+
+  if (!s.items.length) {
+    box.innerHTML = "<p>선택한 조건에 출제할 문제가 없습니다.</p>";
+    return;
+  }
+
+  if (s.done) {
+    const pct = Math.round((s.score / s.items.length) * 100);
+    const uniquePapers = [...new Set(s.paperIds)].map((id) => PAPER_MAP[id]).filter(Boolean);
+    box.innerHTML = `
+      <div style="text-align:center;padding:12px 0">
+        <div class="tag tag-ok" style="margin-bottom:10px">오늘의 퀴즈 완료</div>
+        <h2 style="font-size:1.8rem;margin-bottom:6px">${s.score} / ${s.items.length} (${pct}%)</h2>
+        <p class="page-desc">복습 이력과 망각 곡선(SM-2)이 저장되었습니다. 연속 복습: ${STATE.streak || 1}일</p>
+        <div class="chip-row" style="justify-content:center;margin:16px 0">
+          ${uniquePapers.map((p) => `<button class="chip" onclick="openPaperModal('${p.id}')">${esc(p.short)} 복습 카드</button>`).join("")}
+        </div>
+        <div class="chip-row" style="justify-content:center;margin-top:16px">
+          <button class="btn-primary" onclick="startDailyQuiz(true)">추가 5문제 더 풀기</button>
+          <button onclick="switchTab('recommend')">다음 읽을 논문 보기</button>
+          ${IS_HTTP ? `<button class="btn-danger" onclick="shutdownServerNow()">오늘 공부 끝 · 서버 종료</button>` : ""}
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const q = s.items[s.idx];
+  const progress = ((s.idx) / s.items.length) * 100;
+  const isLink = q.scope === "link" || q.type === "compare";
+  const typeLabel = q.type === "recall" ? "모델 자체 · 회상 카드" : (isLink ? "논문 간 연결 · 비교" : "모델 자체 · 객관식");
+  const typeTagCls = q.type === "recall" ? "tag-accent" : (isLink ? "tag-warn" : "tag-teal");
+  const relatedChips = (q.papers || []).map((id) => {
+    const p = PAPER_MAP[id];
+    return p ? `<button class="btn-sm btn-ghost" onclick="openPaperModal('${id}')">${esc(p.short)}</button>` : "";
+  }).join("");
+
+  if (q.type === "recall") {
+    box.innerHTML = `
+      <div class="quiz-bar">
+        <div class="chip-row">
+          <span class="tag tag-accent">${typeLabel}</span>
+          <span class="tag">${esc(q.category)}</span>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:0.875rem;color:var(--ink-muted)">${s.idx + 1} / ${s.items.length}</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="transform:scaleX(${(s.idx + 1) / s.items.length})"></div></div>
+      <div class="quiz-question">${esc(q.question)}</div>
+      <div style="font-size:0.875rem;color:var(--ink-muted);margin-bottom:14px">힌트 키워드: ${esc(q.hint || "")}</div>
+      <div id="recallActionArea">
+        <button class="btn-primary" id="revealRecallBtn">머릿속으로 떠올린 뒤 정답 확인</button>
+      </div>
+    `;
+    $("#revealRecallBtn").onclick = () => {
+      $("#recallActionArea").innerHTML = `
+        <div class="recall-reveal">
+          <div class="note-sec-title">한 줄 요약</div>
+          <p style="margin:4px 0 10px">${esc(q.answerText)}</p>
+          <div class="note-sec-title">핵심 메커니즘</div>
+          <ul style="margin:4px 0 10px 18px;padding:0">${(q.mechanisms || []).map((m) => `<li>${esc(m)}</li>`).join("")}</ul>
+          <div class="note-sec-title">기존 대비 차이</div>
+          <p style="margin:4px 0 12px">${esc(q.diff)}</p>
+          <div style="font-size:0.875rem;color:var(--ink-muted)">얼마나 잘 기억났나요? (선택 시 다음 복습 주기가 자동 조정됩니다)</div>
+          <div class="grade-row">
+            <button class="grade-btn hard" data-q="1">까먹음 (내일 다시)</button>
+            <button class="grade-btn mid" data-q="3">애매함 (2~5일 후)</button>
+            <button class="grade-btn easy" data-q="5">완벽함 (4~8일+ 후)</button>
+          </div>
+        </div>
+      `;
+      $$(".grade-btn").forEach((gb) => {
+        gb.onclick = () => {
+          const val = parseInt(gb.dataset.q, 10);
+          if (val >= 3) QUIZ_SESSION.score += 1;
+          QUIZ_SESSION.paperIds.push(...(q.papers || []));
+          updateSM2(q.papers, val);
+          advanceQuiz();
+        };
+      });
+    };
+    return;
+  }
+
+  // MCQ
+  box.innerHTML = `
+    <div class="quiz-bar">
+      <div class="chip-row">
+        <span class="tag ${typeTagCls}">${typeLabel}</span>
+        <span class="tag">${esc(q.category)}</span>
+      </div>
+      <span style="font-family:var(--font-mono);font-size:0.875rem;color:var(--ink-muted)">${s.idx + 1} / ${s.items.length}</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="transform:scaleX(${(s.idx + 1) / s.items.length})"></div></div>
+    <div class="quiz-question">${esc(q.question)}</div>
+    <div class="option-list">
+      ${q.options.map((opt, i) => `
+        <button class="option-btn" data-opt="${i}">
+          <span class="option-idx">${String.fromCharCode(65 + i)}</span>
+          <span>${esc(opt)}</span>
+        </button>
+      `).join("")}
+    </div>
+    <div id="mcqFeedback"></div>
+  `;
+
+  $$(".option-btn").forEach((btn) => {
+    btn.onclick = () => {
+      if (QUIZ_SESSION.answered) return;
+      QUIZ_SESSION.answered = true;
+      const chosen = parseInt(btn.dataset.opt, 10);
+      const isRight = chosen === q.answer;
+      if (isRight) QUIZ_SESSION.score += 1;
+      QUIZ_SESSION.paperIds.push(...(q.papers || []));
+      updateSM2(q.papers, isRight ? 5 : 1);
+
+      $$(".option-btn").forEach((b) => {
+        b.disabled = true;
+        const idx = parseInt(b.dataset.opt, 10);
+        if (idx === q.answer) b.classList.add("correct");
+        else if (idx === chosen && !isRight) b.classList.add("wrong");
+      });
+
+      $("#mcqFeedback").innerHTML = `
+        <div class="explain-box">
+          <strong>${isRight ? "정답입니다." : "오답입니다."}</strong> ${esc(q.explanation)}
+          <div class="chip-row" style="margin-top:10px;justify-content:space-between">
+            <div class="chip-row"><span style="font-size:0.82rem;color:var(--ink-muted)">관련 카드:</span>${relatedChips}</div>
+            <button class="btn-primary btn-sm" id="nextQuizBtn">${s.idx + 1 === s.items.length ? "결과 보기" : "다음 문제"}</button>
+          </div>
+        </div>
+      `;
+      $("#nextQuizBtn").onclick = advanceQuiz;
+    };
+  });
+}
+
+async function advanceQuiz() {
+  QUIZ_SESSION.idx += 1;
+  QUIZ_SESSION.answered = false;
+  if (QUIZ_SESSION.idx >= QUIZ_SESSION.items.length) {
+    QUIZ_SESSION.done = true;
+    const t = todayStr();
+    const prevDates = Object.keys(STATE.dailyCompleted || {});
+    if (!prevDates.includes(t)) {
+      STATE.streak = (STATE.streak || 0) + 1;
+    }
+    STATE.quizHistory = (STATE.quizHistory || []).slice(-60);
+    STATE.quizHistory.push({
+      date: t,
+      score: QUIZ_SESSION.score,
+      total: QUIZ_SESSION.items.length,
+      paperIds: [...new Set(QUIZ_SESSION.paperIds)],
+      completedAt: new Date().toISOString(),
+    });
+    STATE.dailyCompleted = STATE.dailyCompleted || {};
+    STATE.dailyCompleted[t] = {
+      score: QUIZ_SESSION.score,
+      total: QUIZ_SESSION.items.length,
+      completedAt: new Date().toISOString(),
+    };
+    await persistState();
+    renderStatsAndServer();
+    renderQuiz();
+
+    // Trigger server quiz-complete (auto-shutdown countdown if started in morning mode)
+    if (IS_HTTP) {
+      try {
+        const res = await fetch("/api/quiz-complete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            score: QUIZ_SESSION.score,
+            total: QUIZ_SESSION.items.length,
+            delaySec: 25,
+            state: STATE,
+          }),
+        }).then((r) => r.json());
+        if (res.autoShutdownScheduled && res.server) {
+          startShutdownCountdown(res.server.shutdownRemainingSec || 25);
+        }
+      } catch {}
+    }
+  } else {
+    persistState();
+    renderQuiz();
+  }
+}
+
+function startShutdownCountdown(sec) {
+  SHUTDOWN_REM = sec;
+  $("#shutdownBanner").classList.add("show");
+  if (SHUTDOWN_TIMER) clearInterval(SHUTDOWN_TIMER);
+  const update = () => {
+    $("#shutdownText").textContent = `오늘 퀴즈가 완료되어 ${SHUTDOWN_REM}초 후 로컬 서버가 자동 종료됩니다.`;
+    if (SHUTDOWN_REM <= 0) {
+      clearInterval(SHUTDOWN_TIMER);
+      $("#shutdownText").textContent = "서버가 종료되었습니다. 내일 오전 8시에 다시 켜집니다.";
+    }
+    SHUTDOWN_REM -= 1;
+  };
+  update();
+  SHUTDOWN_TIMER = setInterval(update, 1000);
+}
+
+async function cancelShutdown() {
+  if (SHUTDOWN_TIMER) clearInterval(SHUTDOWN_TIMER);
+  $("#shutdownBanner").classList.remove("show");
+  if (IS_HTTP) {
+    try { await fetch("/api/cancel-shutdown", { method: "POST" }); } catch {}
+  }
+}
+
+async function shutdownServerNow() {
+  if (!IS_HTTP) return alert("현재 오프라인 파일로 열려 있어 종료할 서버가 없습니다.");
+  if (SHUTDOWN_TIMER) clearInterval(SHUTDOWN_TIMER);
+  try {
+    await fetch("/api/shutdown", { method: "POST" });
+  } catch {}
+  $("#shutdownBanner").classList.add("show");
+  $("#shutdownText").textContent = "서버가 안전하게 종료되었습니다. 탭을 닫아도 됩니다.";
+}
+
+async function generateAiQuiz() {
+  const cfg = loadSettings();
+  if (cfg.provider !== "ollama" && !cfg.apiKey) {
+    openSettings();
+    return;
+  }
+  const stage = $("#quizStage");
+  stage.innerHTML = "<p>AI가 취약 논문을 RAG로 읽어 새로운 비교·메커니즘 퀴즈를 출제 중입니다...</p>";
+  try {
+    const cat = $("#quizCatSelect").value;
+    const count = parseInt($("#quizCountSelect").value, 10) || 5;
+    const res = await fetch("/api/llm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mode: "generate_quiz",
+        provider: cfg.provider || "gemini",
+        apiKey: cfg.apiKey || "",
+        model: cfg.model || "",
+        ollamaUrl: cfg.ollamaUrl || "",
+        focus: cat === "ALL" ? "" : cat,
+        count,
+      }),
+    }).then((r) => r.json());
+    if (!res.ok || !Array.isArray(res.result)) throw new Error(res.error || "퀴즈 생성 실패");
+    QUIZ_SESSION = {
+      items: res.result.map((q, i) => ({
+        ...q,
+        id: `ai-${Date.now()}-${i}`,
+        scope: q.scope || ((q.papers || []).length > 1 ? "link" : "single"),
+        type: (q.scope === "link" || (q.papers || []).length > 1) ? "compare" : "single_mcq",
+      })),
+      idx: 0, score: 0, answered: false, done: false, paperIds: [],
+    };
+    renderQuiz();
+  } catch (e) {
+    stage.innerHTML = `<p style="color:var(--danger)">AI 퀴즈 생성 오류: ${esc(e.message)}</p><button class="btn-sm" onclick="startDailyQuiz()">기본 퀴즈로 돌아가기</button>`;
+  }
+}
+
+/* ==================== LIBRARY ==================== */
+function renderLibrary() {
+  const q = ($("#libSearch").value || "").trim().toLowerCase();
+  const list = KB.papers.filter((p) => {
+    if (CURRENT_LIB_CAT !== "ALL" && p.category !== CURRENT_LIB_CAT) return false;
+    if (!q) return true;
+    const hay = `${p.short} ${p.title} ${p.category} ${p.tags.join(" ")} ${p.tldr} ${p.mechanisms.join(" ")} ${p.diff}`.toLowerCase();
+    return hay.includes(q);
+  });
+  const grid = $("#paperGrid");
+  grid.classList.toggle("blurred", BLUR_MODE);
+  grid.innerHTML = list.map((p) => {
+    const sm = STATE.sm2[p.id];
+    const mastery = !sm ? "" : (sm.reps >= 2 ? `<span class="tag tag-ok">탄탄</span>` : (sm.wrong > 0 ? `<span class="tag tag-warn">재복습</span>` : `<span class="tag">복습 1회</span>`));
+    return `
+      <article class="paper-card" tabindex="0" onclick="openPaperModal('${p.id}')" onkeydown="if(event.key==='Enter')openPaperModal('${p.id}')">
+        <div class="paper-card-head">
+          <span class="paper-short">${esc(p.short)}</span>
+          <span class="paper-year">${p.year}</span>
+        </div>
+        <div class="chip-row">
+          <span class="tag tag-accent">${esc(p.category)}</span>
+          ${mastery}
+        </div>
+        <div class="paper-tldr">${esc(p.tldr)}</div>
+        <div class="chip-row">${p.tags.slice(0, 3).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+      </article>
+    `;
+  }).join("") || "<p style='color:var(--ink-muted)'>검색 결과가 없습니다.</p>";
+}
+
+function openPaperModal(id) {
+  const p = PAPER_MAP[id];
+  if (!p) return;
+  $("#modalTitle").textContent = `${p.short} — ${p.title}`;
+  $("#modalSub").textContent = `${p.year} · ${p.venue} · ${p.mdFile}`;
+  $("#modalBadges").innerHTML = `
+    <span class="tag tag-accent">${esc(p.category)}</span>
+    ${p.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}
+  `;
+  const predHtml = (p.predecessors || []).map((x) => PAPER_MAP[x] ? `<button class="chip" onclick="openPaperModal('${x}')">← ${esc(PAPER_MAP[x].short)}</button>` : "").join("");
+  const succHtml = (p.successors || []).map((x) => PAPER_MAP[x] ? `<button class="chip" onclick="openPaperModal('${x}')">${esc(PAPER_MAP[x].short)} →</button>` : "").join("");
+  const pdfBtn = p.pdfExists && IS_HTTP
+    ? `<a class="btn-sm btn-primary" style="text-decoration:none;display:inline-block" href="/api/pdf/${encodeURI(p.pdf)}" target="_blank">원문 PDF 열기</a>`
+    : (p.pdf ? `<span class="tag">로컬 경로: ${esc(p.pdf)}</span>` : `<span class="tag">원문 PDF 없음 (기록 노트)</span>`);
+
+  $("#modalBody").innerHTML = `
+    <div class="note-sec">
+      <div class="note-sec-title">한 줄 요약</div>
+      <p style="margin:0">${esc(p.tldr)}</p>
+    </div>
+    <div class="note-sec">
+      <div class="note-sec-title">핵심 메커니즘</div>
+      <ul>${p.mechanisms.map((m) => `<li>${esc(m)}</li>`).join("")}</ul>
+    </div>
+    <div class="note-sec">
+      <div class="note-sec-title">기존 대비 차이</div>
+      <p style="margin:0">${esc(p.diff)}</p>
+    </div>
+    <div class="note-sec">
+      <div class="note-sec-title">한계 &amp; 연결</div>
+      <p style="margin:0">${esc(p.limits)}</p>
+    </div>
+    ${(predHtml || succHtml) ? `
+      <div class="note-sec">
+        <div class="note-sec-title">계보 연결 (클릭해 이동)</div>
+        <div class="chip-row">${predHtml}${succHtml}</div>
+      </div>
+    ` : ""}
+    <div class="chip-row" style="margin-top:16px;justify-content:space-between">
+      ${pdfBtn}
+    </div>
+  `;
+  $("#paperModal").classList.add("open");
+}
+
+/* ==================== LINEAGE & COMPARE ==================== */
+const LINEAGE_TRACKS = {
+  vla: {
+    nodes: [
+      { id: "rt-1", x: 70, y: 80 }, { id: "palm-e", x: 70, y: 200 }, { id: "act", x: 70, y: 300 },
+      { id: "rt-2", x: 230, y: 120 }, { id: "rt-x", x: 230, y: 220 },
+      { id: "octo", x: 390, y: 270 }, { id: "openvla", x: 390, y: 150 }, { id: "pi-0", x: 540, y: 90 },
+      { id: "openvla-oft", x: 540, y: 200 }, { id: "fast", x: 540, y: 295 },
+      { id: "pi-0-5", x: 710, y: 80 }, { id: "groot-n1", x: 710, y: 165 }, { id: "smolvla", x: 710, y: 250 },
+      { id: "libero-plus", x: 710, y: 325 },
+      { id: "wall-oss", x: 880, y: 100 }, { id: "stablevla", x: 880, y: 270 }
+    ]
+  },
+  gen: {
+    nodes: [
+      { id: "autoencoder", x: 75, y: 170 },
+      { id: "vae", x: 235, y: 105 }, { id: "gan", x: 235, y: 245 },
+      { id: "real-nvp", x: 420, y: 70 }, { id: "cgan", x: 420, y: 200 }, { id: "dcgan", x: 420, y: 290 },
+      { id: "ddpm", x: 600, y: 155 },
+      { id: "dit", x: 780, y: 90 }, { id: "flow-matching", x: 780, y: 225 },
+      { id: "pi-0", x: 910, y: 225 }, { id: "groot-n1", x: 910, y: 90 }
+    ]
+  },
+  llm: {
+    nodes: [
+      { id: "batchnorm", x: 75, y: 270 }, { id: "layernorm", x: 225, y: 270 },
+      { id: "transformer", x: 140, y: 145 },
+      { id: "gpt-1", x: 320, y: 80 }, { id: "bert", x: 320, y: 185 }, { id: "rope", x: 375, y: 290 },
+      { id: "palm", x: 510, y: 70 }, { id: "llama", x: 540, y: 175 }, { id: "flashattention", x: 540, y: 290 },
+      { id: "lora", x: 710, y: 95 }, { id: "pagedattention", x: 740, y: 290 }, { id: "diffusion-llm", x: 740, y: 200 },
+      { id: "qlora", x: 865, y: 65 }, { id: "dora", x: 865, y: 145 }
+    ]
+  },
+  vision: {
+    nodes: [
+      { id: "lstm", x: 80, y: 275 }, { id: "lstm-forget-gate", x: 240, y: 275 }, { id: "gru", x: 400, y: 245 }, { id: "bi-lstm", x: 400, y: 315 },
+      { id: "r-cnn", x: 80, y: 75 }, { id: "inception", x: 80, y: 165 },
+      { id: "u-net", x: 250, y: 75 }, { id: "resnet", x: 250, y: 165 }, { id: "wavenet", x: 410, y: 165 },
+      { id: "vit", x: 555, y: 110 }, { id: "vilbert", x: 555, y: 230 },
+      { id: "clip", x: 715, y: 170 }, { id: "dino", x: 715, y: 70 },
+      { id: "siglip", x: 875, y: 170 }, { id: "dinov2", x: 875, y: 70 }
+    ]
+  }
+};
+
+function renderLineage(trackKey, focusId = null) {
+  const svg = $("#lineageSvg");
+  const track = LINEAGE_TRACKS[trackKey] || LINEAGE_TRACKS.vla;
+  const pos = {};
+  track.nodes.forEach((n) => (pos[n.id] = n));
+
+  const edges = [];
+  track.nodes.forEach((n) => {
+    const p = PAPER_MAP[n.id];
+    if (!p) return;
+    (p.successors || []).forEach((s) => {
+      if (pos[s]) edges.push([n.id, s]);
+    });
+  });
+
+  const relatedSet = new Set();
+  if (focusId) {
+    relatedSet.add(focusId);
+    edges.forEach(([a, b]) => {
+      if (a === focusId) relatedSet.add(b);
+      if (b === focusId) relatedSet.add(a);
+    });
+  }
+
+  let html = `
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--ink-muted)"/>
+      </marker>
+      <marker id="arrHi" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--accent)"/>
+      </marker>
+    </defs>
+  `;
+
+  edges.forEach(([a, b]) => {
+    const p1 = pos[a], p2 = pos[b];
+    const hi = focusId && (a === focusId || b === focusId);
+    const dim = focusId && !hi;
+    const mx = (p1.x + p2.x) / 2;
+    html += `<path d="M ${p1.x + 56} ${p1.y} C ${mx} ${p1.y}, ${mx} ${p2.y}, ${p2.x - 58} ${p2.y}"
+      fill="none" stroke="${hi ? "var(--accent)" : "var(--border)"}" stroke-width="${hi ? 2.4 : 1.5}"
+      opacity="${dim ? 0.25 : 1}" marker-end="url(#${hi ? "arrHi" : "arr"})"/>`;
+  });
+
+  track.nodes.forEach((n) => {
+    const p = PAPER_MAP[n.id];
+    if (!p) return;
+    const isFocus = focusId === n.id;
+    const isRel = !focusId || relatedSet.has(n.id);
+    const fill = isFocus ? "var(--accent)" : "var(--surface)";
+    const stroke = isFocus ? "var(--accent)" : (isRel ? "var(--teal)" : "var(--border)");
+    const txtColor = isFocus ? "#ffffff" : "var(--ink)";
+    const subColor = isFocus ? "#f9e8e1" : "var(--ink-muted)";
+    html += `
+      <g style="cursor:pointer;opacity:${isRel ? 1 : 0.35}" onclick="onLineageNodeClick('${n.id}')">
+        <rect x="${n.x - 56}" y="${n.y - 23}" width="112" height="46" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="${isFocus ? 2 : 1.4}"/>
+        <text x="${n.x}" y="${n.y - 2}" text-anchor="middle" font-size="12" font-weight="700" fill="${txtColor}">${esc(p.short.slice(0, 14))}</text>
+        <text x="${n.x}" y="${n.y + 14}" text-anchor="middle" font-size="10" fill="${subColor}">${p.year}</text>
+      </g>
+    `;
+  });
+  svg.innerHTML = html;
+}
+
+let LAST_LINEAGE_FOCUS = null;
+function onLineageNodeClick(id) {
+  if (LAST_LINEAGE_FOCUS === id) {
+    openPaperModal(id);
+    return;
+  }
+  LAST_LINEAGE_FOCUS = id;
+  renderLineage(CURRENT_TRACK, id);
+  // Also open quick detail on second tap or via subtle toast? Open directly if mobile-friendly:
+  openPaperModal(id);
+}
+
+function renderComparePresets() {
+  const chips = $("#comparePresetChips");
+  chips.innerHTML = KB.comparePresets.map((pr, idx) =>
+    `<button class="chip ${idx === CURRENT_PRESET ? "active" : ""}" onclick="selectPreset(${idx})">${esc(pr.title.split("(")[0].trim())}</button>`
+  ).join("");
+  const cur = KB.comparePresets[CURRENT_PRESET];
+  if (!cur) return;
+  $("#compareTableWrap").innerHTML = `
+    <table>
+      <thead><tr>${cur.columns.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+      <tbody>
+        ${cur.rows.map((r) => `
+          <tr class="clickable" onclick="openPaperModal('${r.paperId}')">
+            ${r.vals.map((v, i) => `<td>${i === 0 ? `<strong>${esc(v)}</strong>` : esc(v)}</td>`).join("")}
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+function selectPreset(idx) {
+  CURRENT_PRESET = idx;
+  renderComparePresets();
+}
+
+function renderCustomCompare() {
+  const ids = [$("#customCmpA").value, $("#customCmpB").value, $("#customCmpC").value].filter(Boolean);
+  const ps = ids.map((id) => PAPER_MAP[id]).filter(Boolean);
+  if (!ps.length) return;
+  const rows = [
+    ["연도 · 분야", (p) => `${p.year} · ${p.category}`],
+    ["한 줄 요약", (p) => p.tldr],
+    ["핵심 메커니즘", (p) => p.mechanisms.join(" / ")],
+    ["기존 대비 차이", (p) => p.diff],
+    ["한계 & 연결", (p) => p.limits],
+  ];
+  $("#customCompareWrap").innerHTML = `
+    <table>
+      <thead><tr><th style="width:120px">항목</th>${ps.map((p) => `<th><button class="btn-sm btn-ghost" style="padding:0;font-weight:700" onclick="openPaperModal('${p.id}')">${esc(p.short)}</button></th>`).join("")}</tr></thead>
+      <tbody>
+        ${rows.map(([lbl, fn]) => `<tr><th>${lbl}</th>${ps.map((p) => `<td>${esc(fn(p))}</td>`).join("")}</tr>`).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+/* ==================== 3-AXIS RECOMMENDATIONS & ARXIV ==================== */
+function renderRecommendations() {
+  const maxC = Math.max(...KB.domainStats.map((d) => d.count), 1);
+  $("#domainBars").innerHTML = KB.domainStats.map((d) => {
+    const pct = Math.max(3, Math.round((d.count / maxC) * 100));
+    const isGap = d.count <= 2;
+    return `
+      <div class="dom-row">
+        <span>${esc(d.domain)}</span>
+        <div class="dom-track"><div class="dom-fill ${isGap ? "gap" : ""}" style="width:${d.count === 0 ? 2 : pct}%"></div></div>
+        <span style="font-family:var(--font-mono);text-align:right;color:${isGap ? "var(--accent)" : "var(--ink-muted)"}">${d.count}편</span>
+      </div>
+    `;
+  }).join("");
+  renderRecCards();
+  if (STATE.aiRecommendations) renderAiRecResult(STATE.aiRecommendations);
+}
+
+function renderRecCards() {
+  const items = (KB.recommendations && KB.recommendations[CURRENT_REC_AXIS]) || [];
+  const grid = $("#recGrid");
+  if (CURRENT_REC_AXIS === "bridge") {
+    grid.innerHTML = items.map((r) => {
+      const a = PAPER_MAP[r.paperA]?.short || r.paperA;
+      const b = PAPER_MAP[r.paperB]?.short || r.paperB;
+      const pdfTag = r.pdfExists
+        ? (IS_HTTP ? `<a class="tag tag-ok" style="text-decoration:none" href="/api/pdf/${encodeURI(r.local_pdf)}" target="_blank">로컬 PDF 바로 열기</a>` : `<span class="tag tag-ok">로컬 PDF 보유</span>`)
+        : `<span class="tag">외부 탐색 추천</span>`;
+      return `
+        <article class="panel" style="padding:16px">
+          <div class="bridge-flow">
+            <button class="btn-sm bridge-node" onclick="openPaperModal('${r.paperA}')">${esc(a)}</button>
+            <span>→</span>
+            <span class="bridge-mid">징검다리</span>
+            <span>→</span>
+            <button class="btn-sm bridge-node" onclick="openPaperModal('${r.paperB}')">${esc(b)}</button>
+          </div>
+          <h3 style="font-size:1.02rem;margin-bottom:6px">${esc(r.title)} (${r.year})</h3>
+          <p style="margin:0 0 10px;font-size:0.9rem;color:var(--ink-muted)">${esc(r.reason)}</p>
+          <div class="chip-row">${pdfTag}</div>
+        </article>
+      `;
+    }).join("");
+    return;
+  }
+
+  grid.innerHTML = items.map((r) => {
+    const pdfTag = r.pdfExists
+      ? (IS_HTTP ? `<a class="tag tag-ok" style="text-decoration:none" href="/api/pdf/${encodeURI(r.local_pdf)}" target="_blank">로컬 PDF 바로 열기</a>` : `<span class="tag tag-ok">로컬 PDF 보유</span>`)
+      : `<span class="tag">외부 논문</span>`;
+    const conn = (r.connects_to || []).map((id) => PAPER_MAP[id] ? `<button class="btn-sm btn-ghost" onclick="openPaperModal('${id}')">${esc(PAPER_MAP[id].short)}</button>` : "").join("");
+    return `
+      <article class="panel" style="padding:16px">
+        <div class="chip-row" style="margin-bottom:6px">
+          <span class="tag tag-accent">${esc(r.domain)}</span>
+          <span class="tag">${r.year}</span>
+          ${r.priority ? `<span class="tag tag-teal">우선순위: ${esc(r.priority)}</span>` : ""}
+        </div>
+        <h3 style="font-size:1.02rem;margin-bottom:6px">${esc(r.title)}</h3>
+        <p style="margin:0 0 10px;font-size:0.9rem;color:var(--ink-muted)">${esc(r.reason)}</p>
+        <div class="chip-row" style="justify-content:space-between">
+          ${pdfTag}
+          <div class="chip-row">${conn}</div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+async function fetchArxivTopic(topic, customQ) {
+  const out = $("#arxivResults");
+  if (!IS_HTTP) {
+    out.innerHTML = "<p style='color:var(--ink-muted)'>실시간 arXiv 조회는 로컬 서버(server.py) 실행 시 동작합니다.</p>";
+    return;
+  }
+  out.innerHTML = "<p style='color:var(--ink-muted)'>arXiv에서 최신 논문을 불러오는 중...</p>";
+  try {
+    const qs = new URLSearchParams({ topic, q: customQ, max: "6" });
+    const res = await fetch(`/api/arxiv?${qs}`).then((r) => r.json());
+    if (!res.ok) throw new Error(res.error || "조회 실패");
+    if (!res.items.length) { out.innerHTML = "<p>검색 결과가 없습니다.</p>"; return; }
+    out.innerHTML = res.items.map((a) => `
+      <article class="panel" style="padding:15px">
+        <div class="chip-row" style="margin-bottom:6px">
+          <span class="tag tag-teal">${esc(a.published)}</span>
+          ${(a.categories || []).map((c) => `<span class="tag">${esc(c)}</span>`).join("")}
+        </div>
+        <h3 style="font-size:0.98rem;margin-bottom:6px">
+          <a href="${esc(a.url)}" target="_blank" style="color:var(--ink);text-decoration:none">${esc(a.title)}</a>
+        </h3>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:6px">${esc((a.authors || []).join(", "))}</div>
+        <p style="font-size:0.86rem;color:var(--ink-muted);margin:0 0 10px">${esc(a.summary)}</p>
+        <div class="chip-row">
+          <a class="btn-sm" style="text-decoration:none" href="${esc(a.url)}" target="_blank">arXiv 초록</a>
+          <a class="btn-sm btn-primary" style="text-decoration:none" href="${esc(a.pdfUrl)}" target="_blank">PDF</a>
+        </div>
+      </article>
+    `).join("");
+  } catch (e) {
+    out.innerHTML = `<p style="color:var(--danger)">arXiv 조회 실패: ${esc(e.message)}</p>`;
+  }
+}
+
+async function runAiThinkingRecommendation() {
+  const cfg = loadSettings();
+  if (cfg.provider !== "ollama" && !cfg.apiKey) { openSettings(); return; }
+  const box = $("#aiRecContainer");
+  box.style.display = "block";
+  box.innerHTML = `<div class="panel"><p>내 63편 도메인 분포 + 실시간 최신 arXiv 논문을 종합해 3축(부족 도메인 / 관심·최신 / 두 논문 징검다리) 심층 추론 중입니다...</p></div>`;
+  try {
+    const res = await fetch("/api/llm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mode: "recommend_thinking",
+        provider: cfg.provider || "gemini",
+        apiKey: cfg.apiKey || "",
+        model: cfg.model || "",
+        ollamaUrl: cfg.ollamaUrl || "",
+        interest: cfg.interest || "",
+      }),
+    }).then((r) => r.json());
+    if (!res.ok) throw new Error(res.error || "추천 생성 실패");
+    STATE.aiRecommendations = { generatedAt: todayStr(), data: res.result };
+    await persistState();
+    renderAiRecResult(STATE.aiRecommendations);
+  } catch (e) {
+    box.innerHTML = `<div class="panel" style="color:var(--danger)">AI 심층 추천 오류: ${esc(e.message)}</div>`;
+  }
+}
+
+function renderAiRecResult(recObj) {
+  const box = $("#aiRecContainer");
+  const d = recObj.data || {};
+  box.style.display = "block";
+  const renderList = (title, arr, isBridge) => `
+    <div style="margin-top:12px">
+      <h3 style="font-size:0.98rem;color:var(--teal);margin-bottom:8px">${title}</h3>
+      <div class="grid-2">
+        ${(arr || []).map((x) => `
+          <div style="border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;background:var(--surface-alt)">
+            ${isBridge ? `<div style="font-size:0.82rem;color:var(--accent);font-weight:700;margin-bottom:4px">${esc(x.paperA)} ↔ ${esc(x.paperB)}</div>` : `<div style="font-size:0.8rem;color:var(--ink-muted)">${esc(x.domain || "")} · ${esc(x.year || "")}</div>`}
+            <div style="font-weight:700;margin-bottom:4px">${x.url ? `<a href="${esc(x.url)}" target="_blank" style="color:var(--ink)">${esc(x.title)}</a>` : esc(x.title)}</div>
+            <div style="font-size:0.875rem;color:var(--ink-muted)">${esc(x.reason)}</div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+  box.innerHTML = `
+    <div class="panel">
+      <div class="chip-row" style="justify-content:space-between">
+        <h2 style="font-size:1.15rem">AI 3축 심층 추론 결과 (${esc(recObj.generatedAt)})</h2>
+        <span class="tag tag-teal">실시간 arXiv + 63편 프로필 기반</span>
+      </div>
+      ${renderList("1. 부족 도메인 보강", d.gap, false)}
+      ${renderList("2. 관심 분야 · 최신 arXiv 심화", d.interest, false)}
+      ${renderList("3. 두 논문 사이 징검다리", d.bridge, true)}
+    </div>
+  `;
+}
+
+/* ==================== RAG & DASHBOARD ==================== */
+function clientBm25(query, topK = 6) {
+  const toks = (query.toLowerCase().match(/[a-z0-9가-힣π]+/g) || []);
+  if (!toks.length) return KB.papers.slice(0, topK);
+  const scored = KB.papers.map((p) => {
+    const blob = `${p.short} ${p.short} ${p.title} ${p.category} ${p.tags.join(" ")} ${p.tldr} ${p.mechanisms.join(" ")} ${p.diff} ${p.limits}`.toLowerCase();
+    let s = 0;
+    toks.forEach((t) => { if (blob.includes(t)) s += 1 + (p.short.toLowerCase().includes(t) ? 3 : 0); });
+    return { p, s };
+  }).filter((x) => x.s > 0).sort((a, b) => b.s - a.s);
+  return (scored.length ? scored : KB.papers.map((p) => ({ p, s: 0 }))).slice(0, topK).map((x) => x.p);
+}
+
+async function runRagSearch() {
+  const q = $("#ragInput").value.trim();
+  if (!q) return;
+  let hits = [];
+  if (IS_HTTP) {
+    try {
+      const res = await fetch("/api/rag", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: q, topK: 6 }),
+      }).then((r) => r.json());
+      hits = res.hits || [];
+    } catch { hits = clientBm25(q, 6); }
+  } else {
+    hits = clientBm25(q, 6);
+  }
+  $("#ragHits").innerHTML = `<span style="font-size:0.85rem;color:var(--ink-muted)">RAG 검색 결과:</span>` +
+    hits.map((p) => `<button class="chip" onclick="openPaperModal('${p.id}')">${esc(p.short)} (${p.year})</button>`).join("");
+}
+
+async function runRagAi() {
+  const q = $("#ragInput").value.trim();
+  if (!q) return;
+  const cfg = loadSettings();
+  if (cfg.provider !== "ollama" && !cfg.apiKey) { openSettings(); return; }
+  await runRagSearch();
+  const out = $("#ragAiOut");
+  out.style.display = "block";
+  out.textContent = "RAG 컨텍스트를 바탕으로 AI가 답변을 작성 중입니다...";
+  try {
+    const res = await fetch("/api/llm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mode: "qa",
+        question: q,
+        provider: cfg.provider || "gemini",
+        apiKey: cfg.apiKey || "",
+        model: cfg.model || "",
+        ollamaUrl: cfg.ollamaUrl || "",
+      }),
+    }).then((r) => r.json());
+    if (!res.ok) throw new Error(res.error || "AI 호출 실패");
+    out.textContent = `[참조 노트: ${(res.sources || []).join(", ")}]\n\n${res.result}`;
+  } catch (e) {
+    out.textContent = "오류: " + e.message;
+  }
+}
+
+function renderStatsAndServer() {
+  const sm2 = STATE.sm2 || {};
+  const reviewed = Object.keys(sm2).length;
+  const solid = Object.values(sm2).filter((v) => (v.reps || 0) >= 2).length;
+  const today = todayStr();
+  const dueCnt = KB.papers.filter((p) => !sm2[p.id] || (sm2[p.id].due && sm2[p.id].due <= today)).length;
+
+  $("#statsGrid").innerHTML = `
+    <div class="stat-box"><div class="stat-label">등록 논문</div><div class="stat-value">${KB.paperCount}편</div></div>
+    <div class="stat-box"><div class="stat-label">연속 복습</div><div class="stat-value">${STATE.streak || 0}일</div></div>
+    <div class="stat-box"><div class="stat-label">기억 탄탄</div><div class="stat-value">${solid} / ${KB.paperCount}</div></div>
+    <div class="stat-box"><div class="stat-label">복습 대기</div><div class="stat-value">${dueCnt}편</div></div>
+  `;
+
+  const weak = KB.papers
+    .map((p) => ({ p, rec: sm2[p.id] }))
+    .sort((a, b) => ((b.rec?.wrong || 0) - (a.rec?.wrong || 0)) || ((a.rec?.reps || 0) - (b.rec?.reps || 0)))
+    .slice(0, 8);
+  $("#weakList").innerHTML = `<div class="chip-row">${weak.map(({ p, rec }) =>
+    `<button class="chip" onclick="openPaperModal('${p.id}')">${esc(p.short)} ${rec?.wrong ? `(오답 ${rec.wrong})` : "(미복습)"}</button>`
+  ).join("")}</div>`;
+
+  if (SERVER) {
+    $("#serverInfoBox").innerHTML = `
+      <div><strong>Mac 로컬:</strong> <span class="mono-url">${esc(SERVER.localUrl)}</span></div>
+      ${SERVER.lanUrl ? `<div><strong>휴대폰 (같은 Wi-Fi):</strong> <span class="mono-url">${esc(SERVER.lanUrl)}</span></div>` : ""}
+      ${SERVER.tailscaleUrl ? `<div><strong>휴대폰 (외부 Tailscale):</strong> <span class="mono-url">${esc(SERVER.tailscaleUrl)}</span></div>` : ""}
+      <div style="color:var(--ink-muted);font-size:0.84rem">자동 종료 모드: ${SERVER.autoShutdownMode ? "ON (오늘 퀴즈 완료 시 자동 종료)" : "OFF (수동)"} · 유휴 안전망 ${SERVER.idleMinutes}분</div>
+    `;
+  } else {
+    $("#serverInfoBox").innerHTML = `<div style="color:var(--ink-muted)">현재 오프라인 파일로 열려 있습니다. 휴대폰 접속·arXiv 실시간 조회·자동 종료를 쓰려면 <code>start_manual.sh</code> 또는 오전 8시 자동 기동을 사용하세요.</div>`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>

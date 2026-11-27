@@ -1,0 +1,339 @@
+{
+  "gap": [
+    {
+      "id": "rec-gap-rl-ppo",
+      "title": "PPO: Proximal Policy Optimization Algorithms",
+      "year": 2017,
+      "domain": "RL & Agent (현재 0편)",
+      "local_pdf": "",
+      "arxiv_query": "Proximal Policy Optimization",
+      "reason": "현재 읽은 63편에 강화학습(RL)이 0편입니다. 최신 VLA 사후학습(π0.6 RL, GRPO, 온라인 적응)과 LLM 정렬(InstructGPT/DPO)을 이해하려면 정책 경사 안정화의 기준선인 PPO가 가장 빠른 진입점입니다.",
+      "connects_to": [
+        "pi-0-5",
+        "llama",
+        "stablevla"
+      ],
+      "priority": "높음"
+    },
+    {
+      "id": "rec-gap-dqn",
+      "title": "Human-level control through deep reinforcement learning (DQN)",
+      "year": 2015,
+      "domain": "RL & Agent (현재 0편)",
+      "local_pdf": "논문/Reinforcement Learning & Agent/Real DQN.pdf",
+      "arxiv_query": "Deep Q-Network",
+      "reason": "이미 로컬에 PDF를 보유 중이며, 경험 재생(Replay Buffer)과 타깃 네트워크 개념은 오프라인 RL·로봇 Q-learning 기반 VLA 사후학습의 핵심 기초입니다.",
+      "connects_to": [
+        "rt-1",
+        "octo"
+      ],
+      "priority": "중간"
+    },
+    {
+      "id": "rec-gap-react",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "year": 2022,
+      "domain": "RL & Agent (현재 0편)",
+      "local_pdf": "논문/Reinforcement Learning & Agent/ReAct.pdf",
+      "arxiv_query": "ReAct Synergizing Reasoning and Acting",
+      "reason": "PaLM-E·π0.5·WALL-OSS의 체화 Chain-of-Thought(생각→행동→관측 루프)와 맞닿아 있는 에이전트 원전입니다. 로컬 PDF도 이미 보유하고 있습니다.",
+      "connects_to": [
+        "palm-e",
+        "pi-0-5",
+        "wall-oss"
+      ],
+      "priority": "높음"
+    },
+    {
+      "id": "rec-gap-mamba",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "year": 2023,
+      "domain": "Sequence / SSM (Transformer 이후 0편)",
+      "local_pdf": "논문/Sequence Model/Mamba.pdf",
+      "arxiv_query": "Mamba Linear-Time Sequence Modeling",
+      "reason": "LSTM/GRU → Transformer 계보는 탄탄하지만, O(N) 선형 시간 시퀀스 모델(SSM) 축이 비어 있습니다. 고주파 로봇 센서·장거리 F/T 시계열(SURP/CRIA) 모델링 대안으로 필독입니다.",
+      "connects_to": [
+        "lstm",
+        "transformer",
+        "surp",
+        "maia-cria"
+      ],
+      "priority": "중간"
+    },
+    {
+      "id": "rec-gap-mimicgen",
+      "title": "MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations",
+      "year": 2023,
+      "domain": "Robot Control & Data Gen (현재 2편)",
+      "local_pdf": "논문/robot sim/MimicGen_DataGeneration.pdf",
+      "arxiv_query": "MimicGen Data Generation",
+      "reason": "Robot Control/Sim 도메인이 ACT·cuRobo 2편뿐입니다. 소량 인간 시연(SURP 등)을 시뮬레이션에서 대량 증강해 VLA 학습 데이터를 불릴 때 가장 자주 인용되는 핵심 시스템입니다.",
+      "connects_to": [
+        "act",
+        "curobo",
+        "surp"
+      ],
+      "priority": "높음"
+    },
+    {
+      "id": "rec-gap-vjepa",
+      "title": "V-JEPA / V-JEPA 2: Self-Supervised Video World Models for Planning",
+      "year": 2025,
+      "domain": "World Model & SSL (현재 0편)",
+      "local_pdf": "",
+      "arxiv_query": "V-JEPA world model robotics",
+      "reason": "MAIA(CRIA)에서 월드 모델 기반 이상 예측을 다루셨고 DINOv2도 읽으셨습니다. 픽셀 생성 대신 잠재 공간에서 미래 물리 상태를 예측하는 JEPA 월드 모델 축을 채우면 시야가 크게 넓어집니다.",
+      "connects_to": [
+        "dinov2",
+        "maia-cria",
+        "pi-0-5"
+      ],
+      "priority": "높음"
+    },
+    {
+      "id": "rec-gap-tft",
+      "title": "Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting",
+      "year": 2020,
+      "domain": "Time Series (현재 2편 · 고전 중심)",
+      "local_pdf": "논문/Time Series/TFT.pdf",
+      "arxiv_query": "Temporal Fusion Transformers",
+      "reason": "시계열 분야가 ARIMA·Prophet 2편에서 멈춰 있습니다. 로컬에 PDF가 있는 TFT를 읽으면 딥러닝 다변량 시계열(Attention + 변수 선택)로 자연스럽게 이어집니다.",
+      "connects_to": [
+        "arima",
+        "prophet",
+        "transformer"
+      ],
+      "priority": "낮음"
+    },
+    {
+      "id": "rec-gap-moco",
+      "title": "MoCo: Momentum Contrast for Unsupervised Visual Representation Learning",
+      "year": 2020,
+      "domain": "Self-Supervised Learning (독립 축 보강)",
+      "local_pdf": "논문/Self-supervised Learning/MoCo.pdf",
+      "arxiv_query": "Momentum Contrast",
+      "reason": "CLIP(멀티모달 대조)과 DINO(EMA 자기증류)를 이미 읽으셨는데, EMA 모멘텀 인코더 + 큐 기반 대조학습의 원조인 MoCo를 보면 두 계열의 수학적 공통점이 선명해집니다.",
+      "connects_to": [
+        "clip",
+        "dino"
+      ],
+      "priority": "낮음"
+    }
+  ],
+  "interest": [
+    {
+      "id": "rec-int-pi06",
+      "title": "π*0.6 (Pi_0.6): A VLA That Learns From Experience (RECAP)",
+      "year": 2025,
+      "domain": "VLA 최전선 (보유 PDF)",
+      "local_pdf": "논문/VLA/Pi_0.6.pdf",
+      "arxiv_query": "pi0.6 VLA reinforcement learning experience",
+      "reason": "π0 → π0.5까지 읽으셨고 로컬에 PDF도 이미 12회 열람 흔적이 있습니다. 모방학습(BC)의 천장을 오프라인/온라인 경험 RL(RECAP)로 뚫는 다음 장입니다.",
+      "connects_to": [
+        "pi-0",
+        "pi-0-5"
+      ],
+      "priority": "최우선"
+    },
+    {
+      "id": "rec-int-ddvla",
+      "title": "Discrete Diffusion VLA",
+      "year": 2025,
+      "domain": "VLA × Diffusion LLM (보유 PDF)",
+      "local_pdf": "논문/VLA/Discrete Diffusion VLA.pdf",
+      "arxiv_query": "Discrete Diffusion VLA",
+      "reason": "이미 LLaDA(Diffusion LLM)와 OpenVLA/FAST를 모두 읽으셨기 때문에, 두 관심사가 정면으로 만나는 이 논문을 읽으면 '이산 확산 기반 병렬 액션 생성'의 큰 그림이 완성됩니다.",
+      "connects_to": [
+        "diffusion-llm",
+        "fast",
+        "openvla-oft"
+      ],
+      "priority": "최우선"
+    },
+    {
+      "id": "rec-int-groot15",
+      "title": "GR00T N1.5 / GR00T 2 Whitepaper",
+      "year": 2025,
+      "domain": "VLA 휴머노이드·로봇 (보유 파일)",
+      "local_pdf": "논문/VLA/gr00t2_whitepaper.pdf",
+      "arxiv_query": "GR00T N1.5 humanoid VLA",
+      "reason": "GR00T N1을 읽으셨고 선행연구 문서 11곳에 N1.5가 등장합니다. N1 대비 VLM 백본·시각 교란 강건성·합성 데이터 스케일링이 어떻게 진화했는지 바로 연결됩니다.",
+      "connects_to": [
+        "groot-n1",
+        "pi-0-5"
+      ],
+      "priority": "높음"
+    },
+    {
+      "id": "rec-int-gemini-rob",
+      "title": "Gemini Robotics 1.5",
+      "year": 2025,
+      "domain": "VLA 체화 추론 (보유 PDF)",
+      "local_pdf": "논문/VLA/Gemini-Robotics-1.5.pdf",
+      "arxiv_query": "Gemini Robotics embodied reasoning",
+      "reason": "RT-1 → PaLM-E → RT-2로 이어지는 Google DeepMind 계보의 최신작입니다. Embodied Reasoning(ER)과 저수준 VLA의 결합 방식을 π0.5·WALL-OSS와 비교하기 좋습니다.",
+      "connects_to": [
+        "rt-2",
+        "palm-e",
+        "pi-0-5",
+        "wall-oss"
+      ],
+      "priority": "높음"
+    },
+    {
+      "id": "rec-int-robustvla2",
+      "title": "RobustVLA (Zhang et al., arXiv:2511.01331)",
+      "year": 2025,
+      "domain": "VLA 강건성 (보유 PDF)",
+      "local_pdf": "논문/Dataset/RobustVLA_Zhang_2511.01331.pdf",
+      "arxiv_query": "2511.01331 RobustVLA",
+      "reason": "Heart-Lab 주력 주제인 VLA 시각 교란 강건성과 직결되며, 이미 읽은 ICLR'26 RobustVLA(Guo et al.)와 같은 이름의 별도 논문(로컬 보유)이라 헷갈리지 않게 정리해 두면 좋습니다.",
+      "connects_to": [
+        "robustvla",
+        "libero-plus",
+        "stablevla"
+      ],
+      "priority": "최우선"
+    },
+    {
+      "id": "rec-int-spatialvla",
+      "title": "SpatialVLA: Exploring Spatial Representations for Visual-Language-Action Model",
+      "year": 2025,
+      "domain": "3D 공간 VLA (최신 흐름)",
+      "local_pdf": "",
+      "arxiv_query": "SpatialVLA",
+      "reason": "LIBERO-Plus에서 카메라 시점·배치 교란에 취약한 2D VLA의 근본 원인을 3D 위치 인코딩(Ego3D)과 적응형 액션 그리드로 해결하려는 대표 최신 논문입니다.",
+      "connects_to": [
+        "openvla",
+        "libero-plus",
+        "dinov2"
+      ],
+      "priority": "높음"
+    },
+    {
+      "id": "rec-int-lerobot",
+      "title": "LeRobot: An Open-Source Library for Real-World Robotics",
+      "year": 2025,
+      "domain": "로봇 데이터/코드 표준 (보유 PDF)",
+      "local_pdf": "논문/robot sim/LeRobot.pdf",
+      "arxiv_query": "LeRobot Hugging Face robotics",
+      "reason": "SmolVLA·ForceVLA·Heart-Lab SURP+CRIA 통합 328ep 모두 LeRobot 데이터/학습 생태계 위에 있습니다. 원문을 정리해두면 실험 설계와 문서화가 훨씬 매끄러워집니다.",
+      "connects_to": [
+        "smolvla",
+        "forcevla",
+        "surp"
+      ],
+      "priority": "중간"
+    }
+  ],
+  "bridge": [
+    {
+      "id": "rec-br-diffpolicy",
+      "paperA": "act",
+      "paperB": "pi-0",
+      "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+      "year": 2023,
+      "local_pdf": "",
+      "reason": "ACT(Action Chunking + CVAE)와 π0(Action Chunking + Flow Matching) 사이에 있는 결정적 징검다리! '연속 다봉 로봇 행동을 확산 모델로 생성한다'는 패러다임을 최초로 정립해 Octo·π0·GR00T의 직접적 모태가 됐습니다."
+    },
+    {
+      "id": "rec-br-ldm",
+      "paperA": "ddpm",
+      "paperB": "dit",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion Models (LDM / Stable Diffusion)",
+      "year": 2022,
+      "local_pdf": "",
+      "reason": "DDPM(픽셀 공간 확산)과 DiT(잠재 공간 Transformer 확산) 사이의 빈칸입니다. 왜 DiT가 픽셀이 아니라 VAE latent 패치 위에서 돌아가는지, Cross-Attention 조건화가 어떻게 시작됐는지 한 번에 이어집니다."
+    },
+    {
+      "id": "rec-br-ddim",
+      "paperA": "ddpm",
+      "paperB": "flow-matching",
+      "title": "DDIM: Denoising Diffusion Implicit Models",
+      "year": 2020,
+      "local_pdf": "",
+      "reason": "DDPM의 1,000스텝 확률적 SDE 샘플링에서 Flow Matching의 결정론적 소수 스텝 ODE 샘플링으로 넘어가는 수학적 징검다리(비마르코프·결정론적 궤적)입니다."
+    },
+    {
+      "id": "rec-br-paligemma",
+      "paperA": "siglip",
+      "paperB": "pi-0",
+      "title": "PaliGemma: A Versatile 3B VLM for Transfer",
+      "year": 2024,
+      "local_pdf": "",
+      "reason": "SigLIP 비전 인코더와 Gemma LLM을 결합해 π0·π0.5의 핵심 백본이 된 모델입니다. 왜 Physical Intelligence가 LLaVA 대신 PaliGemma를 골랐는지(Prefix-LM 어텐션·전송 효율) 정확히 연결됩니다."
+    },
+    {
+      "id": "rec-br-llava",
+      "paperA": "clip",
+      "paperB": "openvla",
+      "title": "LLaVA: Visual Instruction Tuning",
+      "year": 2023,
+      "local_pdf": "논문/VLA/LLaVA.pdf",
+      "reason": "CLIP/ViT 비전 인코더와 LLaMA를 단순 선형/MLP 프로젝터로 잇는 현대 VLM 레시피의 원형입니다(로컬 PDF 보유). OpenVLA·WALL-OSS의 VLM 구조를 이해하는 핵심 다리입니다."
+    },
+    {
+      "id": "rec-br-palix",
+      "paperA": "palm-e",
+      "paperB": "rt-2",
+      "title": "PaLI-X: On Scaling up a Multilingual Vision and Language Model",
+      "year": 2023,
+      "local_pdf": "논문/Multimodal/PaLI-X.pdf",
+      "reason": "RT-2 연구노트에도 직접 인용하신 55B 백본(로컬 PDF 보유)! PaLM-E와 RT-2가 어떻게 서로 다른 VLM 백본 위에서 로봇 액션 토큰화를 구현했는지 비교가 깔끔해집니다."
+    },
+    {
+      "id": "rec-br-libero",
+      "paperA": "octo",
+      "paperB": "libero-plus",
+      "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+      "year": 2023,
+      "local_pdf": "",
+      "reason": "LIBERO-Plus·LIBERO-PRO·RobustVLA·StableVLA를 모두 실험 중이시지만 정작 원논문 LIBERO(Spatial/Object/Goal/100 스위트 설계 의도와 원래 Lifelong 평가 목적)가 빠진 징검다리입니다."
+    },
+    {
+      "id": "rec-br-groupnorm",
+      "paperA": "batchnorm",
+      "paperB": "layernorm",
+      "title": "Group Normalization",
+      "year": 2018,
+      "local_pdf": "논문/Optimization/Group_Normalization.pdf",
+      "reason": "BatchNorm(배치 축)과 LayerNorm(전체 채널 축)의 정확히 중간 지점(로컬 PDF 보유). DDPM U-Net과 소배치 비전 모델에서 왜 GroupNorm이 쓰이는지 정규화 3종 세트가 완성됩니다."
+    },
+    {
+      "id": "rec-br-vqvae",
+      "paperA": "vae",
+      "paperB": "fast",
+      "title": "VQ-VAE: Neural Discrete Representation Learning",
+      "year": 2017,
+      "local_pdf": "논문/Generative Model/VQ-VAE.pdf",
+      "reason": "연속 잠재 표현(VAE)을 이산 코드북 토큰으로 바꿔 자기회귀 모델과 결합하는 원리(로컬 PDF 보유). 이미지·오디오뿐 아니라 로봇 액션 이산 토크나이징(VQ-BeT, FAST)의 개념적 다리입니다."
+    },
+    {
+      "id": "rec-br-r2s2r",
+      "paperA": "curobo",
+      "paperB": "surp",
+      "title": "Real-to-Sim-to-Real / Digital Cousins for Robotic Manipulation",
+      "year": 2024,
+      "local_pdf": "논문/robot sim/real-to-sim-to-real.pdf",
+      "reason": "물리 시뮬/모션 플래닝(cuRobo)과 실제 접촉 데이터(SURP/CRIA) 사이의 Sim-to-Real 괴리를 연결하는 징검다리(로컬 PDF 보유). Isaac Sim 재현 연구와 바로 맞물립니다."
+    },
+    {
+      "id": "rec-br-dpo",
+      "paperA": "ddpm",
+      "paperB": "llama",
+      "title": "Diffusion-DPO / Direct Preference Optimization",
+      "year": 2023,
+      "local_pdf": "논문/Generative Model/Diffusion-DPO.pdf",
+      "reason": "생성모델(DDPM/Flow)과 LLM(LLaMA)을 관통하는 '선호도 기반 사후학습(Preference Alignment)' 다리(로컬 PDF 보유). 향후 VLA의 성공/실패 궤적 선호학습으로 바로 응용됩니다."
+    },
+    {
+      "id": "rec-br-scaling",
+      "paperA": "gpt-1",
+      "paperB": "llama",
+      "title": "Scaling Laws for Neural Language Models / Chinchilla",
+      "year": 2020,
+      "local_pdf": "논문/Optimization/Skaling.pdf",
+      "reason": "GPT-1의 초기 스케일링에서 LLaMA의 '작은 모델 × 대량 토큰 과다학습' 전략으로 왜 전환됐는지 수학적으로 잇는 징검다리(로컬 PDF 보유)."
+    }
+  ]
+}

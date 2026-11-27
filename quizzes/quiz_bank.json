@@ -1,0 +1,1706 @@
+[
+  {
+    "id": "s-rt-1",
+    "papers": [
+      "rt-1"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "RT-1이 35M 파라미터로 3Hz 실시간 제어를 달성하기 위해 프레임당 81개 시각 토큰을 8개로 압축한 모듈은?",
+    "options": [
+      "TokenLearner",
+      "Q-Former",
+      "Perceiver Resampler",
+      "RoI Align"
+    ],
+    "answer": 0,
+    "explanation": "RT-1은 FiLM-EfficientNet-B3 출력(81개 시각 토큰)을 TokenLearner로 8개 핵심 토큰으로 압축해 추론 속도를 크게 높였습니다."
+  },
+  {
+    "id": "s-palm-e",
+    "papers": [
+      "palm-e"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "PaLM-E가 이미지와 로봇 상태 벡터를 언어모델(PaLM)에 입력하는 방식은?",
+    "options": [
+      "ViT/MLP로 추출한 연속 센서 특징을 PaLM 텍스트 임베딩 차원으로 투영해 자연어 토큰 사이에 직접 삽입",
+      "모든 이미지를 자연어 캡션 문장으로 미리 번역해 텍스트만 입력",
+      "로봇 관절 각도를 256구간 이산 문자열로만 변환",
+      "별도의 CNN 분류기로 행동 번호 1개만 선택"
+    ],
+    "answer": 0,
+    "explanation": "PaLM-E는 이미지(ViT/OSRT)와 상태 벡터(MLP)를 언어 임베딩 공간에 투영해 멀티모달 토큰 시퀀스로 통합 입력합니다."
+  },
+  {
+    "id": "s-rt-2",
+    "papers": [
+      "rt-2"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "RT-2가 로봇 데이터 미세조정 중에도 웹 VLM의 의미 추론 능력을 잃지 않기 위해 사용한 핵심 학습 전략은?",
+    "options": [
+      "웹 VQA 데이터와 로봇 궤적 데이터의 공동 미세조정(Co-fine-tuning)",
+      "비전 인코더 가중치를 무작위 재초기화",
+      "액션 출력을 1차원 스칼라로 축소",
+      "로봇 시연 10개만 반복 과적합"
+    ],
+    "answer": 0,
+    "explanation": "RT-2는 로봇 행동 토큰을 VLM 어휘에 매핑하고 웹 데이터와 로봇 데이터를 co-fine-tuning해 일반화 지식을 보존했습니다."
+  },
+  {
+    "id": "s-rt-x",
+    "papers": [
+      "rt-x"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "Open X-Embodiment(RT-X) 데이터셋 및 실험이 입증한 핵심 결론은?",
+    "options": [
+      "22종 로봇·60개 데이터셋을 통합 학습하면 단일 로봇만 학습할 때보다 다기종 긍정적 전이가 발생한다",
+      "서로 다른 로봇 데이터를 섞으면 성능이 항상 하락한다",
+      "시뮬레이션 궤적만으로만 구성된 데이터셋이다",
+      "모든 로봇의 관절 수와 카메라 배치가 동일해야만 학습된다"
+    ],
+    "answer": 0,
+    "explanation": "RT-X는 100만+ 다기종 로봇 궤적을 RLDS 표준으로 통합해 cross-embodiment 공동 학습의 긍정적 전이를 입증했습니다."
+  },
+  {
+    "id": "s-octo",
+    "papers": [
+      "octo"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "Octo(27M/93M)가 새로운 카메라·고유수용감각·행동 공간에 빠르게 적응할 수 있게 설계된 내부 구조는?",
+    "options": [
+      "블록 어텐션 + Readout 토큰 + 경량 Diffusion Action Head의 모듈형 Transformer 구조",
+      "55B 비공개 PaLI-X 백본의 고정 텍스트 디코더",
+      "고정 해상도 단일 카메라 전용 ResNet-18",
+      "Selective Search 기반 객체 탐지 파이프라인"
+    ],
+    "answer": 0,
+    "explanation": "Octo는 관측·태스크 토큰을 모듈형으로 조합하고 Readout 토큰을 Diffusion Action Head에 연결해 새 센서·행동 공간 미세조정이 매우 유연합니다."
+  },
+  {
+    "id": "s-openvla",
+    "papers": [
+      "openvla"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "OpenVLA(7B)의 비전 인코더 구성과 액션 토큰 매핑 방식으로 맞는 것은?",
+    "options": [
+      "DINOv2 + SigLIP 이중 비전 인코더, 연속 액션을 256구간(1~99% 분위수)으로 나눠 Llama 2 하위 빈도 토큰 256개에 매핑",
+      "EfficientNet-B3 단일 인코더 + Flow Matching 50Hz 출력",
+      "ResNet-50 단일 인코더 + DCT+BPE 가변 길이 압축",
+      "ViT-B 단일 인코더 + 6축 힘/토크 전용 MoE"
+    ],
+    "answer": 0,
+    "explanation": "OpenVLA는 DINOv2(공간 기하)+SigLIP(언어 의미) 이중 인코더와 Llama 2 7B를 결합해 256-bin 이산 액션 토큰을 예측합니다."
+  },
+  {
+    "id": "s-openvla-oft",
+    "papers": [
+      "openvla-oft"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "OpenVLA-OFT가 추론 속도를 25배 이상 끌어올리고 정밀도를 개선하기 위해 도입한 핵심 구성 요소는?",
+    "options": [
+      "Parallel Decoding + Action Chunking + 연속 L1 회귀 + FiLM 언어 조건화",
+      "1000스텝 DDPM 픽셀 공간 디노이징",
+      "모델 크기를 7B에서 70B로 확장",
+      "자기회귀 1토큰 디코딩 유지 + 4-bit NF4만 적용"
+    ],
+    "answer": 0,
+    "explanation": "OpenVLA-OFT는 빈 토큰을 한 번에 넣는 병렬 디코딩, 액션 청킹, 연속 L1 헤드, FiLM을 결합해 속도와 성공률을 모두 끌어올렸습니다."
+  },
+  {
+    "id": "s-pi-0",
+    "papers": [
+      "pi-0"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "π0(Pi-0)가 50Hz 고주파 정밀 조작을 구현하기 위해 채택한 아키텍처와 액션 생성 방식은?",
+    "options": [
+      "PaliGemma VLM 백본 + 별도 가중치의 Action Expert + Conditional Flow Matching(10스텝 ODE)",
+      "Llama 2 7B 단일 백본 + 256-bin 이산 분류",
+      "SmolVLM 절반 레이어 + L1 단일 스텝 회귀",
+      "EfficientNet + TokenLearner + 3Hz 이산 제어"
+    ],
+    "answer": 0,
+    "explanation": "π0는 VLM 백본과 어텐션을 공유하는 별도 Action Expert를 두고 Flow Matching으로 50-step 연속 액션 청크를 빠르게 생성합니다."
+  },
+  {
+    "id": "s-fast",
+    "papers": [
+      "fast"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "FAST 액션 토크나이저가 고주파 액션 청크의 중복을 제거해 토큰 수를 최대 10배 줄이는 2단계 변환은?",
+    "options": [
+      "DCT(이산 코사인 변환)로 주파수 희소화 → BPE(Byte-Pair Encoding) 압축",
+      "PCA 선형 투영 → K-Means 클러스터링",
+      "FFT 위상 제거 → Huffman 고정 길이 부호화",
+      "4-bit NF4 양자화 → PagedAttention 블록 분할"
+    ],
+    "answer": 0,
+    "explanation": "FAST는 인접 스텝 상관관계가 높은 고주파 액션 청크에 DCT를 적용해 희소화한 뒤 BPE로 가변 길이 압축 토큰을 생성합니다."
+  },
+  {
+    "id": "s-pi-0-5",
+    "papers": [
+      "pi-0-5"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "π0.5가 처음 보는 가정집(Open-World)에서 장거리 작업을 수행하는 추론 단계의 계층적 동작 방식은?",
+    "options": [
+      "먼저 자연어로 현재 고수준 하위 작업(subtask)을 예측하고, 그에 조건화해 Flow Matching Action Expert로 저수준 연속 행동 생성",
+      "서브태스크 예측 없이 픽셀 입력에서 바로 1스텝 이산 토큰 출력",
+      "외부 cuRobo 플래너로 모든 궤적을 미리 계산한 뒤 재생",
+      "6축 F/T 센서 신호만으로 다음 관절 각도를 선형 보간"
+    ],
+    "answer": 0,
+    "explanation": "π0.5는 이종 데이터 공동 사전학습 후, 추론 시 고수준 서브태스크 생성 → 저수준 Flow Matching 행동 생성을 단일 모델 내에서 계층적으로 수행합니다."
+  },
+  {
+    "id": "s-groot-n1",
+    "papers": [
+      "groot-n1"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "NVIDIA GR00T N1의 Dual-System 아키텍처에서 System 2와 System 1의 역할 분담으로 맞는 것은?",
+    "options": [
+      "System 2는 환경·지시를 해석하는 VLM(Eagle-2), System 1은 실시간 연속 모터 행동을 생성하는 DiT(Flow Matching)",
+      "System 2는 충돌 회피 IK, System 1은 256-bin 이산 토크나이저",
+      "System 2는 음성 인식, System 1은 이미지 분할",
+      "System 2는 오프라인 RL 버퍼, System 1은 CNN 판별자"
+    ],
+    "answer": 0,
+    "explanation": "GR00T N1은 느린 시각·언어 추론(System 2 VLM)과 빠른 연속 운동 생성(System 1 DiT)을 결합하고 실제·합성·인간영상 피라미드로 학습했습니다."
+  },
+  {
+    "id": "s-smolvla",
+    "papers": [
+      "smolvla"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "SmolVLA(450M)가 경량 환경에서 제어 지연을 숨기기 위해 도입한 추론 스택과 백본 경량화 기법은?",
+    "options": [
+      "VLM 앞쪽 레이어 절반만 사용 + 시각 토큰 축소 + 액션 실행 중 다음 청크를 미리 계산하는 비동기 추론(Async Inference)",
+      "540B 모델에 4-bit 양자화만 적용한 동기식 1Hz 추론",
+      "비전 인코더를 제거하고 관절 상태만 입력",
+      "GPU 64대 파이프라인 병렬 서빙"
+    ],
+    "answer": 0,
+    "explanation": "SmolVLA는 SmolVLM-2의 절반 레이어, 교차 어텐션 Action Expert, 그리고 비동기 추론 스택으로 단일 소비자 GPU·CPU에서도 실용적 제어를 구현했습니다."
+  },
+  {
+    "id": "s-wall-oss",
+    "papers": [
+      "wall-oss"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "WALL-OSS가 일반 VLM을 체화(Embodied) 도메인으로 정렬하기 위해 채택한 2단계 학습·통합 추론 전략은?",
+    "options": [
+      "대규모 체화 멀티모달 사전학습 + 이산 액션 정렬 후 Flow Matching 연속 행동으로 이어지는 통합 Chain-of-Thought",
+      "텍스트 데이터를 모두 제외하고 로봇 관절 데이터만 단독 학습",
+      "GAN 적대적 손실로 카메라 이미지를 가상 환경으로 변환",
+      "BatchNorm과 LSTM만으로 경량 제어기 구성"
+    ],
+    "answer": 0,
+    "explanation": "WALL-OSS는 VLM과 로봇 도메인 간 모달리티·분포 불일치를 줄이기 위해 체화 정렬 사전학습과 통합 CoT(언어→행동)를 결합합니다."
+  },
+  {
+    "id": "s-forcevla",
+    "papers": [
+      "forcevla"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "ForceVLA가 삽입·필링·닦기 같은 접촉 조작에서 6축 힘/토크(F/T) 신호를 통합하는 핵심 메커니즘은?",
+    "options": [
+      "접촉 국면에 따라 시각·힘 모달리티 비중을 동적 라우팅하는 Force-aware MoE",
+      "힘 센서 값을 임계값으로 잘라 0/1 이진 플래그 1개만 입력",
+      "힘 시계열을 오디오 파형으로 바꿔 WaveNet에 입력",
+      "힘 피드백 없이 RGB 해상도만 4배 확대"
+    ],
+    "answer": 0,
+    "explanation": "ForceVLA는 RGB 2시점 + 상태 + 6축 F/T를 Force-aware MoE로 융합하며, Flexiv 7-DOF 244에피소드(LeRobot v2.1) 데이터를 공개했습니다."
+  },
+  {
+    "id": "s-stablevla",
+    "papers": [
+      "stablevla"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "StableVLA(ICML'26)가 ImageNet-C 강도 3~5 시각 교란에서도 안정적인 행동을 유지하기 위해 추가한 핵심 모듈은?",
+    "options": [
+      "태스크 무관 시각 노이즈를 압축·차단하는 Fused Information Bottleneck(IB) Adapter",
+      "추론 전 매 프레임을 1000스텝 DDPM으로 복원하는 전처리기",
+      "카메라 입력을 끄고 고유수용감각만으로 맹목 제어하는 모듈",
+      "Selective Search 기반 객체 크롭 모듈"
+    ],
+    "answer": 0,
+    "explanation": "StableVLA는 0.5B VLA-Adapter 백본에 Fused IB-Adapter를 결합해 시각 교란 노이즈가 행동 헤드로 전파되는 것을 억제합니다."
+  },
+  {
+    "id": "s-surp",
+    "papers": [
+      "surp"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Dataset & Robustness",
+    "question": "SURP v1.0(IROS 2025) 데이터셋에서 힘/토크(F/T) 센서를 전동 샌더 공구가 아닌 작업물 하단에 배치한 이유는?",
+    "options": [
+      "공구에 센서를 달면 작업자의 자연스러운 파지와 샌딩 조작 전략이 방해받기 때문에",
+      "공구 무게가 너무 가벼워 측정이 불가능해서",
+      "Vive 트래커와 주파수가 충돌하기 때문에",
+      "작업물이 회전하는 선반 위에 있어서"
+    ],
+    "answer": 0,
+    "explanation": "SURP는 21명×4형상(84궤적)에서 사람의 자연스러운 경로(snake/zigzag 등)·법선력 전략을 포착하려고 작업물 아래에 F/T 센서를 설치했습니다."
+  },
+  {
+    "id": "s-maia-cria",
+    "papers": [
+      "maia-cria"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Dataset & Robustness",
+    "question": "MAIA(CRIA)가 접촉 조작에서 이상(걸림·미끄러짐)을 다루는 방식의 핵심은?",
+    "options": [
+      "멀티모달 월드 모델로 계획된 행동의 물리 결과를 사전 예측해, 이상이 발생하기 전에 저위험 행동을 온라인 선택",
+      "충돌이 일어난 뒤 비상 정지 버튼만 누르는 사후 탐지",
+      "힘 센서를 쓰지 않고 오직 텍스트 지시문 오타만 검사",
+      "모든 접촉 작업을 비접촉 이동으로 치환"
+    ],
+    "answer": 0,
+    "explanation": "MAIA는 시각 관측과 계획 행동으로 미래 접촉/힘 상호작용을 선제 예측(anticipation)하여 이상 위험이 가장 낮은 행동을 선택합니다."
+  },
+  {
+    "id": "s-libero-plus",
+    "papers": [
+      "libero-plus"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Dataset & Robustness",
+    "question": "LIBERO-Plus(CVPR'26)가 VLA 취약성을 체계적으로 진단하기 위해 설계한 교란 축의 구성으로 맞는 것은?",
+    "options": [
+      "카메라·로봇 초기상태·언어·조명·배경·센서노이즈·물체배치의 7차원 교란 (10,030개 변형)",
+      "오직 가우시안 노이즈 1종 × 강도 3단계",
+      "로봇 팔 자유도(6DoF vs 7DoF) 변경 1축",
+      "오디오 잡음과 텍스트 번역 오류 2축"
+    ],
+    "answer": 0,
+    "explanation": "LIBERO-Plus는 7차원 체계적 교란을 주입해 클린 90%+ VLA들이 특히 카메라 시점·초기 상태 변화에서 급락함을 진단했습니다."
+  },
+  {
+    "id": "s-libero-pro",
+    "papers": [
+      "libero-pro"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Dataset & Robustness",
+    "question": "LIBERO-PRO가 기존 LIBERO 벤치마크의 높은 점수를 비판하며 폭로한 VLA의 대표 결함은?",
+    "options": [
+      "초기 물체 배치·궤적을 단순 암기해, 지시문을 의미 없게 바꾸거나 배치를 조금만 흔들어도 원래 궤적을 그대로 재생하며 실패함",
+      "추론 속도가 너무 빨라 시뮬레이터가 따라가지 못함",
+      "로봇 그리퍼가 물리적으로 열리지 않는 시뮬레이터 버그",
+      "데이터셋 크기가 너무 커서 학습이 불가능함"
+    ],
+    "answer": 0,
+    "explanation": "LIBERO-PRO는 물체·배치·언어·환경 4축 변형을 통해 많은 SOTA VLA가 진정한 grounding 대신 초기 상태와 궤적을 암기하고 있음을 보였습니다."
+  },
+  {
+    "id": "s-robustvla",
+    "papers": [
+      "robustvla"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Dataset & Robustness",
+    "question": "RobustVLA(ICLR 2026)가 기존 단일 시각 노이즈 평가에서 한 걸음 더 나아가 중점적으로 검증한 대상은?",
+    "options": [
+      "시각 교란(노이즈·블러·조명·가림) + 언어 교란(패러프레이즈·오타·모호성) + 상태 교란의 멀티모달 복합 교란",
+      "시뮬레이션 물리 엔진의 중력 상수만 2배로 바꾼 테스트",
+      "GPU 메모리 대역폭 제한 하의 KV-Cache 성능",
+      "오직 단변량 시계열 예측 오차"
+    ],
+    "answer": 0,
+    "explanation": "RobustVLA는 시각·언어·상태 멀티모달 동시 교란 하에서 VLA의 시각-언어 정렬이 깨지는 현상을 체계적으로 분석·개선했습니다."
+  },
+  {
+    "id": "s-act",
+    "papers": [
+      "act"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Robot Control",
+    "question": "ACT(ALOHA)에서 k-스텝 행동을 한 번에 예측하는 Action Chunking과 CVAE의 역할은?",
+    "options": [
+      "Action Chunking은 유효 horizon을 1/k로 줄여 누적 오차를 억제하고, CVAE는 인간 시연의 다봉(multimodal) 스타일을 잠재변수 z로 흡수",
+      "Action Chunking은 이미지를 패치로 자르고, CVAE는 텍스트를 토큰화",
+      "Action Chunking은 충돌 검사, CVAE는 역기구학 계산",
+      "둘 다 모델 파라미터를 4비트로 압축하기 위한 기법"
+    ],
+    "answer": 0,
+    "explanation": "ACT는 Action Chunking + CVAE + Temporal Ensembling 조합으로 저가 양팔 로봇에서 정밀 접촉 조작을 안정적으로 학습했습니다."
+  },
+  {
+    "id": "s-curobo",
+    "papers": [
+      "curobo"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Robot Control",
+    "question": "cuRobo가 충돌 없는 최소 저크(minimum-jerk) 궤적을 30ms 내에 찾기 위해 GPU에서 실행하는 2단계 궤적 최적화 조합은?",
+    "options": [
+      "다수 초기해에 대한 입자 기반 탐색(초기해 개선) → 병렬 L-BFGS + 잡음 선 탐색(빠른 수렴)",
+      "단일 초기해에 대한 CPU RRT* 순차 탐색",
+      "1000스텝 DDPM 확산 디노이징",
+      "강화학습 DQN Q-테이블 탐색"
+    ],
+    "answer": 0,
+    "explanation": "cuRobo는 병렬 충돌회피 IK 후 입자 기반 탐색으로 국소해를 피하고 병렬 L-BFGS로 빠르게 수렴시켜 30ms급 모션 생성을 달성합니다."
+  },
+  {
+    "id": "s-autoencoder",
+    "papers": [
+      "autoencoder"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "Hinton & Salakhutdinov(2006) AutoEncoder의 핵심 구조와 한계로 맞는 것은?",
+    "options": [
+      "저차원 병목(bottleneck)을 거쳐 입력을 복원하며 비선형 차원 축소를 학습하지만, 잠재 공간이 정규화되지 않아 임의 샘플 생성이 어렵다",
+      "적대적 판별자(D)를 이용해 가짜 이미지를 판별한다",
+      "잠재 변수에 KL Divergence를 걸어 표준정규분포로 강제한다",
+      "야코비안 행렬식을 정확히 계산해 로그 우도를 출력한다"
+    ],
+    "answer": 0,
+    "explanation": "AutoEncoder는 비선형 PCA처럼 핵심 표현을 압축·복원하지만 잠재 공간에 빈 구멍이 생겨 생성 모델로 직접 쓰기 어렵습니다."
+  },
+  {
+    "id": "s-vae",
+    "papers": [
+      "vae"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "VAE에서 Reparameterization Trick (z = μ + σ ⊙ ε, ε ~ N(0, I))을 반드시 사용하는 이유는?",
+    "options": [
+      "확률적 샘플링 노드 자체로는 역전파(미분)가 막히므로, 무작위성 ε을 외부 입력으로 분리해 μ·σ로 그래디언트가 흐르게 하기 위해",
+      "생성 이미지를 GAN처럼 더 날카롭게 만들기 위해",
+      "KL Divergence 항을 0으로 없애기 위해",
+      "인코더의 파라미터 수를 절반으로 줄이기 위해"
+    ],
+    "answer": 0,
+    "explanation": "Reparameterization Trick은 확률 샘플링을 결정론적 함수 + 외부 노이즈 ε로 재표현해 표준 역전파로 ELBO를 학습할 수 있게 합니다."
+  },
+  {
+    "id": "s-gan",
+    "papers": [
+      "gan"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "원조 GAN(2014)의 생성자(G)와 판별자(D) 미니맥스 게임에서 이론적 최적점이 최소화하는 분포 거리는?",
+    "options": [
+      "실제 데이터 분포와 생성 분포 사이의 Jensen-Shannon Divergence(JSD)",
+      "픽셀 단위 L2 유클리드 거리",
+      "코사인 유사도의 Sigmoid 이진 손실",
+      "자기상관 함수(ACF) 오차"
+    ],
+    "answer": 0,
+    "explanation": "최적 판별자 D*(x)를 대입하면 GAN의 미니맥스 목적함수는 2·JSD(p_data || p_g) - log 4 최소화 문제로 귀결됩니다."
+  },
+  {
+    "id": "s-cgan",
+    "papers": [
+      "cgan"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "Conditional GAN(CGAN)에서 조건 정보 y(클래스 라벨 등)는 어디에 입력되는가?",
+    "options": [
+      "생성자 G(z, y)와 판별자 D(x, y) 양쪽 모두에 입력되어 조건부 분포 p(x|y)를 학습",
+      "생성자 G에만 입력되고 판별자 D는 조건을 보지 않음",
+      "판별자 D에만 입력되고 생성자는 노이즈 z만 받음",
+      "학습 완료 후 추론 시 후처리 필터로만 사용"
+    ],
+    "answer": 0,
+    "explanation": "CGAN은 G와 D 모두에 조건 y를 주입해, D가 '진짜 같은지'뿐 아니라 '조건 y에 맞는지'까지 함께 판별하도록 합니다."
+  },
+  {
+    "id": "s-dcgan",
+    "papers": [
+      "dcgan"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "DCGAN(2015)이 심층 합성곱 GAN 학습을 안정화하기 위해 제시한 아키텍처 가이드라인으로 맞는 것은?",
+    "options": [
+      "Pooling·FC 제거, Strided/Transposed Conv로 다운/업샘플링, BatchNorm 적용, G는 ReLU/Tanh · D는 LeakyReLU 사용",
+      "모든 층에 MaxPooling과 Dropout 0.8 적용",
+      "BatchNorm을 전면 금지하고 Sigmoid만 사용",
+      "CNN 대신 순수 MLP 20층 적층"
+    ],
+    "answer": 0,
+    "explanation": "DCGAN은 All-convolutional 구조(Strided/Transposed Conv) + BatchNorm + LeakyReLU 조합으로 안정적인 CNN GAN 표준을 확립했습니다."
+  },
+  {
+    "id": "s-real-nvp",
+    "papers": [
+      "real-nvp"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "Real NVP의 Affine Coupling Layer가 역변환과 야코비안 행렬식을 O(D)에 초고속 계산할 수 있는 비결은?",
+    "options": [
+      "입력 절반(x1)은 그대로 두고 x1으로 만든 scale(s)·shift(t)로 나머지 절반(x2)만 변환해 야코비안이 삼각행렬이 되기 때문",
+      "모든 신경망 가중치를 직교 행렬로 매 스텝 SVD 분해하기 때문",
+      "확률밀도를 근사하는 ELBO 하한만 계산하기 때문",
+      "입력을 1차원 스칼라로 압축하기 때문"
+    ],
+    "answer": 0,
+    "explanation": "Affine Coupling은 야코비안을 삼각행렬로 만들어 대각 원소 합 exp(∑s)만으로 행렬식을 계산하며, s·t 함수 자체가 가역일 필요가 없습니다."
+  },
+  {
+    "id": "s-ddpm",
+    "papers": [
+      "ddpm"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "DDPM(2020)이 복잡한 변분 하한(ELBO) 대신 실제로 채택해 이미지 품질을 크게 끌어올린 단순 손실함수 L_simple은?",
+    "options": [
+      "시점 t에 주입된 가우시안 노이즈 ε 자체를 U-Net이 예측하도록 하는 단순 MSE 손실",
+      "원본 이미지와 생성 이미지의 판별자 적대 손실",
+      "잠재 변수의 정확한 로그 야코비안 행렬식 최대화",
+      "인접 픽셀 차분의 L1 손실"
+    ],
+    "answer": 0,
+    "explanation": "DDPM은 x_t = √ᾱ_t x_0 + √(1-ᾱ_t)ε 에서 주입된 노이즈 ε을 예측하는 단순 L2 손실이 훨씬 높은 생성 품질을 낸다는 점을 밝혔습니다."
+  },
+  {
+    "id": "s-dit",
+    "papers": [
+      "dit"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "DiT(Diffusion Transformer)에서 시간 t와 클래스 조건 c를 주입하는 방식 중 가장 성능이 뛰어났던 것은?",
+    "options": [
+      "adaLN-Zero (조건으로 LayerNorm의 scale/shift와 0-초기화 잔차 게이트 α를 회귀)",
+      "조건을 입력 패치 뒤에 1개 토큰으로만 이어붙이는 In-Context 방식",
+      "BatchNorm 이동평균을 조건 벡터로 치환",
+      "조건 정보를 마지막 선형층에만 가산"
+    ],
+    "answer": 0,
+    "explanation": "DiT는 잔차 블록 출력을 초기에 0으로 게이팅하는 adaLN-Zero가 가장 우수한 FID와 깔끔한 GFlops 스케일링을 보임을 입증했습니다."
+  },
+  {
+    "id": "s-flow-matching",
+    "papers": [
+      "flow-matching"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Generative",
+    "question": "Conditional Flow Matching(OT 경로)에서 신경망이 직접 회귀 학습하는 목표량은 무엇인가?",
+    "options": [
+      "직선 보간 경로 x_t = (1-t)x_0 + t·x_1 위의 목표 속도장(vector field) u_t = x_1 - x_0",
+      "1000단계 이산 마르코프 체인의 분산 스케줄 β_t",
+      "판별자 D가 출력하는 진짜 확률 스칼라",
+      "인코더가 출력하는 잠재 평균 μ와 분산 σ"
+    ],
+    "answer": 0,
+    "explanation": "Flow Matching은 시뮬레이션 없이 조건부 속도장 u_t = x_1 - x_0를 직접 회귀해 곧은 OT 궤적을 학습하므로 5~10스텝 ODE 적분으로 고속 샘플링이 가능합니다."
+  },
+  {
+    "id": "s-transformer",
+    "papers": [
+      "transformer"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "Transformer의 Scaled Dot-Product Attention에서 내적 QK^T를 √d_k로 나누는 수학적 이유는?",
+    "options": [
+      "d_k가 커질수록 내적 분산이 커져 Softmax가 극단값으로 포화(기울기 소실)되는 것을 막기 위해",
+      "어텐션 복잡도를 O(N²)에서 O(N)으로 낮추기 위해",
+      "Causal Mask를 대체하기 위해",
+      "가중치 행렬의 랭크를 강제로 줄이기 위해"
+    ],
+    "answer": 0,
+    "explanation": "분산 1인 d_k차원 벡터 내적의 분산은 d_k이므로 √d_k로 스케일링해야 Softmax 기울기가 건강하게 유지됩니다."
+  },
+  {
+    "id": "s-gpt-1",
+    "papers": [
+      "gpt-1"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "GPT-1(2018)이 정립한 2단계 학습 패러다임과 다운스트림 미세조정 시 함께 사용한 보조 손실은?",
+    "options": [
+      "대규모 비지도 다음 토큰 예측 사전학습 → 특수 구분 토큰으로 입력을 통일한 태스크 미세조정 (+ 언어모델 보조 손실)",
+      "양방향 마스크 복원(MLM) 사전학습 → 판별자 적대 미세조정",
+      "지도학습 번역 사전학습 → 분류기 가중치 동결",
+      "강화학습 PPO 사전학습 → MSE 복원"
+    ],
+    "answer": 0,
+    "explanation": "GPT-1은 Causal Decoder-only 사전학습 후 최소한의 구조 변경으로 태스크 미세조정을 수행하며, 언어모델 보조 손실로 일반화를 높였습니다."
+  },
+  {
+    "id": "s-bert",
+    "papers": [
+      "bert"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "BERT의 Masked Language Modeling(MLM)에서 선택된 15% 토큰을 [MASK] 80% / 랜덤 10% / 원본 유지 10%로 나누는 이유는?",
+    "options": [
+      "사전학습에만 존재하는 [MASK] 토큰이 미세조정 시 등장하지 않는 불일치(mismatch)를 완화하고 모든 위치의 문맥 표현을 강건하게 학습하기 위해",
+      "어휘 크기를 15% 줄여 메모리를 절약하기 위해",
+      "Causal Mask를 흉내 내기 위해",
+      "NSP 손실을 계산하지 않기 위해"
+    ],
+    "answer": 0,
+    "explanation": "100% [MASK]로만 바꾸면 모델이 [MASK] 위치에만 집중하므로 80/10/10 혼합으로 사전학습-미세조정 간극을 줄였습니다."
+  },
+  {
+    "id": "s-rope",
+    "papers": [
+      "rope"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "RoPE(Rotary Position Embedding)가 절대 위치 변환만으로 상대 위치 정보를 표현하는 수학적 원리는?",
+    "options": [
+      "Q와 K를 위치별 회전 행렬 R_m, R_n으로 2D 회전시키면 직교성 덕분에 내적이 (R_m q)^T(R_n k) = q^T R_{n-m} k 로 상대 거리 (m-n)에만 의존함",
+      "입력 임베딩에 사인/코사인 벡터를 단순히 더한 뒤 LayerNorm을 적용함",
+      "어텐션 행렬에 학습 가능한 N×N 바이어스 표를 직접 더함",
+      "위치 인코딩을 제거하고 RNN 은닉 상태를 연결함"
+    ],
+    "answer": 0,
+    "explanation": "RoPE는 회전 행렬의 성질 R_m^T R_n = R_{n-m}을 이용해 Q·K 내적이 자연스럽게 상대 거리만 반영하도록 만듭니다."
+  },
+  {
+    "id": "s-palm",
+    "papers": [
+      "palm"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "PaLM(540B)이 대규모 학습·디코딩 속도를 높이기 위해 표준 Transformer에서 수정한 아키텍처 조합은?",
+    "options": [
+      "Parallel Transformer Block(Attention+FFN 병렬) + Multi-Query Attention(MQA) + SwiGLU + RoPE",
+      "Encoder-Decoder 분리 + BatchNorm + ReLU",
+      "Selective Search + Dilated Conv + Softmax 256-bin",
+      "2-스트림 Co-Attention + 절대 학습 위치 임베딩"
+    ],
+    "answer": 0,
+    "explanation": "PaLM은 Attention과 FFN을 병렬화해 학습을 ~15% 가속하고, K/V 헤드를 공유하는 MQA와 SwiGLU·RoPE를 대규모로 검증했습니다."
+  },
+  {
+    "id": "s-nope",
+    "papers": [
+      "transformer-without-pe"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "NoPE(Transformer without PE, 2022)가 명시적 위치 인코딩 없이도 Causal LM이 순서 정보를 배우는 원인으로 제시한 메커니즘은?",
+    "options": [
+      "Causal Attention 마스크 때문에 위치 i의 토큰이 정확히 i+1개 이전 토큰만 참조하게 되어, 어텐션 분포/합 구조로부터 암묵적 절대 위치를 추론할 수 있음",
+      "LayerNorm이 토큰 인덱스 번호를 자동으로 기록함",
+      "토크나이저가 모든 단어 앞에 숫자 인덱스를 붙여줌",
+      "Weight Decay가 위치 정보를 생성함"
+    ],
+    "answer": 0,
+    "explanation": "NoPE는 프로빙 실험으로 PE 없는 Causal Transformer가 내부적으로 높은 정확도의 절대 위치 표현을 자발적으로 형성함을 보였습니다."
+  },
+  {
+    "id": "s-llama",
+    "papers": [
+      "llama"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "LLaMA(2023)가 정착시킨 현대 오픈소스 LLM의 핵심 아키텍처 3요소와 학습 전략은?",
+    "options": [
+      "Pre-RMSNorm + SwiGLU + RoPE, 그리고 추론 효율을 위해 작은 모델(7B~65B)을 1~1.4T 공개 토큰으로 과다 학습(over-training)",
+      "Post-BatchNorm + ReLU + 사인 PE, 최소 토큰으로 1T 파라미터 학습",
+      "Encoder-only MLM + 4-bit 사전학습",
+      "Masked Diffusion 8B 양방향 학습"
+    ],
+    "answer": 0,
+    "explanation": "LLaMA는 Chinchilla 학습 최적점을 넘어선 over-training으로 추론 비용을 크게 낮추며 Pre-RMSNorm·SwiGLU·RoPE 표준을 확립했습니다."
+  },
+  {
+    "id": "s-diffusion-llm",
+    "papers": [
+      "diffusion-llm"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Transformer & LLM",
+    "question": "LLaDA(Large Language Diffusion Models, 2025)의 생성 과정과 자기회귀(ARM) 대비 특성은?",
+    "options": [
+      "Masked Diffusion으로 토큰을 비율 t만큼 마스킹하고 양방향 Transformer가 반복 언마스킹해 생성하며, 역방향 추론(Reversal Curse)에 강함",
+      "연속 가우시안 노이즈를 문자 아스키 코드에 더해 1000스텝 디노이징함",
+      "KV-Cache를 10배 확장한 초고속 좌→우 자기회귀 모델",
+      "BERT 분류기에 beam search만 덧붙인 모델"
+    ],
+    "answer": 0,
+    "explanation": "LLaDA는 8B 규모에서 순수 Masked Diffusion만으로 LLM 스케일링·SFT·대화가 가능함을 보이며 방향성 편향(Reversal Curse)을 극복했습니다."
+  },
+  {
+    "id": "s-vilbert",
+    "papers": [
+      "vilbert"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Multimodal",
+    "question": "ViLBERT(2019)가 이미지와 텍스트를 결합하는 핵심 구조적 특징은?",
+    "options": [
+      "Faster R-CNN 객체 영역 스트림과 텍스트 스트림을 분리하되, Co-Attention 레이어에서 서로의 Key/Value를 교환",
+      "4억 쌍 대조학습 Dual Encoder(중간 교차 어텐션 없음)",
+      "이미지를 16×16 패치로 잘라 단일 스트림에 단순 연결",
+      "오디오 파형과 이미지를 WaveNet으로 융합"
+    ],
+    "answer": 0,
+    "explanation": "ViLBERT는 두 모달리티의 고유 처리 깊이를 유지하면서 Co-Attention 블록으로 교차 참조하는 Two-Stream 구조를 정립했습니다."
+  },
+  {
+    "id": "s-clip",
+    "papers": [
+      "clip"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Multimodal",
+    "question": "CLIP(2021)이 별도 미세조정 없이 제로샷(Zero-shot) 이미지 분류를 수행하는 원리는?",
+    "options": [
+      "클래스 이름을 'a photo of a {label}' 텍스트 프롬프트로 인코딩해, 이미지 임베딩과 코사인 유사도가 가장 높은 클래스를 선택",
+      "ImageNet 1,000개 고정 선형 분류 헤드를 동결 유지",
+      "Faster R-CNN으로 박스를 뽑아 SVM으로 분류",
+      "이미지를 픽셀 단위로 복원해 오차가 가장 작은 클래스를 선택"
+    ],
+    "answer": 0,
+    "explanation": "CLIP은 4억 이미지-텍스트 쌍을 대칭 InfoNCE 대조학습으로 같은 임베딩 공간에 정렬해 자연어 프롬프트 기반 오픈-어휘 분류를 구현했습니다."
+  },
+  {
+    "id": "s-dino",
+    "papers": [
+      "dino"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Multimodal",
+    "question": "DINO(2021)가 라벨과 음성쌍(negative pair) 없이 Student-Teacher 자기증류의 표현 붕괴(collapse)를 막은 두 가지 장치는?",
+    "options": [
+      "EMA Teacher 출력에 대한 Centering(평균 제거)과 Sharpening(낮은 온도 softmax)",
+      "32,768 대형 배치 InfoNCE 대조손실",
+      "적대적 판별자(GAN)와 Gradient Penalty",
+      "가중치 4-bit 양자화와 Dropout 0.5"
+    ],
+    "answer": 0,
+    "explanation": "DINO는 Centering(한 차원 독점 방지)과 Sharpening(균일 분포 붕괴 방지)을 EMA Teacher에 적용해 ViT 어텐션에서 객체 분할 특성을 창발시켰습니다."
+  },
+  {
+    "id": "s-dinov2",
+    "papers": [
+      "dinov2"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Multimodal",
+    "question": "DINOv2(2023)가 깊이 추정·분할·로봇 조작 등 밀집(dense) 시각 특징에서 최강 백본이 된 3가지 핵심 조합은?",
+    "options": [
+      "자동 정제 1.42억 장 데이터셋(LVD-142M) + 이미지 자기증류(DINO) + 패치 마스크 복원(iBOT) 및 대형 모델 증류",
+      "10억 텍스트 캡션 Sigmoid 대조학습",
+      "ImageNet-1K 100만 장 지도학습 + ResNet-152",
+      "픽셀 공간 1000스텝 DDPM 생성 사전학습"
+    ],
+    "answer": 0,
+    "explanation": "DINOv2는 자동 큐레이션 LVD-142M, DINO(전역)+iBOT(패치)+KoLeo 정규화, 그리고 ViT-g→소형 증류로 강력한 범용 시각 특징을 얻었습니다."
+  },
+  {
+    "id": "s-siglip",
+    "papers": [
+      "siglip"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Multimodal",
+    "question": "SigLIP(2023)의 핵심 손실함수 아이디어와 그로 인한 실용적 이점은?",
+    "options": [
+      "배치 전체 Softmax 대신 각 (이미지, 텍스트) 쌍별 독립 Sigmoid 이진 손실을 사용해 분산 통신 비용을 줄이고 소배치·대배치 효율을 모두 높임",
+      "텍스트 인코더를 제거해 이미지 단독 자기지도학습으로 전환",
+      "이미지를 DCT로 압축해 토큰 수를 1/10로 줄임",
+      "Co-Attention 블록을 24층 추가해 정확도를 높임"
+    ],
+    "answer": 0,
+    "explanation": "SigLIP은 전역 정규화(All-Gather)가 필요 없는 Pairwise Sigmoid 손실과 학습형 음수 bias 초기화로 효율적인 VLM 비전 인코더 표준이 됐습니다."
+  },
+  {
+    "id": "s-batchnorm",
+    "papers": [
+      "batchnorm"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Optimization",
+    "question": "Batch Normalization이 정규화(평균 0, 분산 1) 직후에 학습 가능한 γ(scale)·β(shift)를 다시 적용하는 이유는?",
+    "options": [
+      "정규화로 활성화가 항상 비선형 함수의 선형 구간에만 갇히지 않도록 네트워크의 원래 표현력(필요시 항등 변환)을 복원할 수 있게 하기 위해",
+      "추론 시 이동평균 계산을 생략하기 위해",
+      "파라미터 수를 2배 늘려 과적합을 유도하기 위해",
+      "배치 크기가 1일 때도 분산을 1로 만들기 위해"
+    ],
+    "answer": 0,
+    "explanation": "γ와 β 덕분에 네트워크가 원한다면 정규화 이전 분포를 복원할 수 있어 표현력 손실 없이 학습 안정화와 큰 학습률을 얻습니다."
+  },
+  {
+    "id": "s-layernorm",
+    "papers": [
+      "layernorm"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Optimization",
+    "question": "Layer Normalization이 정규화 통계를 계산하는 축과 추론 시 동작 특성으로 맞는 것은?",
+    "options": [
+      "단일 샘플 내부의 feature 차원 전체에 대해 평균·분산을 계산하며, 학습과 추론 시 동작이 완전히 동일(running stats 불필요)",
+      "미니배치 축으로 평균·분산을 계산하고 추론 시 이동평균 사용",
+      "높이·너비 공간 축만 평균내고 채널은 건드리지 않음",
+      "배치 크기가 64 이상일 때만 작동"
+    ],
+    "answer": 0,
+    "explanation": "LayerNorm은 샘플·토큰 단위로 독립 계산되므로 배치 크기나 가변 시퀀스 길이에 영향을 받지 않아 Transformer의 기본 정규화가 됐습니다."
+  },
+  {
+    "id": "s-lora",
+    "papers": [
+      "lora"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Optimization",
+    "question": "LoRA에서 저랭크 행렬 A는 가우시안, B는 0으로 초기화하는 이유와 추론 시 장점은?",
+    "options": [
+      "학습 시작 시 ΔW=BA=0으로 원 모델 출력을 보존하며, 추론 시 W₀+(α/r)BA로 병합해 추가 추론 지연이 0",
+      "A와 B를 모두 0으로 초기화해 기울기를 영구 동결",
+      "추론 시 매 토큰마다 B·A를 별도 GPU에서 비동기 계산",
+      "베이스 모델 W₀를 삭제하고 B·A만 단독 배포"
+    ],
+    "answer": 0,
+    "explanation": "B=0 초기화로 사전학습 지식을 깨지 않고 시작하며, 배포 시 원 가중치에 선형 병합할 수 있어 inference latency 오버헤드가 없습니다."
+  },
+  {
+    "id": "s-flashattention",
+    "papers": [
+      "flashattention"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Optimization",
+    "question": "FlashAttention이 근사 없이 100% 정확한(Exact) Attention을 O(N) 메모리와 2~4배 속도로 구현한 핵심 기법은?",
+    "options": [
+      "Q·K·V를 GPU 빠른 온칩 SRAM 크기로 쪼개는 Tiling + Online Softmax + 역전파 시 N×N 행렬 저장 대신 Recomputation",
+      "어텐션 행렬에서 작은 값 90%를 버리는 Sparse 근사",
+      "Softmax를 선형 커널로 바꾼 Linear Attention 근사",
+      "KV-Cache를 CPU RAM으로 전부 오프로딩"
+    ],
+    "answer": 0,
+    "explanation": "FlashAttention은 느린 HBM과 빠른 SRAM 사이의 I/O 병목을 Tiling + Online Softmax + Recomputation으로 제거해 정확한 어텐션을 가속합니다."
+  },
+  {
+    "id": "s-qlora",
+    "papers": [
+      "qlora"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Optimization",
+    "question": "QLoRA가 단일 48GB GPU에서 65B LLM 미세조정을 가능하게 한 3가지 핵심 메모리 절감 기술은?",
+    "options": [
+      "4-bit NormalFloat(NF4) + Double Quantization(양자화 상수 재양자화) + Paged Optimizers",
+      "FP8 학습 + Tensor Parallel 8-way + Gradient Checkpointing 제거",
+      "2-bit 이진화 + BatchNorm 제거 + 토큰 길이 128 제한",
+      "가상메모리 KV-Cache 페이징 + Copy-on-Write"
+    ],
+    "answer": 0,
+    "explanation": "QLoRA는 정규분포 가중치에 최적인 NF4, 양자화 상수를 한 번 더 줄이는 이중 양자화, OOM을 막는 Paged Optimizers를 결합했습니다."
+  },
+  {
+    "id": "s-pagedattention",
+    "papers": [
+      "pagedattention"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Optimization",
+    "question": "PagedAttention(vLLM)이 다중 요청 LLM 서빙 처리량을 2~4배 높인 핵심 아이디어는?",
+    "options": [
+      "OS 가상메모리 페이징처럼 KV-Cache를 고정 크기 블록으로 나눠 비연속 물리 메모리에 동적 할당하고, 공통 프롬프트 블록을 공유(Copy-on-Write)",
+      "KV-Cache를 아예 저장하지 않고 매 토큰 전체 프롬프트를 재계산",
+      "어텐션 가중치를 4-bit NF4로 양자화",
+      "요청 길이를 항상 최대 4096토큰으로 미리 연속 예약"
+    ],
+    "answer": 0,
+    "explanation": "PagedAttention은 연속 예약으로 생기던 60~80%의 KV-Cache 단편화 낭비를 4% 미만으로 줄여 배치 크기를 대폭 키웠습니다."
+  },
+  {
+    "id": "s-dora",
+    "papers": [
+      "dora"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Optimization",
+    "question": "DoRA(ICML 2024)가 가중치 분해 분석을 통해 발견한 LoRA의 한계와 이를 해결한 업데이트 식은?",
+    "options": [
+      "LoRA는 크기·방향 변화가 강하게 비례하는 한계가 있어, 가중치를 크기(m)와 방향(W₀+ΔV)으로 분해해 m은 직접 학습하고 방향 변화만 LoRA로 학습",
+      "LoRA의 랭크 r을 512로 고정하고 추론 시 병합을 금지",
+      "가중치 행렬을 주파수 영역 DCT로 변환해 상위 10%만 학습",
+      "매 레이어에 별도 MLP 어댑터를 직렬 삽입"
+    ],
+    "answer": 0,
+    "explanation": "DoRA는 W' = m · (W₀+BA)/||W₀+BA||_c 로 크기와 방향을 분리해 추론 지연 0을 유지하면서도 Full FT에 가까운 학습 능력을 구현했습니다."
+  },
+  {
+    "id": "s-r-cnn",
+    "papers": [
+      "r-cnn"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Vision",
+    "question": "원조 R-CNN(2014)의 객체 탐지 3단계 파이프라인과 가장 큰 속도 병목 원인은?",
+    "options": [
+      "Selective Search(~2,000 후보 영역) → 영역마다 독립 CNN 특징 추출 → 클래스별 SVM 분류 + 박스 회귀 (2,000번 중복 CNN 연산이 병목)",
+      "단일 패스 그리드 분류(YOLO 방식)로 100FPS 달성",
+      "이미지 패치 16×16 Self-Attention으로 바운딩박스 직접 생성",
+      "U-Net Skip Connection으로 픽셀 단위 분할만 수행"
+    ],
+    "answer": 0,
+    "explanation": "R-CNN은 겹치는 약 2,000개 후보 영역마다 CNN을 따로 돌려 극도로 느렸고, 이후 특징맵 공유(Fast/Faster R-CNN)로 진화했습니다."
+  },
+  {
+    "id": "s-inception",
+    "papers": [
+      "inception"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Vision",
+    "question": "Inception(GoogLeNet) 모듈에서 3×3·5×5 합성곱 직전에 1×1 Convolution을 배치하는 핵심 목적은?",
+    "options": [
+      "입력 채널 차원을 미리 압축(Bottleneck)해 멀티스케일 병렬 합성곱의 연산량·파라미터 폭증을 막고 비선형성을 추가",
+      "이미지 해상도를 2배로 업샘플링",
+      "잔차 연결 y = F(x)+x 를 구현",
+      "시각 토큰을 언어 임베딩으로 변환"
+    ],
+    "answer": 0,
+    "explanation": "1×1 병목 합성곱으로 채널을 줄인 뒤 3×3·5×5를 병렬 수행해, 22층 깊이면서도 AlexNet의 1/12 파라미터로 높은 정확도를 냈습니다."
+  },
+  {
+    "id": "s-u-net",
+    "papers": [
+      "u-net"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Vision",
+    "question": "U-Net의 대칭 인코더-디코더 사이 같은 해상도 층을 잇는 Skip Connection의 핵심 역할은?",
+    "options": [
+      "다운샘플링 과정에서 소실된 고해상도 공간 위치·경계 디테일을 디코더 업샘플링 단계로 직접 전달(채널 결합)",
+      "학습 파라미터를 절반으로 줄이기 위해 디코더를 생략",
+      "배치 크기에 무관한 정규화 통계를 계산",
+      "문장의 앞뒤 문맥을 양방향으로 통합"
+    ],
+    "answer": 0,
+    "explanation": "U-Net은 축소 경로의 전역 문맥과 확장 경로의 정밀 위치를 Skip Connection으로 결합해 소량 의료 영상 분할 및 이후 DDPM 백본의 표준이 됐습니다."
+  },
+  {
+    "id": "s-resnet",
+    "papers": [
+      "resnet"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Vision",
+    "question": "ResNet(2015)이 '망이 깊어질수록 학습 오차 자체가 커지는 퇴화(Degradation) 문제'를 해결한 핵심 원리는?",
+    "options": [
+      "목표 매핑 H(x) 대신 잔차 F(x) = H(x) - x 를 학습하는 항등 지름길 연결(y = F(x) + x)로 기울기 고속도로와 쉬운 항등 근사 제공",
+      "모든 층에 Dropout 0.7과 L1 정규화를 강하게 적용",
+      "합성곱 커널 크기를 11×11로 키워 층 수를 5층으로 줄임",
+      "Activation 함수를 모두 선형 항등 함수로 교체"
+    ],
+    "answer": 0,
+    "explanation": "잔차 연결은 불필요한 층이 F(x)→0으로 쉽게 수렴하게 하고 역전파 시 기울기가 막힘 없이 전달되도록 해 152층 초심층 학습을 열었습니다."
+  },
+  {
+    "id": "s-vit",
+    "papers": [
+      "vit"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Vision",
+    "question": "ViT(Vision Transformer)가 이미지를 Transformer에 입력하는 방식과 데이터 규모에 따른 특성은?",
+    "options": [
+      "이미지를 16×16 패치 시퀀스로 선형 투영(+ 위치 임베딩, [CLS])해 입력하며, CNN 귀납 편향이 적어 소규모에선 약하지만 대규모 사전학습 시 CNN을 역전",
+      "픽셀 1개당 1개 토큰으로 넣어 224×224=50,176 길이 시퀀스를 처리",
+      "CNN보다 귀납 편향이 훨씬 강해 1,000장 소량 데이터에서 최강",
+      "객체 탐지기로 박스를 먼저 뽑아야만 동작"
+    ],
+    "answer": 0,
+    "explanation": "ViT는 패치 토큰화로 순수 Transformer를 비전에 적용했고, JFT-300M급 대규모 데이터에서 CNN을 능가하는 스케일링 특성을 입증했습니다."
+  },
+  {
+    "id": "s-lstm",
+    "papers": [
+      "lstm"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Sequence & Audio",
+    "question": "1997년 원조 LSTM이 기존 RNN의 기울기 소실·폭발을 막기 위해 도입한 핵심 구조(CEC)는?",
+    "options": [
+      "가중치 곱셈 없이 선형 덧셈으로 오차가 장거리 전달되는 Cell State(Constant Error Carousel) + Input/Output 게이트",
+      "모든 시점을 한 번에 내적하는 Self-Attention",
+      "미래 시점을 뒤에서 앞으로 읽는 역방향 은닉층",
+      "Dilated Causal Convolution 스택"
+    ],
+    "answer": 0,
+    "explanation": "원조 LSTM은 선형 덧셈 경로인 Cell State(CEC)와 입출력 게이트로 1,000스텝 이상의 장거리 의존성 학습을 가능하게 했습니다."
+  },
+  {
+    "id": "s-lstm-forget-gate",
+    "papers": [
+      "lstm-forget-gate"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Sequence & Audio",
+    "question": "2000년 Gers 등이 원조 LSTM에 Forget Gate(f_t)를 추가해 해결한 치명적 결함은?",
+    "options": [
+      "끝없는 연속(continual) 시계열에서 오래된 기억을 비우지 못해 셀 상태가 무한 누적·포화되던 문제를 내부 자체 리셋으로 해결",
+      "LSTM의 병렬 학습이 안 되던 문제를 O(1)로 해결",
+      "파라미터 수를 1/10로 압축",
+      "양방향 문맥을 동시에 보도록 확장"
+    ],
+    "answer": 0,
+    "explanation": "Forget Gate c_t = f_t ⊙ c_{t-1} + i_t ⊙ g_t 추가(및 초기 편향 양수 설정 팁)로 오늘날 우리가 쓰는 현대 표준 LSTM 공식이 완성됐습니다."
+  },
+  {
+    "id": "s-bi-lstm",
+    "papers": [
+      "bi-lstm"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Sequence & Audio",
+    "question": "Bi-LSTM의 동작 원리와 실시간 스트리밍 과제에서의 구조적 제약은?",
+    "options": [
+      "정방향(과거→현재)과 역방향(미래→현재) 두 LSTM의 은닉 상태를 결합해 앞뒤 전체 문맥을 보지만, 전체 시퀀스가 끝날 때까지 기다려야 해 실시간 스트리밍엔 불리",
+      "미래 시점을 보지 않고 과거만 두 번 읽어 속도를 2배 높임",
+      "순환 연결 없이 1D 합성곱만 사용해 초저지연 스트리밍에 최적",
+      "게이트를 모두 없애 파라미터가 일반 RNN보다 적음"
+    ],
+    "answer": 0,
+    "explanation": "Bi-LSTM은 음소 분류·태깅처럼 양방향 문맥이 중요한 과제에서 단방향 LSTM을 크게 앞섰지만, 역방향 패스 때문에 전체 입력이 먼저 필요합니다."
+  },
+  {
+    "id": "s-gru",
+    "papers": [
+      "gru"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Sequence & Audio",
+    "question": "GRU(2014)가 사용하는 2개 게이트의 이름과 역할로 맞는 것은?",
+    "options": [
+      "Update Gate(이전 기억 유지와 새 후보 반영 비율을 단일 가중치로 동시 제어) + Reset Gate(새 후보 계산 시 과거 무시 정도 제어)",
+      "Input Gate + Output Gate (Cell State 별도 유지)",
+      "Scale Gate + Shift Gate (배치 통계 정규화)",
+      "Query Gate + Key Gate (토큰 내적 계산)"
+    ],
+    "answer": 0,
+    "explanation": "GRU는 Cell/Hidden 상태를 통합하고 Update(z_t)·Reset(r_t) 2게이트만으로 LSTM의 Forget+Input 역할을 간소화해 파라미터를 약 25% 줄였습니다."
+  },
+  {
+    "id": "s-wavenet",
+    "papers": [
+      "wavenet"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Sequence & Audio",
+    "question": "WaveNet(2016)이 RNN 없이 적은 층으로 수천 오디오 샘플의 긴 수용야를 확보하고 미래 누수를 막은 핵심 구조는?",
+    "options": [
+      "Dilation을 1, 2, 4, 8...로 지수 확장한 Dilated Causal Convolution + Gated Activation(tanh ⊙ sigmoid)",
+      "2D MaxPooling과 Transposed Convolution",
+      "Bi-LSTM 양방향 순환층 16개 적층",
+      "푸리에 급수 계절성 가법 분해"
+    ],
+    "answer": 0,
+    "explanation": "WaveNet은 Causal Conv로 미래 누수를 차단하면서 dilation 지수 확장으로 넓은 시간 문맥을 잡고 μ-law 256구간 소프트맥스로 원시 파형을 생성했습니다."
+  },
+  {
+    "id": "s-arima",
+    "papers": [
+      "arima"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Time Series",
+    "question": "ARIMA(p, d, q) 모델의 세 파라미터 p, d, q가 각각 의미하는 것은?",
+    "options": [
+      "p: 과거 관측값 회귀 차수(AR), d: 정상성 확보를 위한 차분 횟수(I), q: 과거 예측 오차 회귀 차수(MA)",
+      "p: 푸리에 계절성 차수, d: 휴일 수, q: 변화점 개수",
+      "p: 패치 크기, d: 임베딩 차원, q: 어텐션 헤드 수",
+      "p: 배치 크기, d: 학습률, q: 에폭 수"
+    ],
+    "answer": 0,
+    "explanation": "ARIMA(p,d,q)는 d회 차분으로 추세를 제거해 정상 시계열을 만든 뒤 과거 p개 값(AR)과 과거 q개 오차(MA)의 선형 결합으로 예측합니다."
+  },
+  {
+    "id": "s-prophet",
+    "papers": [
+      "prophet"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "Time Series",
+    "question": "Facebook Prophet(2017)의 가법 시계열 분해식 y(t) = g(t) + s(t) + h(t) + ε_t 의 세 구성요소는?",
+    "options": [
+      "g(t) 추세+변화점(구간 선형/로지스틱), s(t) 푸리에 급수 기반 다중 계절성, h(t) 휴일·이벤트 효과",
+      "g(t) 자기회귀 AR, s(t) 차분 I, h(t) 이동평균 MA",
+      "g(t) 인코더, s(t) 셀프 어텐션, h(t) 디코더",
+      "g(t) 가우시안 노이즈, s(t) 속도장, h(t) 야코비안"
+    ],
+    "answer": 0,
+    "explanation": "Prophet은 추세 변화점(Laplace 희소 사전분포) + 푸리에 계절성 + 휴일 효과를 직관적 가법 모델로 분해해 결측·이상치와 실무 튜닝에 강합니다."
+  },
+  {
+    "id": "l-palme-rt2",
+    "papers": [
+      "palm-e",
+      "rt-2"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "PaLM-E와 RT-2의 가장 결정적인 출력 구조 차이는 무엇인가요?",
+    "options": [
+      "PaLM-E는 자연어로 상위 계획(subtask)을 출력하고 저수준 정책에 맡기지만, RT-2는 저수준 로봇 액션 토큰을 직접 출력한다",
+      "PaLM-E는 연속 Flow Matching을 쓰고, RT-2는 Diffusion을 쓴다",
+      "PaLM-E는 오픈소스 Llama 기반이고, RT-2는 EfficientNet 기반이다",
+      "PaLM-E는 6축 힘/토크만 입력받고, RT-2는 이미지만 입력받는다"
+    ],
+    "answer": 0,
+    "explanation": "PaLM-E는 멀티모달 시퀀스로 상위 자연어 계획을 세우고 별도 정책(예: RT-1)이 실행하는 반면, RT-2는 VLM 출력 어휘에 로봇 액션 토큰을 직접 매핑했습니다."
+  },
+  {
+    "id": "l-octo-openvla",
+    "papers": [
+      "octo",
+      "openvla"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "Octo(27M/93M)와 OpenVLA(7B)를 비교할 때 옳은 설명은?",
+    "options": [
+      "Octo는 Diffusion 액션 헤드와 경량 백본으로 새 센서·행동 공간 적응이 유연하고, OpenVLA는 7B VLM 백본 기반 이산 256-bin 액션 토큰을 사용한다",
+      "Octo가 7B 대형 VLM을 쓰고, OpenVLA가 27M 경량 모델이다",
+      "둘 다 Flow Matching Action Expert로 50Hz 제어를 수행한다",
+      "Octo는 언어 지시를 받을 수 없고 목표 이미지만 받는다"
+    ],
+    "answer": 0,
+    "explanation": "Octo는 27M/93M 경량 Transformer + Diffusion Head로 빠른 적응성이 강점이고, OpenVLA는 Llama 2 7B + DINOv2/SigLIP 기반 256-bin VLA입니다."
+  },
+  {
+    "id": "l-openvla-oft",
+    "papers": [
+      "openvla-oft",
+      "openvla"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "OpenVLA에서 OpenVLA-OFT로 넘어가며 바뀐 핵심 미세조정·디코딩 전략은?",
+    "options": [
+      "단일 스텝 자기회귀 256-bin 분류 → Parallel Decoding + Action Chunking + 연속 L1 회귀 + FiLM",
+      "Llama 2 백본을 EfficientNet으로 교체",
+      "연속 L1 회귀를 256-bin 이산 분류로 변경",
+      "OXE 97만 궤적을 처음부터 다시 사전학습"
+    ],
+    "answer": 0,
+    "explanation": "OpenVLA-OFT는 백본을 유지하면서 병렬 디코딩·청킹·연속 회귀·FiLM만 바꿔 추론 속도를 25배+ 높이고 성능을 대폭 끌어올렸습니다."
+  },
+  {
+    "id": "l-pi0-pi05",
+    "papers": [
+      "pi-0",
+      "pi-0-5",
+      "fast"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "π0에서 π0.5로 발전하며 오픈월드(미지 가정환경) 일반화를 끌어올린 핵심 차이는?",
+    "options": [
+      "FAST·웹 VQA·서브태스크 이종 데이터 공동학습 + 고수준 서브태스크 예측 후 저수준 Flow Matching 실행의 계층 통합",
+      "Flow Matching을 버리고 3Hz 이산 토큰으로 회귀",
+      "웹 데이터를 모두 제거하고 단일 실험실 데이터만 사용",
+      "VLM 백본을 완전히 제거하고 cuRobo로 대체"
+    ],
+    "answer": 0,
+    "explanation": "π0는 정밀 연속 조작에 강했고, π0.5는 이종 공동학습과 계층적 서브태스크 추론을 결합해 처음 보는 환경 일반화를 달성했습니다."
+  },
+  {
+    "id": "l-pi0-fast",
+    "papers": [
+      "pi-0",
+      "fast"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "π0(Flow Matching)와 FAST(DCT+BPE 자기회귀)의 학습·추론 트레이드오프 비교로 맞는 것은?",
+    "options": [
+      "FAST는 순수 자기회귀로 학습 수렴이 최대 5배 빠르지만 추론 디코딩이 느리고, π0 Flow Matching은 10스텝 병렬 생성으로 50Hz 실시간 추론에 유리하다",
+      "FAST가 Flow Matching보다 추론 속도가 10배 빠르다",
+      "π0는 고주파 연속 조작을 전혀 할 수 없다",
+      "둘 다 256-bin 단순 스텝별 양자화를 사용한다"
+    ],
+    "answer": 0,
+    "explanation": "그래서 π0.5는 사전학습 효율이 좋은 FAST와 실시간 추론이 빠른 Flow Matching을 하이브리드로 결합했습니다."
+  },
+  {
+    "id": "l-smolvla-pi0",
+    "papers": [
+      "smolvla",
+      "pi-0",
+      "groot-n1"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "π0·GR00T N1 대비 SmolVLA(450M)의 가장 뚜렷한 포지셔닝 차이는?",
+    "options": [
+      "대형 백본·사내 데이터 대신 커뮤니티 공개 LeRobot 데이터 + 절반 레이어 VLM + 비동기 추론으로 단일 소비자 GPU·저가 로봇에 특화",
+      "휴머노이드 전신 50DoF 제어 전용 100B 모델",
+      "Flow Matching을 쓰지 않는 순수 이산 모델",
+      "6축 F/T 센서 전용 MoE 모델"
+    ],
+    "answer": 0,
+    "explanation": "SmolVLA는 같은 Flow Matching 계열이지만 450M 초경량 크기와 오픈 커뮤니티 데이터·비동기 추론으로 접근성을 극대화했습니다."
+  },
+  {
+    "id": "l-action-heads",
+    "papers": [
+      "rt-2",
+      "octo",
+      "openvla",
+      "pi-0",
+      "fast"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "다음 VLA 중 '연속 액션 분포/회귀'를 직접 출력하는 모델만 바르게 묶인 것은?",
+    "options": [
+      "Octo(Diffusion) · π0(Flow Matching) · OpenVLA-OFT(연속 L1) · GR00T N1(Flow DiT)",
+      "RT-1 · RT-2 · OpenVLA · FAST",
+      "RT-2 · FAST · π0 · OpenVLA",
+      "OpenVLA · RT-1 · PaLM-E · BERT"
+    ],
+    "answer": 0,
+    "explanation": "RT-1·RT-2·OpenVLA·FAST는 이산 토큰 기반이고, Octo·π0·OpenVLA-OFT·GR00T N1·SmolVLA는 연속 액션을 직접 생성합니다."
+  },
+  {
+    "id": "l-surp-forcevla",
+    "papers": [
+      "surp",
+      "forcevla"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Dataset & Robustness",
+    "question": "SURP와 ForceVLA-Data를 로봇 학습 관점에서 비교했을 때 가장 정확한 차이는?",
+    "options": [
+      "SURP는 인간 전동 샌딩 시연(도구 pose·작업물 하단 F/T, 리타게팅 필요)이고, ForceVLA-Data는 7-DOF 로봇 VR 원격시연(LeRobot 학습 포맷)이다",
+      "SURP가 로봇 학습 포맷이고 ForceVLA가 인간 시연이다",
+      "둘 다 힘/토크 센서 없이 RGB 영상만 제공한다",
+      "둘 다 LIBERO 시뮬레이터에서 합성된 데이터다"
+    ],
+    "answer": 0,
+    "explanation": "SURP는 인간 표면가공 전략 원천 데이터이고, ForceVLA-Data는 실제 로봇 접촉 조작을 바로 학습할 수 있는 LeRobot v2.1 스키마입니다."
+  },
+  {
+    "id": "l-libero-trio",
+    "papers": [
+      "libero-plus",
+      "libero-pro",
+      "robustvla"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Dataset & Robustness",
+    "question": "LIBERO-Plus · LIBERO-PRO · RobustVLA 3편의 핵심 초점 차이를 바르게 연결한 것은?",
+    "options": [
+      "LIBERO-Plus(7축 10,030 변형 스트레스 테스트) / LIBERO-PRO(배치·궤적 암기 폭로와 공정 평가) / RobustVLA(시각+언어 멀티모달 복합 교란)",
+      "세 논문 모두 카메라 각도 1축만 다룬다",
+      "LIBERO-PRO는 샌딩 전용, RobustVLA는 오디오 전용이다",
+      "LIBERO-Plus는 클린 환경 속도 벤치마크다"
+    ],
+    "answer": 0,
+    "explanation": "세 벤치마크는 각각 다차원 교란 스펙트럼(Plus), 암기 검증(PRO), 멀티모달 복합 교란(RobustVLA)으로 VLA 강건성의 서로 다른 단면을 진단합니다."
+  },
+  {
+    "id": "l-robust-stable",
+    "papers": [
+      "libero-plus",
+      "stablevla",
+      "pi-0-5"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Dataset & Robustness",
+    "question": "LIBERO-Plus/PRO 평가 결과와 StableVLA(ICML'26)를 연결해 볼 때 도출되는 핵심 시사점은?",
+    "options": [
+      "클린 성능이 95%+인 π0.5도 센서 노이즈·블러에 흔들리므로, 단순 데이터 증강을 넘어 IB-Adapter 같은 구조적 노이즈 차단이 필요하다",
+      "클린 성능만 95%를 넘으면 시각 교란은 자동으로 해결된다",
+      "시각 교란 대응에는 모델 크기를 100B 이상으로 키우는 것만이 유일한 해법이다",
+      "LIBERO-10은 교란 영향을 전혀 받지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "Heart-Lab 실험에서도 π0.5가 가우시안 블러에서 유의미하게 하락함을 확인했고, StableVLA는 0.5B 경량 백본에 Fused IB-Adapter로 교란을 방어합니다."
+  },
+  {
+    "id": "l-ae-vae",
+    "papers": [
+      "autoencoder",
+      "vae"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Generative",
+    "question": "AutoEncoder에서 VAE로 넘어오며 새로 생긴 핵심 차이 두 가지는?",
+    "options": [
+      "결정론적 점 z → 확률 분포 (μ, σ) + KL 정규화로 연속 잠재공간 형성, 그리고 Reparameterization Trick으로 역전파 가능",
+      "인코더를 제거하고 판별자 D만 추가",
+      "복원 손실을 없애고 노이즈 ε 예측으로 교체",
+      "CNN을 Transformer 패치로 교체"
+    ],
+    "answer": 0,
+    "explanation": "VAE는 AutoEncoder의 불연속 잠재공간 한계를 확률 분포 정규화(ELBO)와 Reparameterization Trick으로 해결해 진정한 생성 모델이 됐습니다."
+  },
+  {
+    "id": "l-gan-cgan-dcgan",
+    "papers": [
+      "gan",
+      "cgan",
+      "dcgan"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Generative",
+    "question": "GAN → CGAN → DCGAN 계보에서 각 논문이 추가한 진화로 맞는 것은?",
+    "options": [
+      "CGAN은 조건 y 입력으로 제어 가능한 생성을 도입, DCGAN은 Strided/Transposed Conv + BatchNorm으로 CNN GAN 학습을 안정화",
+      "CGAN은 정확한 로그 우도 계산, DCGAN은 텍스트 생성",
+      "CGAN은 1000스텝 확산 도입, DCGAN은 U-Net 도입",
+      "CGAN은 Pooling 추가, DCGAN은 BatchNorm 삭제"
+    ],
+    "answer": 0,
+    "explanation": "원조 GAN의 무작위성과 학습 불안정성을 CGAN(조건부 제어)과 DCGAN(안정적 CNN 설계 규칙)이 단계적으로 보완했습니다."
+  },
+  {
+    "id": "l-realnvp-vae-gan",
+    "papers": [
+      "real-nvp",
+      "vae",
+      "gan"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Generative",
+    "question": "확률밀도(Likelihood) 추정 관점에서 VAE · GAN · Real NVP 3대 생성 패러다임을 바르게 구분한 것은?",
+    "options": [
+      "VAE(변분 하한 ELBO 근사) / GAN(명시적 우도 없음) / Real NVP(Affine Coupling 삼각 야코비안으로 정확한 우도 계산)",
+      "GAN이 정확한 우도를 계산하고 Real NVP는 우도가 없다",
+      "세 모델 모두 정확한 로그 우도를 닫힌 식으로 계산한다",
+      "VAE만 샘플링이 가능하고 GAN과 Real NVP는 불가능하다"
+    ],
+    "answer": 0,
+    "explanation": "Normalizing Flow(Real NVP)는 가역성과 삼각 야코비안 덕분에 VAE(근사)나 GAN(무우도)과 달리 정확한 로그 우도를 직접 최적화합니다."
+  },
+  {
+    "id": "l-ddpm-dit",
+    "papers": [
+      "ddpm",
+      "dit",
+      "u-net"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Generative",
+    "question": "DDPM에서 DiT로 넘어가며 백본과 작동 공간이 어떻게 바뀌었는가?",
+    "options": [
+      "픽셀 공간 + U-Net 백본 → 잠재(Latent) 패치 공간 + Transformer(adaLN-Zero) 백본으로 교체해 스케일링 법칙 입증",
+      "Transformer 백본을 다시 U-Net으로 회귀",
+      "확산 과정을 버리고 GAN 판별자로 교체",
+      "1D 시계열 오디오 전용으로 축소"
+    ],
+    "answer": 0,
+    "explanation": "DiT는 U-Net의 귀납 편향이 필수가 아님을 보이며 잠재 패치 Transformer(adaLN-Zero)로 현대 대규모 확산 백본의 표준을 세웠습니다."
+  },
+  {
+    "id": "l-ddpm-fm-vla",
+    "papers": [
+      "ddpm",
+      "dit",
+      "flow-matching",
+      "pi-0",
+      "groot-n1"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Generative",
+    "question": "생성모델 계보(DDPM → DiT → Flow Matching)가 현대 VLA(π0, GR00T N1)에 그대로 이어진 이유는?",
+    "options": [
+      "다봉(multimodal) 연속 행동 분포 표현력(DDPM) + 확장 가능한 백본(DiT) + 직선 궤적 5~10스텝 실시간 고속 샘플링(Flow Matching)",
+      "로봇 카메라 영상을 매 프레임 합성 이미지로 대체하기 위해",
+      "로봇 액션을 256구간 이산 문자로 바꾸기 위해",
+      "역기구학 충돌 검사를 대체하기 위해"
+    ],
+    "answer": 0,
+    "explanation": "다봉 연속 행동 분포를 50Hz 실시간으로 뽑아야 하는 로봇 제어에 직선 궤적 Flow Matching + DiT/Action Expert가 정확히 들어맞았습니다."
+  },
+  {
+    "id": "l-gpt-bert",
+    "papers": [
+      "gpt-1",
+      "bert"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Transformer & LLM",
+    "question": "GPT-1과 BERT의 아키텍처 및 사전학습 목적함수 차이로 옳은 것은?",
+    "options": [
+      "GPT-1은 단방향(Causal) Decoder-only + 다음 토큰 예측, BERT는 양방향 Encoder-only + MLM/NSP",
+      "GPT-1은 양방향 Encoder-only, BERT는 단방향 Decoder-only",
+      "둘 다 양방향 MLM으로 사전학습한다",
+      "GPT-1은 CNN 기반이고 BERT가 최초의 Transformer다"
+    ],
+    "answer": 0,
+    "explanation": "Transformer에서 Decoder만 떼어 생성 사전학습을 연 것이 GPT-1, Encoder만 떼어 양방향 이해를 연 것이 BERT입니다."
+  },
+  {
+    "id": "l-rope-nope",
+    "papers": [
+      "transformer",
+      "rope",
+      "transformer-without-pe"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Transformer & LLM",
+    "question": "원조 사인 PE(Transformer) → RoPE → NoPE의 위치 인코딩 관점 변화를 바르게 연결한 것은?",
+    "options": [
+      "사인 PE(입력에 절대 위치 가산) → RoPE(Q·K 회전으로 내적에 상대 위치 반영) → NoPE(PE 없이도 Causal Mask가 암묵적 절대 위치를 학습함을 입증)",
+      "RoPE가 PE를 없앤 연구이고 NoPE가 회전 행렬 연구다",
+      "세 방식 모두 어텐션 행렬에 고정 바이어스만 더한다",
+      "NoPE는 양방향 BERT에서만 작동한다"
+    ],
+    "answer": 0,
+    "explanation": "절대 가산(원조) → 상대 회전(RoPE)으로 실무 표준이 진화했고, NoPE는 Causal Mask 자체의 위치 유도력을 이론·실험적으로 밝혔습니다."
+  },
+  {
+    "id": "l-palm-llama",
+    "papers": [
+      "palm",
+      "llama"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Transformer & LLM",
+    "question": "PaLM(540B)과 LLaMA(7B~65B)의 스케일링 철학 차이는?",
+    "options": [
+      "PaLM은 540B 초거대 밀집 모델로 창발적 추론을 밀어붙였고, LLaMA는 추론 비용을 고려해 더 작은 모델을 대량 공개 토큰으로 과다 학습했다",
+      "LLaMA가 PaLM보다 10배 더 큰 파라미터를 가진다",
+      "PaLM은 오픈 웨이트이고 LLaMA는 비공개다",
+      "둘 다 Masked Diffusion으로 학습됐다"
+    ],
+    "answer": 0,
+    "explanation": "LLaMA는 PaLM의 아키텍처 개선(SwiGLU, RoPE)을 계승하면서도 '작은 모델 × 긴 학습' 전략으로 오픈소스 LLM 생태계를 열었습니다."
+  },
+  {
+    "id": "l-bert-llada",
+    "papers": [
+      "bert",
+      "diffusion-llm"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Transformer & LLM",
+    "question": "BERT의 MLM과 LLaDA(Diffusion LLM)의 결정적 차이는?",
+    "options": [
+      "BERT는 고정 15% 마스킹으로 이해(표현)에 초점을 맞추지만, LLaDA는 연속 비율 t∈[0,1] 마스킹 확산과 반복 언마스킹으로 자유 텍스트 생성 LLM을 구현한다",
+      "LLaDA는 15% 고정 마스킹만 쓰고 생성을 못 한다",
+      "BERT가 8B 자유 생성 모델이고 LLaDA가 110M 분류기다",
+      "둘 다 단방향 Causal Mask를 사용한다"
+    ],
+    "answer": 0,
+    "explanation": "LLaDA는 BERT형 마스크 예측을 0~100% 전체 노이즈 레벨의 생성 확산 과정으로 일반화해 자기회귀 없는 8B LLM을 달성했습니다."
+  },
+  {
+    "id": "l-vilbert-clip",
+    "papers": [
+      "vilbert",
+      "clip"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Multimodal",
+    "question": "ViLBERT에서 CLIP으로 넘어가며 비전-언어 사전학습의 패러다임이 바뀐 지점은?",
+    "options": [
+      "Faster R-CNN 영역 특징 + Co-Attention 소규모 학습 → 4억 이미지-텍스트 쌍의 End-to-End Dual Encoder 대조학습(제로샷)",
+      "CLIP이 Faster R-CNN 의존도를 더 키웠다",
+      "ViLBERT가 제로샷 대조학습이고 CLIP이 Co-Attention이다",
+      "둘 다 6축 힘 센서를 사용한다"
+    ],
+    "answer": 0,
+    "explanation": "객체 탐지기 전처리에 묶여 있던 ViLBERT 세대에서, 단순 Dual Encoder 스케일링으로 제로샷을 연 CLIP 세대로 전환됐습니다."
+  },
+  {
+    "id": "l-clip-siglip",
+    "papers": [
+      "clip",
+      "siglip"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Multimodal",
+    "question": "CLIP과 SigLIP의 대조학습 손실함수 차이와 그 결과는?",
+    "options": [
+      "CLIP은 배치 전체 Softmax(InfoNCE)라 대배치·전역 동기화가 필수지만, SigLIP은 쌍별 Sigmoid 이진 손실로 소배치 안정성과 분산 효율이 크게 높다",
+      "SigLIP이 CLIP보다 배치 크기를 10배 더 키워야만 수렴한다",
+      "CLIP은 Sigmoid를 쓰고 SigLIP이 Softmax를 쓴다",
+      "SigLIP은 텍스트 없이 이미지만 학습한다"
+    ],
+    "answer": 0,
+    "explanation": "전역 정규화 병목을 없앤 SigLIP은 PaliGemma·π0·OpenVLA 등 최신 VLM/VLA의 대표 비전 인코더가 됐습니다."
+  },
+  {
+    "id": "l-siglip-dinov2-vla",
+    "papers": [
+      "siglip",
+      "dinov2",
+      "openvla"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Multimodal",
+    "question": "OpenVLA가 비전 인코더로 SigLIP 하나만 쓰지 않고 DINOv2를 함께 결합한 이유는?",
+    "options": [
+      "SigLIP의 언어-의미 정렬 능력과 DINOv2의 정밀 공간·경계·깊이 기하 특징이 상호 보완되기 때문",
+      "DINOv2가 텍스트 프롬프트를 대신 인코딩하기 때문",
+      "SigLIP이 RGB 중 R 채널만 보기 때문",
+      "두 모델을 번갈아 끄며 추론 속도를 높이기 위해"
+    ],
+    "answer": 0,
+    "explanation": "언어 정렬 인코더(CLIP/SigLIP)는 의미에 강하지만 미세 공간 위치가 약할 수 있어, 자기지도 밀집 특징 최강인 DINOv2와 결합했습니다."
+  },
+  {
+    "id": "l-bn-ln",
+    "papers": [
+      "batchnorm",
+      "layernorm"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Optimization",
+    "question": "CNN에서 주로 쓰이는 BatchNorm과 Transformer 표준인 LayerNorm의 핵심 차이는?",
+    "options": [
+      "BatchNorm은 미니배치 축(추론 시 running stats 필요), LayerNorm은 단일 샘플 내부 feature 축(배치·시퀀스 길이 독립)",
+      "LayerNorm만 학습 파라미터 γ, β가 없다",
+      "BatchNorm은 시퀀스 길이가 달라도 완벽히 동일하게 동작한다",
+      "둘 다 정규화 축이 같고 초기화만 다르다"
+    ],
+    "answer": 0,
+    "explanation": "가변 길이 토큰과 소배치가 잦은 시퀀스/LLM에서는 배치 통계에 의존하지 않는 LayerNorm(및 RMSNorm)이 필수입니다."
+  },
+  {
+    "id": "l-lora-qlora-dora",
+    "papers": [
+      "lora",
+      "qlora",
+      "dora"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Optimization",
+    "question": "LoRA → QLoRA → DoRA가 각각 집중해서 해결한 병목의 연결로 맞는 것은?",
+    "options": [
+      "LoRA(학습 파라미터·추론지연 0) → QLoRA(동결 베이스 모델 VRAM을 4-bit NF4로 1/4 축소) → DoRA(크기·방향 분해로 Full FT와 표현력 격차 축소)",
+      "LoRA(4-bit) → QLoRA(크기·방향 분해) → DoRA(KV-Cache 페이징)",
+      "세 기법 모두 추론 지연이 2배 이상 늘어난다",
+      "QLoRA는 추론 시 4-bit 병합이 불가능해 학습만 할 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "PEFT 계보는 효율적 병합(LoRA) → 극한 메모리 절감(QLoRA) → 표현력/성능 보완(DoRA) 순으로 발전했습니다."
+  },
+  {
+    "id": "l-flash-paged",
+    "papers": [
+      "flashattention",
+      "pagedattention"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Optimization",
+    "question": "FlashAttention과 PagedAttention(vLLM)이 해결하는 서로 다른 메모리 병목은?",
+    "options": [
+      "FlashAttention은 어텐션 연산 중 N×N 행렬의 HBM I/O 병목(SRAM Tiling), PagedAttention은 다중 요청 서빙 시 KV-Cache 메모리 단편화(가상메모리 페이징)",
+      "둘 다 똑같이 KV-Cache만 압축하는 기술이다",
+      "FlashAttention은 CPU 전용, PagedAttention은 TPU 전용이다",
+      "FlashAttention은 근사 어텐션, PagedAttention은 4-bit 양자화다"
+    ],
+    "answer": 0,
+    "explanation": "두 기법은 직교적이라 실제 vLLM 서빙에서는 PagedAttention 메모리 관리 위에서 FlashAttention 커널을 함께 사용합니다."
+  },
+  {
+    "id": "l-vision-evo",
+    "papers": [
+      "inception",
+      "resnet",
+      "u-net",
+      "vit"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Vision",
+    "question": "Inception · ResNet · U-Net · ViT 4대 비전 백본의 대표 기여를 바르게 짝지은 것은?",
+    "options": [
+      "Inception(1×1 병목+멀티스케일) / ResNet(항등 잔차 연결) / U-Net(해상도별 인코더-디코더 Skip) / ViT(16×16 패치 순수 Transformer)",
+      "Inception(잔차 연결) / ResNet(패치 분할) / U-Net(1×1 병목) / ViT(Selective Search)",
+      "넷 모두 1×1 합성곱을 제거한 구조다",
+      "ResNet이 ViT 이후에 나와 ViT를 대체했다"
+    ],
+    "answer": 0,
+    "explanation": "네 논문은 각각 효율적 멀티스케일, 초심층 최적화, 픽셀 정밀 복원, 모달리티 통합 비전 백본의 이정표입니다."
+  },
+  {
+    "id": "l-lstm-fg-gru",
+    "papers": [
+      "lstm",
+      "lstm-forget-gate",
+      "gru"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Sequence & Audio",
+    "question": "1997 LSTM → 2000 LSTM+ForgetGate → 2014 GRU의 구조적 진화로 맞는 것은?",
+    "options": [
+      "원조 LSTM(CEC+입출력 2게이트) → Forget Gate 추가(연속 시퀀스 자체 리셋) → GRU(상태 통합 + Update/Reset 2게이트로 경량화)",
+      "원조 LSTM에 Forget Gate가 이미 있었고 GRU가 이를 4게이트로 늘렸다",
+      "세 모델 모두 시퀀스를 병렬로 한 번에 계산한다",
+      "GRU는 Cell State를 2개로 복제했다"
+    ],
+    "answer": 0,
+    "explanation": "게이트 순환망은 기억 보존(1997) → 선택적 망각 완성(2000) → 경량 단순화(2014) 순서로 발전했습니다."
+  },
+  {
+    "id": "l-bilstm-wavenet",
+    "papers": [
+      "bi-lstm",
+      "wavenet"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Sequence & Audio",
+    "question": "시퀀스 문맥 처리 방식에서 Bi-LSTM과 WaveNet의 가장 큰 차이는?",
+    "options": [
+      "Bi-LSTM은 정·역방향 순환으로 과거+미래 문맥을 모두 보고, WaveNet은 Dilated Causal Conv로 미래 누수를 차단하며 과거만 병렬 학습한다",
+      "WaveNet이 미래 시점까지 양방향으로 본다",
+      "Bi-LSTM이 Dilated Conv를 사용한다",
+      "둘 다 Self-Attention 기반이다"
+    ],
+    "answer": 0,
+    "explanation": "Bi-LSTM은 양방향 이해에 강하고, WaveNet은 생성 시 미래를 볼 수 없으므로 Causal Dilated Conv로 학습 병렬성과 넓은 과거 수용야를 얻었습니다."
+  },
+  {
+    "id": "l-arima-prophet",
+    "papers": [
+      "arima",
+      "prophet"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "Time Series",
+    "question": "ARIMA와 Prophet의 시계열 접근 방식 비교로 가장 정확한 것은?",
+    "options": [
+      "ARIMA는 차분·정상성 기반 자기상관(AR/MA) 통계 모델링에 강하고, Prophet은 추세 변화점·푸리에 계절성·휴일의 가법 곡선 분해로 실무 결측·다중계절성에 강하다",
+      "Prophet이 차분과 ACF/PACF 검정을 엄격히 요구한다",
+      "ARIMA가 휴일 목록과 용량 상한(cap)을 기본 파라미터로 받는다",
+      "둘 다 딥러닝 Transformer 기반이다"
+    ],
+    "answer": 0,
+    "explanation": "단기 자기상관이 강한 정상 시계열은 ARIMA가 강하고, 다중 계절성·휴일·결측이 잦은 비즈니스 시계열은 Prophet이 훨씬 실용적입니다."
+  }
+]
