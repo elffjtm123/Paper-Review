@@ -223,15 +223,15 @@
     "type": "single_mcq",
     "scope": "single",
     "category": "VLA",
-    "question": "WALL-OSS가 일반 VLM을 체화(Embodied) 도메인으로 정렬하기 위해 채택한 2단계 학습·통합 추론 전략은?",
+    "question": "WALL-OSS의 2단계 학습 커리큘럼(Inspiration → Integration)을 바르게 설명한 것은?",
     "options": [
-      "대규모 체화 멀티모달 사전학습 + 이산 액션 정렬 후 Flow Matching 연속 행동으로 이어지는 통합 Chain-of-Thought",
-      "텍스트 데이터를 모두 제외하고 로봇 관절 데이터만 단독 학습",
-      "GAN 적대적 손실로 카메라 이미지를 가상 환경으로 변환",
-      "BatchNorm과 LSTM만으로 경량 제어기 구성"
+      "체화 VQA와 FAST 이산 액션 토큰으로 행동 감각을 먼저 심고, 그다음 Flow Matching 연속 액션으로 교체해 학습한다",
+      "Flow Matching 연속 액션을 먼저 학습한 뒤, 마지막에 FAST 이산 토큰으로 압축한다",
+      "로봇 궤적만으로 처음부터 학습하고, 이후 웹 VQA로 언어 능력을 덧붙인다",
+      "VLM은 끝까지 얼려 두고 별도 Diffusion Policy만 학습한다"
     ],
     "answer": 0,
-    "explanation": "WALL-OSS는 VLM과 로봇 도메인 간 모달리티·분포 불일치를 줄이기 위해 체화 정렬 사전학습과 통합 CoT(언어→행동)를 결합합니다."
+    "explanation": "Inspiration 단계는 원래 VLM FFN으로 체화 VQA + FAST 이산 액션을 next-token으로 학습해 대략적인 행동 이해를 심고, Integration 단계는 Flow Matching으로 바꿔 (1) VLM 고정 후 Flow Head만, (2) VLM까지 풀어 공동 학습합니다. '이산 정렬 먼저, 연속 생성 나중'이 핵심입니다."
   },
   {
     "id": "s-forcevla",
@@ -1702,5 +1702,97 @@
     ],
     "answer": 0,
     "explanation": "단기 자기상관이 강한 정상 시계열은 ARIMA가 강하고, 다중 계절성·휴일·결측이 잦은 비즈니스 시계열은 Prophet이 훨씬 실용적입니다."
+  },
+  {
+    "id": "s-wall-oss-moe",
+    "papers": [
+      "wall-oss"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "WALL-OSS의 '강하게 결합된(tightly coupled) MoE'는 어떤 구조인가요?",
+    "options": [
+      "Self-Attention은 공유하고 FFN만 VL FFN과 Action FFN으로 나누며, 토큰 종류에 따라 정적으로 라우팅한다",
+      "학습형 top-k 라우터가 수십 개 전문가 중 2개를 골라 쓴다",
+      "VLM과 액션 모델을 완전히 분리하고 VLM 출력 텍스트만 액션 모델에 넘긴다",
+      "모든 토큰이 하나의 FFN을 공유하고 액션도 텍스트 토큰으로만 출력한다"
+    ],
+    "answer": 0,
+    "explanation": "Fig.2(c): 시각·언어·행동이 Attention으로 상호작용하되 FFN은 분리합니다. 라우터는 학습형 softmax/top-k가 아니라 액션 토큰은 Action FFN, VL 토큰은 VL FFN으로 고정 배정하는 정적 라우팅입니다. RT-2식 통합형(가중치 드리프트)과 π0식 분리형(약한 언어 결합)의 중간 지점입니다."
+  },
+  {
+    "id": "s-wall-oss-unicot",
+    "papers": [
+      "wall-oss"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "WALL-OSS의 Uni-CoT(Unified Cross-Level CoT)에 대한 설명으로 맞는 것은?",
+    "options": [
+      "지시→추론→서브태스크→연속 행동을 단일 모델로 학습하고, path-drop으로 중간 단계를 건너뛰는 경로도 함께 학습한다",
+      "LLM 계획기와 스킬 라이브러리를 API로 연결한 파이프라인이다",
+      "추론 시 반드시 CoT 텍스트를 모두 생성한 뒤에만 행동을 출력한다",
+      "CoT 라벨이 모든 학습 프레임에 있어야 학습이 가능하다"
+    ],
+    "answer": 0,
+    "explanation": "Uni-CoT는 광의의 CoT로, 미분 불가 인터페이스와 오차 누적을 피하려고 전 단계를 한 모델에 넣습니다. path-drop 덕분에 과제에 따라 CoT를 쓰거나 바로 행동으로 갈 수 있고, 실험에서는 CoT·서브태스크 라벨을 학습 프레임의 1%에만 달아도 충분했습니다."
+  },
+  {
+    "id": "s-wall-oss-result",
+    "papers": [
+      "wall-oss"
+    ],
+    "type": "single_mcq",
+    "scope": "single",
+    "category": "VLA",
+    "question": "Place-by-Color 과제에서 CoT가 큰 효과를 보인 조건은?",
+    "options": [
+      "흰 종이에 'red'라고 적힌 글자를 읽고 빨간 실뭉치를 놓아야 하는 텍스트 추론 조건",
+      "빨간 실뭉치를 빨간 종이에 놓는 직접 색 매칭 조건",
+      "카메라에 가우시안 블러를 넣은 시각 교란 조건",
+      "물체를 처음 보는 제로샷 조건"
+    ],
+    "answer": 0,
+    "explanation": "직접 색 매칭에서는 CoT 이득이 거의 없었지만, 글자를 읽고 추론해야 하는 조건에서 WALL-OSS가 모든 베이스라인을 크게 앞섰습니다. 직행형(지시→행동) 모델은 시각적으로 직관적인 과제에 한정된다는 근거입니다."
+  },
+  {
+    "id": "l-pi0-walloss",
+    "papers": [
+      "pi-0",
+      "wall-oss"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "π0와 WALL-OSS의 가장 핵심적인 구조·학습 차이는?",
+    "options": [
+      "π0는 Action Expert를 느슨하게 붙인 분리형이고, WALL-OSS는 Attention을 공유한 MoE와 '이산 정렬 → 연속 생성' 커리큘럼으로 언어-행동을 강하게 결합한다",
+      "π0는 이산 토큰만 쓰고 WALL-OSS는 Diffusion만 쓴다",
+      "π0는 오픈소스가 아니고 WALL-OSS는 텍스트 입력을 받지 않는다",
+      "π0는 휴머노이드 전용이고 WALL-OSS는 시뮬레이션 전용이다"
+    ],
+    "answer": 0,
+    "explanation": "둘 다 VLM + Flow Matching 계열입니다. 논문은 π0식 분리형에서 언어가 보조 신호에 그쳐 지시 이해가 약하다고 지적합니다(Block-Spell 글자 블록 선택 87% vs 9%). 다만 정밀 조작은 여전히 π0가 우세하다고 저자도 인정합니다."
+  },
+  {
+    "id": "l-groot-walloss",
+    "papers": [
+      "groot-n1",
+      "wall-oss"
+    ],
+    "type": "compare",
+    "scope": "link",
+    "category": "VLA",
+    "question": "GR00T N1 같은 이중 시스템(계획기 S2 + 제어기 S1)과 비교해 WALL-OSS가 내세우는 차이는?",
+    "options": [
+      "계획과 제어를 하나의 미분 가능한 모델(Uni-CoT)로 묶어 단계 간 인터페이스의 오차 누적을 줄인다",
+      "계획기 없이 저수준 액션만 출력해 장기 과제를 포기한다",
+      "DiT 액션 헤드를 두 개 쌓아 정밀도를 높인다",
+      "인간 영상과 합성 데이터만으로 학습한다"
+    ],
+    "answer": 0,
+    "explanation": "WALL-OSS는 Hi Robot·GR00T N1처럼 계획기와 제어기를 나누면 인터페이스가 미분 불가능하고 각 모듈 용량에 성능이 묶이며 오차가 누적된다고 보고, 지시→CoT→서브태스크→행동을 단일 모델로 학습합니다."
   }
 ]

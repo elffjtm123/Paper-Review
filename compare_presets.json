@@ -126,9 +126,9 @@
         "vals": [
           "WALL-OSS",
           "2025",
-          "체화 정렬 VLM",
-          "이산 정렬 → Flow 통합 CoT",
-          "공간 이해·통합 CoT·행동 생성 정렬(읽는 중)"
+          "Qwen2.5-VL-3B + 정적 라우팅 MoE (VL/Action FFN)",
+          "FAST 이산(Inspiration) → Flow Matching(Integration)",
+          "Uni-CoT: 지시→추론→서브태스크→행동을 단일 모델로, 체화 VQA로 공간 이해 강화"
         ]
       }
     ]

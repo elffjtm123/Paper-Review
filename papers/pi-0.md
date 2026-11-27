@@ -8,7 +8,7 @@ category: "VLA"
 tags: ["VLA", "Flow Matching", "Action Expert", "50Hz", "Dexterous"]
 pdf: "논문/VLA/Pi-0.pdf"
 predecessors: ["rt-2", "openvla", "flow-matching", "siglip"]
-successors: ["pi-0-5", "fast", "smolvla", "groot-n1"]
+successors: ["pi-0-5", "fast", "smolvla", "groot-n1", "wall-oss"]
 ---
 
 ## 한 줄 요약

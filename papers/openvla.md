@@ -8,7 +8,7 @@ category: "VLA"
 tags: ["Open-Source VLA", "DINOv2", "SigLIP", "LLaMA", "LoRA"]
 pdf: "논문/VLA/OpenVLA.pdf"
 predecessors: ["rt-2", "rt-x", "llama", "dinov2", "siglip", "lora"]
-successors: ["openvla-oft", "pi-0", "fast"]
+successors: ["openvla-oft", "pi-0", "fast", "wall-oss"]
 ---
 
 ## 한 줄 요약

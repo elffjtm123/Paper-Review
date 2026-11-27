@@ -8,7 +8,7 @@ category: "VLA"
 tags: ["Action Tokenization", "DCT", "BPE", "Autoregressive VLA"]
 pdf: "논문/VLA/FAST.pdf"
 predecessors: ["openvla", "pi-0"]
-successors: ["pi-0-5"]
+successors: ["pi-0-5", "wall-oss"]
 ---
 
 ## 한 줄 요약
